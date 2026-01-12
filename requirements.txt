@@ -1,0 +1,5 @@
+# Ursina Game Engine - required for all games
+ursina>=8.2.0
+
+# Perlin Noise - required for minecraft_tut terrain generation
+perlin_noise>=1.13
