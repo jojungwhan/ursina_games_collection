@@ -1,52 +1,54 @@
 from ursina import *
 
 class VisualLoop:
-    def __init__(self, speed=0.5):
-        """
-        초기화 함수
-        speed: 단계별 등장 속도 (기본 0.5초)
-        """
+    def __init__(self, speed=0.1):
         self.speed = speed
+        self.counter = 0  # 실행 순서를 세기 위한 카운터
 
-    def _create_visual(self, i, total):
+    def show_step(self, x, y=None, z=None):
         """
-        실제로 화면에 그림을 그리는 내부 함수 (학생들은 몰라도 됨)
+        학생이 호출하는 함수.
+        인자의 개수에 따라 1D, 2D, 3D를 자동으로 구분합니다.
         """
-        # 비율 계산 (0.0 ~ 1.0)
-        t = i / total
-        size = 4 * i
-
-        # 1. 그리드 생성
-        grid = Entity(
-            model=Grid(size, size),
-            scale=size,
-            color=color.hsv(0, 0, .8, lerp(.8, 0, t)),
-            rotation_x=75,
-            y=i/1000
-        )
-        grid.animate_scale(size, duration=0.5, curve=curve.out_bounce)
-
-        # 2. 그림자(서브 그리드) 생성
-        subgrid = duplicate(grid)
-        subgrid.model = Grid(size*4, size*4)
-        subgrid.color = color.hsv(0, 0, .4, lerp(.8, 0, t))
-        subgrid.animate_scale(size, duration=0.5, curve=curve.out_bounce)
-
-        # 3. 숫자 텍스트 생성
-        Text(
-            text=str(i),
-            position=(size/2, 1, 0),
-            scale=4,
-            color=color.black,
-            billboard=True
-        )
+        self.counter += 1
         
-        print(f"Step {i}: Grid created!")
+        # 순차적으로 실행되도록 delay를 카운터 기반으로 설정
+        delay_time = self.counter * self.speed
 
-    def show_step(self, i, total=10):
-        """
-        학생들이 호출하는 함수.
-        직접 만들지 않고 invoke를 사용해 예약을 걸어줍니다.
-        """
-        # 자동으로 시간차(delay)를 계산해서 실행
-        invoke(self._create_visual, i, total, delay=i * self.speed)
+        if y is None and z is None:
+            # 인자가 1개일 때 (1D: 선형/원형)
+            invoke(self._create_1d, x, delay=delay_time)
+        elif z is None:
+            # 인자가 2개일 때 (2D: 평면)
+            invoke(self._create_2d, x, y, delay=delay_time)
+        else:
+            # 인자가 3개일 때 (3D: 입체)
+            invoke(self._create_3d, x, y, z, delay=delay_time)
+
+    # --- 내부 로직 (학생들은 몰라도 됨) ---
+
+    def _create_1d(self, i):
+        # 1차원: 옆으로 길게 늘어선 큐브
+        e = Entity(model='cube', color=color.hsv(0.6, 0.5, 0.8), scale=0.8)
+        e.position = (i, 0, 0)
+        e.animate_scale(0.8, duration=0.5, curve=curve.out_bounce)
+        self._add_text(i, e.position)
+
+    def _create_2d(self, x, y):
+        # 2차원: 바닥에 타일 깔기 (x, z축 사용)
+        e = Entity(model='cube', color=color.hsv(0.3, 0.6, 0.8), scale=0.9)
+        e.position = (x, 0, y)  # y인자를 z축(깊이)에 사용
+        e.animate_scale(0.9, duration=0.3, curve=curve.out_back)
+        # 좌표 표시 텍스트 (예: "1, 3")
+        self._add_text(f"{x},{y}", (x, 0.6, y), scale=2)
+
+    def _create_3d(self, x, y, z):
+        # 3차원: 공중에 쌓기
+        e = Entity(model='cube', color=color.hsv(0.1, 0.7, 0.8), scale=0.9)
+        e.position = (x, y, z)
+        e.animate_scale(0.9, duration=0.3, curve=curve.out_back)
+        # 3D는 텍스트가 너무 많으면 지저분하므로 생략하거나 작게 표시
+
+    def _add_text(self, text, pos, scale=4):
+        Text(text=str(text), position=pos, scale=scale, 
+             color=color.black, billboard=True, origin=(0,0))
