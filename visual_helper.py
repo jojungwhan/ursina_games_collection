@@ -32,14 +32,17 @@ class VisualLoop:
         e = Entity(model='cube', color=color.hsv(0.6, 0.5, 0.8), scale=0.8)
         e.position = (i, 0, 0)
         e.animate_scale(0.8, duration=0.5, curve=curve.out_bounce)
-        self._add_text(i, e.position)
+        
+        # [수정] 텍스트 추가 (값: i)
+        self._add_text(str(i), e.position, scale=4)
 
     def _create_2d(self, x, y):
         # 2차원: 바닥에 타일 깔기 (x, z축 사용)
         e = Entity(model='cube', color=color.hsv(0.3, 0.6, 0.8), scale=0.9)
         e.position = (x, 0, y)  # y인자를 z축(깊이)에 사용
         e.animate_scale(0.9, duration=0.3, curve=curve.out_back)
-        # 좌표 표시 텍스트 (예: "1, 3")
+        
+        # [수정] 텍스트 추가 (값: x,y) / 위치를 큐브보다 살짝 위(y+0.6)로
         self._add_text(f"{x},{y}", (x, 0.6, y), scale=2)
 
     def _create_3d(self, x, y, z):
@@ -47,8 +50,15 @@ class VisualLoop:
         e = Entity(model='cube', color=color.hsv(0.1, 0.7, 0.8), scale=0.9)
         e.position = (x, y, z)
         e.animate_scale(0.9, duration=0.3, curve=curve.out_back)
-        # 3D는 텍스트가 너무 많으면 지저분하므로 생략하거나 작게 표시
+        
+        # [수정] 기존 코드에서 빠져있던 3D 텍스트 추가
+        # 텍스트가 너무 크면 겹치므로 scale을 1.5로 줄임
+        self._add_text(f"{x},{y},{z}", (x, y, z), scale=1.5)
 
-    def _add_text(self, text, pos, scale=4):
-        Text(text=str(text), position=pos, scale=scale, 
-             color=color.black, billboard=True, origin=(0,0))
+    def _add_text(self, text_str, pos, scale=4):
+        # [수정] 텍스트가 큐브 안에 파묻히지 않게 항상 카메라를 보게 설정
+        t = Text(text=text_str, position=pos, scale=scale, 
+             color=color.black, billboard=True)
+        
+        # 텍스트의 중심점을 가운데로 맞춰서 정확한 위치에 뜨게 함
+        t.origin = (0, 0)
