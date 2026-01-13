@@ -50,6 +50,7 @@ app.run()
 
 
 
+
 """
 from ursina import *
 app = Ursina()
@@ -72,7 +73,7 @@ bricks = []
 for x_pos in range(-65, 75, 10):
     for y_pos in range(3,7):
         brick = Entity(model='quad', x = x_pos/10 , y = y_pos/3, scale = (0.9, 0.3),
-			 									      collider='box', color = color.red)
+										      collider='box', color = color.red)
         bricks.append(brick)
 
 #5 move the ball so it bounces off the walls

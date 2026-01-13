@@ -1,0 +1,87 @@
+# MkDocs Configuration for K-12 Python Learning Site
+# 한국 학생들을 위한 파이썬 학습 문서 사이트
+
+site_name: "CIT 파이썬 비주얼 코딩"
+site_description: K-12 학생들을 위한 CIT 파이썬 비주얼 코딩 학습 사이트
+site_author: Python Educator
+
+# Theme Configuration
+theme:
+  name: material
+  language: ko  # 한국어 UI
+  font:
+    text: Noto Sans KR
+    code: Roboto Mono
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: teal
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - content.code.copy
+
+# Plugins
+plugins:
+  - search:
+      lang:
+        - ko
+        - en
+  - mkdocstrings:
+      handlers:
+        python:
+          paths: ["..", "."]  # include repo root so `ursina_games_collection` can be imported
+          options:
+            docstring_style: google
+            show_source: true
+            show_root_heading: true
+
+# Markdown Extensions
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - attr_list
+
+# Extra CSS and JavaScript
+extra_css:
+  - stylesheets/extra.css
+
+extra_javascript:
+  - javascripts/quiz-engine.js
+
+# Navigation
+nav:
+  - 홈: index.md
+  - '1. 시작하기':
+    - '첫 번째 3D 앱': 'one_basics/01_hello.md'
+    - '변수와 큐브': 'one_basics/02_cube.md'
+  - '2. 흐름 제어':
+    - '반복문 (For Loops)': 'two_flow/01_loops.md'
+  - '3. 데이터 구조':
+    - '리스트 (Lists)': 'four_data/01_lists.md'
+  - '4. 중첩 반복문, 2D 3D 배열':
+    - '슬로우 모션 FPS': 'three_ursina_3d_intro/slow_motion.md'
+    - '2D 플랫폼 기본': 'three_ursina_3d_intro/platformer.md'
+    - '중첩 반복문 시각화': 'three_ursina_3d_intro/nested_loops_visualizer.md'
+    - '3D 월드 그리드': 'three_ursina_3d_intro/world_grid.md'
+  - '5. 함수로 게임 만들기':
+    - '탄막과 업데이트 함수': 'five_functions/bullet_hell.md'
+    - '슈터 입력과 업데이트': 'five_functions/shooter.md'
+    - '미로 타이머': 'five_functions/maze_timer.md'
+    - '콜백으로 그래프 조작': 'five_functions/column_graph.md'
+  - '6. 클래스 입문':
+    - 'FPS 적 클래스': 'six_classes_intro/fps_enemy.md'
+    - '파내는 플레이어 클래스': 'six_classes_intro/digging_player.md'
+    - '마인크래프트 블록 클래스': 'six_classes_intro/minecraft_block.md'
+  - '7. 2D 배열과 그리드':
+    - '2D 그리드 파기': 'seven_2d_arrays_grids/digging_grid.md'
+    - '인벤토리 그리드': 'seven_2d_arrays_grids/inventory_grid.md'
+    - '마인크래프트 지형': 'seven_2d_arrays_grids/minecraft_terrain.md'
+  - '8. 고급 프로젝트':
+    - 'FPS 완성본': 'eight_advanced_projects/fps_complete.md'
+    - '아이템이 있는 마인크래프트': 'eight_advanced_projects/minecraft_with_items.md'
+    - '인벤토리 완성': 'eight_advanced_projects/inventory_complete.md'
+  - '기타':
+    - '설치 가이드': 'SETUP_GUIDE.md'
+    - '문서 템플릿(개발용)': 'LESSON_TEMPLATE.md'

@@ -43,3 +43,6 @@ Thumbs.db
 
 # Ursina generated files
 models_compressed/
+
+docs/
+site/
