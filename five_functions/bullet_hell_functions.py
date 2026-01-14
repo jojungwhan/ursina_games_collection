@@ -10,8 +10,8 @@ if 'URSINA_SAMPLE_NAME' in os.environ:
     window.title = os.environ['URSINA_SAMPLE_NAME']
 
 
-bg = Entity(model='quad', scale=(30, 50), texture='grass', color=hsv(0,0,.2))
-player = Entity(model=Circle(3), color=color.azure, speed=8, y=-.4, z=-1)
+bg = Entity(model='quad', scale=(30, 50), texture='images/bullethell_bg.png')
+player = Entity(model='quad', texture='images/bullethell_plane_1.png', scale=3, speed=8, y=-.4, z=-1)
 player.bullet_renderer = Entity(model=Mesh(mode='point', thickness=.2), texture='circle', color=color.yellow)
 
 scene.fog_density = (10,50)
@@ -60,7 +60,7 @@ def input(key):
 
 
 enemies = []
-enemy = Entity(model=Circle(3), rotation_z=180, position=(0, 16), color=color.red, z=-1, speed=3, hp=5)
+enemy = Entity(model='quad', texture='images/bullethell_plane_enemy1.png', scale=3, rotation_z=180, position=(0, 16), z=-1, speed=3, hp=5)
 enemies.append(enemy)
 
 def enemy_update():
