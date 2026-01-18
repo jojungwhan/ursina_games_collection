@@ -44,5 +44,5 @@ Thumbs.db
 # Ursina generated files
 models_compressed/
 
-docs/
+# MkDocs build output
 site/
