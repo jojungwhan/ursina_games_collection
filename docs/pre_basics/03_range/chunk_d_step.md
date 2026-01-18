@@ -191,7 +191,7 @@ for i in range(0, 11, 2):  # 끝을 11로!
 
 블록으로 배운 내용을 직접 타이핑해보세요!
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/jojungwhan/ursina_games_collection/blob/main/docs/notebooks/03_숫자_공장.ipynb)
+<a href="https://colab.research.google.com/github/jojungwhan/ursina_games_collection/blob/main/docs/notebooks/03_숫자_공장.ipynb" target="_blank"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"></a>
 
 ---
 

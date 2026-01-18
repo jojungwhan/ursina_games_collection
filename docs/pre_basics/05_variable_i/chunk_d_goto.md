@@ -208,7 +208,7 @@ for i in range(5):
 
 블록으로 배운 내용을 직접 타이핑해보세요!
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/jojungwhan/ursina_games_collection/blob/main/docs/notebooks/05_진화하는_반복.ipynb)
+<a href="https://colab.research.google.com/github/jojungwhan/ursina_games_collection/blob/main/docs/notebooks/05_진화하는_반복.ipynb" target="_blank"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"></a>
 
 ---
 
