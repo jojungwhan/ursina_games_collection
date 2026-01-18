@@ -1,0 +1,541 @@
+/**
+ * Blockly Integration Styles
+ * Mobile-compatible styles for Blockly workspace and Python output terminal
+ */
+
+/* Blockly Workspace Container */
+#blocklyDiv {
+    touch-action: none; /* Prevent scrolling while dragging blocks on tablets */
+    width: 100%;
+    height: 480px;
+    position: relative;
+    z-index: 1; /* Ensure workspace is above background but below overlays */
+    overflow: hidden; /* Prevent injectionDiv from overflowing during instant navigation */
+    max-width: 100%; /* Constrain to parent width */
+    box-sizing: border-box;
+}
+
+/* Fix for injectionDiv getting incorrect width during instant navigation */
+#blocklyDiv .injectionDiv {
+    max-width: 100% !important; /* Never exceed parent container */
+    width: 100% !important; /* Match parent width */
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+}
+
+/* Blockly SVG workspace - ensure proper z-index */
+#blocklyDiv .blocklySvg {
+    position: relative;
+    z-index: 1;
+}
+
+/* Blockly toolbox - fix z-index and positioning to prevent overlap */
+#blocklyDiv .blocklyToolboxDiv {
+    position: absolute !important;
+    left: 0 !important;
+    top: 0 !important;
+    z-index: 2 !important; /* Toolbox should be above workspace */
+    background-color: #f9f9f9;
+    max-width: 320px !important; /* Constrain toolbox width */
+    width: auto !important; /* Let Blockly determine width, but constrained by max-width */
+    overflow-x: hidden !important; /* Prevent horizontal overflow */
+    overflow-y: auto !important; /* Allow vertical scrolling */
+    box-sizing: border-box !important;
+    clip: auto !important; /* Ensure content doesn't extend beyond boundaries */
+}
+
+/* Blockly toolbox categories - ensure they don't extend beyond toolbox */
+#blocklyDiv .blocklyTreeRoot {
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+    box-sizing: border-box !important;
+}
+
+/* Blockly toolbox category labels - prevent text overflow */
+#blocklyDiv .blocklyTreeRow {
+    max-width: 100% !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+    box-sizing: border-box !important;
+}
+
+/* Blockly flyout - ensure it doesn't overlap workspace incorrectly */
+#blocklyDiv .blocklyFlyout {
+    position: absolute !important;
+    z-index: 2 !important;
+}
+
+/* Ensure Blockly workspace content is positioned correctly */
+#blocklyDiv .blocklyWorkspace {
+    position: relative;
+    z-index: 1;
+    margin-left: 0; /* Workspace will be adjusted by Blockly JS to account for toolbox */
+}
+
+/* Blockly workspace background - ensure it doesn't extend under toolbox */
+#blocklyDiv .blocklyMainBackground {
+    position: relative;
+    z-index: 1;
+}
+
+/* Blockly workspace SVG should respect toolbox boundaries */
+#blocklyDiv .blocklyWorkspaceSvg {
+    position: relative;
+    z-index: 1;
+}
+
+/* Blockly scrollbars should be visible and not overlapped */
+#blocklyDiv .blocklyScrollbarHandle,
+#blocklyDiv .blocklyScrollbarBackground {
+    z-index: 3;
+}
+
+/* Python Code Output Terminal */
+#outputCanvas {
+    background-color: #1e1e1e; /* Dark terminal background */
+    color: #d4d4d4; /* Light text color */
+    padding: 1rem;
+    border: 1px solid #3e3e3e;
+    border-radius: 4px;
+    font-family: 'Roboto Mono', 'Courier New', monospace;
+    font-size: 14px;
+    line-height: 1.5;
+    min-height: 100px;
+    max-height: 300px;
+    overflow-y: auto;
+    white-space: pre-wrap; /* Preserve whitespace and wrap text */
+    word-wrap: break-word;
+    margin-top: 1rem;
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Error output styling */
+#outputCanvas.error {
+    color: #f48771; /* Light red for errors */
+}
+
+/* Success/output styling */
+#outputCanvas.success {
+    color: #4ec9b0; /* Light green for success */
+}
+
+/* Responsive adjustments for mobile devices */
+@media (max-width: 768px) {
+    #blocklyDiv {
+        height: 400px; /* Slightly smaller on mobile */
+    }
+    
+    #outputCanvas {
+        font-size: 12px;
+        padding: 0.75rem;
+    }
+}
+
+/* Button styling for Run Code button */
+button[onclick="runit()"] {
+    background-color: #4db6ac; /* Teal accent color matching theme */
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 1rem;
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    display: block;
+    transition: background-color 0.3s ease;
+}
+
+button[onclick="runit()"]:hover {
+    background-color: #26a69a; /* Darker teal on hover */
+}
+
+button[onclick="runit()"]:active {
+    background-color: #00897b; /* Even darker on click */
+}
+
+/* ============================================================================
+   SIDE-BY-SIDE LAYOUT: Blockly + Python Code Preview
+   ============================================================================ */
+
+/* Flexbox container for side-by-side layout */
+.blockly-container {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    margin-left: 0;
+    margin-right: 0;
+    align-items: stretch;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Code preview container (Python + Flowchart tabs) */
+.code-preview-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #3e3e3e;
+    background-color: #1e1e1e;
+    border-radius: 4px;
+    overflow: hidden;
+    min-width: 300px;
+}
+
+/* Tab buttons container */
+.preview-tabs {
+    display: flex;
+    background: #2d2d2d;
+    border-bottom: 1px solid #3e3e3e;
+}
+
+/* Individual tab button */
+.preview-tab {
+    flex: 1;
+    padding: 10px 16px;
+    background: transparent;
+    border: none;
+    color: #888;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 0.9em;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border-bottom: 2px solid transparent;
+}
+
+.preview-tab:hover {
+    color: #d4d4d4;
+    background: #363636;
+}
+
+.preview-tab.active {
+    color: #4db6ac;
+    border-bottom-color: #4db6ac;
+    background: #1e1e1e;
+}
+
+/* Tab content container */
+.preview-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* Individual tab panels */
+.tab-panel {
+    display: none;
+    flex: 1;
+    overflow: auto;
+}
+
+.tab-panel.active {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Legacy support */
+.python-preview-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ccc;
+    background-color: #1e1e1e;
+    border-radius: 4px;
+    overflow: hidden;
+    min-width: 300px;
+}
+
+/* Header for the Python code preview */
+.preview-header {
+    background: #2d2d2d;
+    padding: 8px 12px;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: bold;
+    font-size: 0.85em;
+    color: #d4d4d4;
+    border-bottom: 1px solid #3e3e3e;
+}
+
+/* Python code display area */
+.python-code-view,
+pre.python-code-view,
+#pythonCodeDisplay {
+    margin: 0;
+    padding: 12px;
+    flex-grow: 1;
+    overflow: auto;
+    font-family: 'Roboto Mono', 'Courier New', monospace;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #e8e8e8 !important;
+    background-color: #1e1e1e !important;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    min-height: 400px;
+}
+
+/* Ensure code text is visible - override any theme styles */
+#pythonCodeDisplay,
+#pythonCodeDisplay * {
+    color: #e8e8e8 !important;
+    background-color: transparent !important;
+}
+
+#pythonCodeDisplay {
+    background-color: #1e1e1e !important;
+}
+
+/* Responsive: Stack vertically on smaller screens */
+@media (max-width: 900px) {
+    .blockly-container {
+        flex-direction: column;
+    }
+
+    .blockly-container #blocklyDiv {
+        width: 100% !important;
+    }
+
+    .python-preview-container {
+        min-width: unset;
+        width: 100%;
+    }
+
+    .python-code-view {
+        min-height: 200px;
+    }
+}
+
+/* Turtle Canvas Container */
+#turtleCanvasContainer {
+    position: relative; /* Ensure container uses normal flow */
+    display: block; /* Change from inline-block to block for full width */
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Turtle Canvas - override any fixed positioning */
+#mycanvas {
+    position: relative !important; /* Force relative positioning instead of fixed */
+    width: 400px;
+    height: 400px;
+    margin: 0;
+    padding: 0;
+}
+
+/* Ensure canvas elements inside mycanvas are positioned correctly */
+#mycanvas canvas {
+    position: relative !important;
+    display: block;
+    margin: 0;
+    padding: 0;
+}
+
+/* ============================================================================
+   MERMAID FLOWCHART STYLES
+   ============================================================================ */
+
+/* Mermaid container */
+.mermaid-container {
+    flex: 1;
+    padding: 16px;
+    background-color: #ffffff;
+    overflow: auto;
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+/* Flowchart placeholder text */
+.flowchart-placeholder {
+    color: #888;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 0.9em;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Mermaid diagram styling */
+.mermaid-container .mermaid {
+    width: 100%;
+    text-align: center;
+}
+
+.mermaid-container svg,
+.mermaid-rendered svg {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+.mermaid-rendered {
+    width: 100%;
+    text-align: center;
+}
+
+/* Override Mermaid node styles for better visibility */
+.mermaid-container .node rect,
+.mermaid-container .node circle,
+.mermaid-container .node ellipse,
+.mermaid-container .node polygon,
+.mermaid-container .node path {
+    stroke-width: 2px;
+}
+
+/* Flowchart specific node colors */
+.mermaid-container .node.start rect,
+.mermaid-container .node.stop rect {
+    fill: #4db6ac !important;
+    stroke: #26a69a !important;
+}
+
+/* Responsive adjustments for flowchart */
+@media (max-width: 900px) {
+    .code-preview-container {
+        min-width: unset;
+        width: 100%;
+    }
+
+    .mermaid-container {
+        min-height: 250px;
+    }
+}
+
+/* ============================================================================
+   ALIGNMENT FIXES: Ensure button and output align with blockly container
+   ============================================================================ */
+
+/* Container wrapper to ensure consistent alignment */
+.blockly-container-wrapper {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Ensure button aligns with left edge of blockly container */
+.blockly-container + button[onclick="runit()"],
+button[onclick="runit()"] {
+    clear: both;
+}
+
+/* Align output canvas with button and blockly container */
+.blockly-container ~ #outputCanvas,
+button[onclick="runit()"] ~ #outputCanvas {
+    clear: both;
+}
+
+/* Remove any default margins/padding from parent elements that might affect alignment */
+.md-typeset .blockly-container,
+.md-content .blockly-container {
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.md-typeset button[onclick="runit()"],
+.md-content button[onclick="runit()"] {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.md-typeset #outputCanvas,
+.md-content #outputCanvas {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+/* Ensure consistent left alignment for all blockly-related elements */
+.blockly-container,
+button[onclick="runit()"],
+#outputCanvas,
+#turtleCanvasContainer {
+    max-width: 100%;
+}
+
+/* Fix alignment by ensuring blockly container and its siblings align properly */
+.blockly-container {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+/* Align button with the left edge of blocklyDiv (55% width) */
+button[onclick="runit()"] {
+    width: auto;
+    align-self: flex-start;
+}
+
+/* Ensure output canvas matches button alignment */
+#outputCanvas {
+    width: 100%;
+    clear: left;
+}
+
+/* Fix for Python code display alignment within its container */
+#pythonCodeDisplay {
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 12px;
+    padding-right: 12px;
+}
+
+/* Override any theme-specific padding that might affect alignment */
+.md-typeset .blockly-container,
+.md-content .blockly-container {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+/* Ensure button container has no left margin/padding */
+p:has(button[onclick="runit()"]),
+div:has(button[onclick="runit()"]) {
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+}
+
+/* Remove margins from paragraphs containing blockly elements */
+.md-typeset p:has(.blockly-container),
+.md-content p:has(.blockly-container),
+.md-typeset p:has(button[onclick="runit()"]),
+.md-content p:has(button[onclick="runit()"]) {
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+}
+
+/* Align all blockly-related elements to start from the same left position */
+.blockly-container,
+.blockly-container ~ button[onclick="runit()"],
+.blockly-container ~ #outputCanvas,
+.blockly-container ~ #turtleCanvasContainer {
+    position: relative;
+}
+
+/* Specific alignment fix: ensure button aligns with blockly container's left edge */
+.blockly-container {
+    margin-left: 0 !important;
+}
+
+/* Ensure button starts at the same horizontal position as blockly container */
+button[onclick="runit()"] {
+    margin-left: 0 !important;
+    padding-left: 0.75rem; /* Keep internal padding but align left edge */
+}
+
+/* Ensure output canvas aligns with button */
+#outputCanvas {
+    margin-left: 0 !important;
+}
