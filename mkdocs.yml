@@ -21,6 +21,10 @@ theme:
     - navigation.tracking
     - content.code.copy
 
+# Hooks (run before plugins)
+hooks:
+  - hooks.py
+
 # Plugins
 plugins:
   - search:
@@ -35,31 +39,113 @@ plugins:
             docstring_style: google
             show_source: true
             show_root_heading: true
+  - mkdocs_cloze_plugin
 
 # Markdown Extensions
+# mkdocs_cloze_plugin installs a meta path finder to make mkdocs_cloze_extension importable
 markdown_extensions:
   - admonition
   - pymdownx.details
-  - pymdownx.superfences
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
   - attr_list
+  - mkdocs_cloze_extension
+
+# Footer
+extra:
+  generator: false  # Hide "Made with Material for MkDocs"
+
+copyright: CIT AI and Code Academy
 
 # Extra CSS and JavaScript
 extra_css:
   - stylesheets/extra.css
+  - stylesheets/cloze_quiz.css
+  - css/blockly_style.css
 
 extra_javascript:
   - javascripts/quiz-engine.js
+  - javascripts/cloze_quiz.js
+  - https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js
+  - https://unpkg.com/blockly/blockly_compressed.js
+  - https://unpkg.com/blockly/blocks_compressed.js
+  - https://unpkg.com/blockly/python_compressed.js
+  - https://unpkg.com/blockly/msg/en.js
+  - https://skulpt.org/js/skulpt.min.js
+  - https://skulpt.org/js/skulpt-stdlib.js
+  - js/blockly_integration.js
+  - js/blockly_multi_instance.js
 
 # Navigation
 nav:
   - 홈: index.md
+  - '0. 기초 준비 (Turtle)':
+    - '거북이 조련사가 되어보자':
+        - 'A. 순차 실행과 done()': 'pre_basics/01_turtle/chunk_a_done.md'
+        - 'B. import 라이브러리': 'pre_basics/01_turtle/chunk_b_import.md'
+        - 'C. shape() 모양': 'pre_basics/01_turtle/chunk_c_shape.md'
+        - 'D. forward() 이동': 'pre_basics/01_turtle/chunk_d_forward.md'
+        - 'E. right()/left() 회전': 'pre_basics/01_turtle/chunk_e_turn.md'
+        - 'F. ㄱ 모양': 'pre_basics/01_turtle/chunk_f_giyeok.md'
+        - 'G. ㄴ 모양': 'pre_basics/01_turtle/chunk_g_nieun.md'
+        - 'H. ㄷ 모양': 'pre_basics/01_turtle/chunk_h_digeut.md'
+    - '예술가의 도구들':
+        - 'A. 변수란?': 'pre_basics/02_colors/chunk_a_variable.md'
+        - 'B. bgcolor() 배경색': 'pre_basics/02_colors/chunk_b_bgcolor.md'
+        - 'C. pencolor() 펜 색상': 'pre_basics/02_colors/chunk_c_pencolor.md'
+        - 'D. 변수 재사용': 'pre_basics/02_colors/chunk_d_reuse.md'
+    - '숫자 공장':
+        - 'A. range(n) 기본': 'pre_basics/03_range/chunk_a_basic.md'
+        - 'B. 0부터 시작': 'pre_basics/03_range/chunk_b_zero.md'
+        - 'C. range(시작, 끝)': 'pre_basics/03_range/chunk_c_start_end.md'
+        - 'D. range(시작, 끝, 간격)': 'pre_basics/03_range/chunk_d_step.md'
+    - '반복의 미학':
+        - 'A. for 반복문 기초': 'pre_basics/04_loop/chunk_a_for_basic.md'
+        - 'B. 들여쓰기': 'pre_basics/04_loop/chunk_b_indent.md'
+        - 'C. penup/pendown': 'pre_basics/04_loop/chunk_c_pen.md'
+        - 'D. stamp() 도장': 'pre_basics/04_loop/chunk_d_stamp.md'
+        - 'E. 사각형 그리기': 'pre_basics/04_loop/chunk_e_square.md'
+        - 'F. 별 그리기': 'pre_basics/04_loop/chunk_f_star.md'
+    - '진화하는 반복':
+        - 'A. 반복 변수 i란?': 'pre_basics/05_variable_i/chunk_a_intro.md'
+        - 'B. circle(i) 원 그리기': 'pre_basics/05_variable_i/chunk_b_circle.md'
+        - 'C. i를 계산에 사용': 'pre_basics/05_variable_i/chunk_c_calculate.md'
+        - 'D. goto(i*50, 0)': 'pre_basics/05_variable_i/chunk_d_goto.md'
+    - '파이널 프로젝트: 나선형':
+        - 'A. 배경과 색상 설정': 'pre_basics/06_spiral/chunk_a_setup.md'
+        - 'B. 나선형 코드 분석': 'pre_basics/06_spiral/chunk_b_spiral.md'
+        - 'C. 91도의 비밀': 'pre_basics/06_spiral/chunk_c_91.md'
+        - 'D. 실험하기': 'pre_basics/06_spiral/chunk_d_experiment.md'
   - '1. 시작하기':
-    - '첫 번째 3D 앱': 'one_basics/01_hello.md'
-    - '변수와 인자': 'one_basics/02_cube.md'
+    - '첫 번째 3D 앱':
+        - 'A. 라이브러리 불러오기': 'one_basics/01_hello/chunk_a_import.md'
+        - 'B. 게임 창 만들기': 'one_basics/01_hello/chunk_b_app.md'
+        - 'C. 변수 선언': 'one_basics/01_hello/chunk_c_variable.md'
+        - 'D. Entity로 3D 큐브 만들기': 'one_basics/01_hello/chunk_d_entity.md'
+        - 'E. 완성 코드와 실행': 'one_basics/01_hello/chunk_e_complete.md'
+    - '변수와 인자':
+        - 'A. Entity 인자 기초': 'one_basics/02_cube/chunk_a_args.md'
+        - 'B. 변수에 Entity 저장': 'one_basics/02_cube/chunk_b_variable.md'
+        - 'C. 반복문으로 여러 Entity': 'one_basics/02_cube/chunk_c_loop.md'
+        - 'D. alpha와 parent-child': 'one_basics/02_cube/chunk_d_alpha_parent.md'
+        - 'E. 메서드와 완성 코드': 'one_basics/02_cube/chunk_e_method.md'
   - '2. 제어문':
-    - '반복문': 'two_flow/01_loops.md'
+    - '반복문':
+        - 'A. 반복문이란?': 'two_flow/01_loops/chunk_a_for.md'
+        - 'B. range() 숫자 공장': 'two_flow/01_loops/chunk_b_range.md'
+        - 'C. 변수 i 바구니': 'two_flow/01_loops/chunk_c_variable_i.md'
+        - 'D. 들여쓰기': 'two_flow/01_loops/chunk_d_indent.md'
+        - 'E. 계산식 활용': 'two_flow/01_loops/chunk_e_formula.md'
   - '3. 데이터 구조':
-    - '리스트': 'four_data/01_lists.md'
+    - '리스트':
+        - 'A. 리스트란?': 'four_data/01_lists/chunk_a_intro.md'
+        - 'B. 리스트 만들기': 'four_data/01_lists/chunk_b_create.md'
+        - 'C. append()로 추가': 'four_data/01_lists/chunk_c_append.md'
+        - 'D. remove()로 제거': 'four_data/01_lists/chunk_d_remove.md'
+        - 'E. 반복문과 리스트': 'four_data/01_lists/chunk_e_loop.md'
   - '4. 중첩 반복문, 2D 3D 배열':
     - '조건문과 시간 제어': 'three_ursina_3d_intro/slow_motion.md'
     - '물리와 충돌 검사': 'three_ursina_3d_intro/platformer.md'
@@ -85,3 +171,5 @@ nav:
   - '기타':
     - '설치 가이드': 'SETUP_GUIDE.md'
     - '문서 템플릿(개발용)': 'LESSON_TEMPLATE.md'
+    - '종합 예제 페이지 (보일러플레이트)': 'BOILERPLATE_EXAMPLE.md'
+    - 'Blockly 코딩 환경': 'blockly_demo.md'
