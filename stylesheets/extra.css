@@ -742,9 +742,9 @@ details.quiz-answer-section .highlight {
     margin-right: 0;
 }
 
-/* Ensure parent containers allow overflow for wider iframes */
+/* Allow wider content (120%) to extend but scroll if beyond viewport */
 .md-content__inner {
-    overflow-x: visible;
+    overflow-x: auto;
 }
 
 /* ========================================

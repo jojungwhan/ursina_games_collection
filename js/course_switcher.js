@@ -190,6 +190,14 @@
     // ========================================================================
 
     /**
+     * Check if the current page is the home/index page
+     */
+    function isHomePage() {
+        const path = window.location.pathname;
+        return path.endsWith('/') || path.endsWith('/index.html');
+    }
+
+    /**
      * Get stored track preference or detect from URL
      * Priority: 1) localStorage (user's explicit choice), 2) URL pattern, 3) default
      * @returns {{ trackId: string, source: 'url'|'storage'|'default' }}
@@ -566,6 +574,17 @@
         _currentTrack = initial.trackId;
         setActiveTrack(_currentTrack, false, initial.source !== 'url');
 
+        // If on home page and track hides home, redirect to first lesson
+        const activeTrack = TRACKS[_currentTrack];
+        if (isHomePage() && activeTrack && activeTrack.hideHome) {
+            const firstUrl = getFirstLessonUrl(_currentTrack);
+            if (firstUrl) {
+                console.log('Course Switcher: Home hidden for track, redirecting to:', firstUrl);
+                window.location.href = firstUrl;
+                return;
+            }
+        }
+
         _initialized = true;
         console.log('Course Switcher: Initialized with track:', _currentTrack, '(source:', initial.source + ')');
     }
@@ -603,6 +622,15 @@
         updateSwitcherTabs(_currentTrack);
         filterNavigation(_currentTrack);
         updateBreadcrumb(_currentTrack);
+
+        // Redirect from home if track hides home
+        const activeTrack = TRACKS[_currentTrack];
+        if (isHomePage() && activeTrack && activeTrack.hideHome) {
+            const firstUrl = getFirstLessonUrl(_currentTrack);
+            if (firstUrl) {
+                window.location.href = firstUrl;
+            }
+        }
     }
 
     // ========================================================================
