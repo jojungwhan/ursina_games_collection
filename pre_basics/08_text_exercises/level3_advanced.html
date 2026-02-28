@@ -578,7 +578,7 @@
   <span class="md-ellipsis">
     
   
-    I. 거북이의 비밀 쪽지 (주석)
+    I. 주석 (Comment)
   
 
     
@@ -8474,7 +8474,7 @@
   <span class="md-ellipsis">
     
   
-    기타
+    📚 학부모 가이드
   
 
     
@@ -8487,88 +8487,6 @@
         
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_41_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_41">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    기타
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../SETUP_GUIDE.html" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    설치 가이드
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    
-    
-    
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_42" >
-        
-          
-          <label class="md-nav__link" for="__nav_42" id="__nav_42_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    📚 학부모 가이드
-  
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_42_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_42">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -8705,10 +8623,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_42_5" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_41_5" >
         
           
-          <label class="md-nav__link" for="__nav_42_5" id="__nav_42_5_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_41_5" id="__nav_41_5_label" tabindex="0">
             
   
   
@@ -8726,8 +8644,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_42_5_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_42_5">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_41_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_41_5">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -9136,28 +9054,18 @@
 <hr />
 <h2 id="q21">Q21. 병합 정렬</h2>
 <div class="text-exercise" data-exercise-id="q21-merge-sort">
-
-<div class="text-exercise-mission" markdown="1">
-
-**문제**: **병합 정렬(Merge Sort)** 알고리즘을 구현하세요.
-
-**알고리즘 개요**:
+<div class="text-exercise-mission">
+<p><strong>문제</strong>: <strong>병합 정렬(Merge Sort)</strong> 알고리즘을 구현하세요.</p>
+<p><strong>알고리즘 개요</strong>:
 1. 리스트를 반으로 나눔 (분할)
 2. 각 부분을 재귀적으로 정렬
-3. 두 정렬된 부분을 합침 (병합)
-
-**예시**:
-- `merge_sort([5, 2, 8, 1, 9])` → `[1, 2, 5, 8, 9]`
-
+3. 두 정렬된 부분을 합침 (병합)</p>
+<p><strong>예시</strong>:
+- <code>merge_sort([5, 2, 8, 1, 9])</code> → <code>[1, 2, 5, 8, 9]</code></p>
 </div>
-
-<div id="q21-editor" class="python-editor-placeholder"
-     data-code="def merge_sort(lst):%0A    %22%22%22병합 정렬로 리스트를 정렬합니다.%0A    %0A    분할 정복 알고리즘%0A    시간 복잡도: O(n log n)%0A    %22%22%22%0A    # 기저 조건: 길이가 1 이하면 그대로 반환%0A    if len(lst) <= 1:%0A        return lst%0A    %0A    # 여기에 코드를 작성하세요%0A    # 1. 리스트를 반으로 나누기%0A    # 2. 각 부분을 재귀적으로 정렬%0A    # 3. 두 정렬된 리스트를 병합%0A    pass%0A"
-     data-height="300px">
+<div class="python-editor-placeholder" data-code="def merge_sort(lst):%0A    %22%22%22병합 정렬로 리스트를 정렬합니다.%0A    %0A    분할 정복 알고리즘%0A    시간 복잡도: O(n log n)%0A    %22%22%22%0A    # 기저 조건: 길이가 1 이하면 그대로 반환%0A    if len(lst) &lt;= 1:%0A        return lst%0A    %0A    # 여기에 코드를 작성하세요%0A    # 1. 리스트를 반으로 나누기%0A    # 2. 각 부분을 재귀적으로 정렬%0A    # 3. 두 정렬된 리스트를 병합%0A    pass%0A" data-height="300px" id="q21-editor">
 </div>
-
 </div>
-
 <div class="admonition tip">
 <p class="admonition-title">💡 힌트</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">mid</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">lst</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
@@ -9169,28 +9077,17 @@
 <hr />
 <h2 id="q22">Q22. 행렬 곱셈</h2>
 <div class="text-exercise" data-exercise-id="q22-matrix-multiply">
-
-<div class="text-exercise-mission" markdown="1">
-
-**문제**: 두 행렬의 **곱**을 계산하는 함수를 작성하세요.
-
-**행렬 곱셈 규칙**: A(m×n) × B(n×p) = C(m×p)
-
-`C[i][j] = Σ A[i][k] × B[k][j]`
-
-**예시**:
+<div class="text-exercise-mission">
+<p><strong>문제</strong>: 두 행렬의 <strong>곱</strong>을 계산하는 함수를 작성하세요.</p>
+<p><strong>행렬 곱셈 규칙</strong>: A(m×n) × B(n×p) = C(m×p)</p>
+<p><code>C[i][j] = Σ A[i][k] × B[k][j]</code></p>
+<p><strong>예시</strong>:
 <div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>[[1, 2], [3, 4]] × [[5, 6], [7, 8]] = [[19, 22], [43, 50]]
-</span></code></pre></div>
-
+</span></code></pre></div></p>
 </div>
-
-<div id="q22-editor" class="python-editor-placeholder"
-     data-code="def matrix_multiply(A, B):%0A    %22%22%22두 행렬의 곱을 계산합니다.%0A    %0A    A: m x n 행렬%0A    B: n x p 행렬%0A    결과: m x p 행렬%0A    %22%22%22%0A    # 여기에 코드를 작성하세요%0A    pass%0A"
-     data-height="220px">
+<div class="python-editor-placeholder" data-code="def matrix_multiply(A, B):%0A    %22%22%22두 행렬의 곱을 계산합니다.%0A    %0A    A: m x n 행렬%0A    B: n x p 행렬%0A    결과: m x p 행렬%0A    %22%22%22%0A    # 여기에 코드를 작성하세요%0A    pass%0A" data-height="220px" id="q22-editor">
 </div>
-
 </div>
-
 <div class="admonition tip">
 <p class="admonition-title">💡 힌트</p>
 <ul>
@@ -9202,28 +9099,18 @@
 <hr />
 <h2 id="q52-circle">Q52. Circle 클래스</h2>
 <div class="text-exercise" data-exercise-id="q52-circle-class">
-
-<div class="text-exercise-mission" markdown="1">
-
-**문제**: 반지름을 받아 **면적을 계산**하는 `Circle` 클래스를 작성하세요.
-
-**구현할 것**:
-- `__init__(self, r)`: 반지름 r로 초기화
-- `area(self)`: 면적 반환 (π × r²)
-
-**테스트**:
-- `Circle(5).area()` → `78.54` (반올림)
-- `Circle(10).area()` → `314.16`
-
+<div class="text-exercise-mission">
+<p><strong>문제</strong>: 반지름을 받아 <strong>면적을 계산</strong>하는 <code>Circle</code> 클래스를 작성하세요.</p>
+<p><strong>구현할 것</strong>:
+- <code>__init__(self, r)</code>: 반지름 r로 초기화
+- <code>area(self)</code>: 면적 반환 (π × r²)</p>
+<p><strong>테스트</strong>:
+- <code>Circle(5).area()</code> → <code>78.54</code> (반올림)
+- <code>Circle(10).area()</code> → <code>314.16</code></p>
 </div>
-
-<div id="q52-editor" class="python-editor-placeholder"
-     data-code="import math%0A%0Aclass Circle:%0A    def __init__(self, r):%0A        %22%22%22반지름 r로 Circle을 초기화합니다.%22%22%22%0A        # 여기에 코드를 작성하세요%0A        pass%0A    %0A    def area(self):%0A        %22%22%22원의 면적을 반환합니다. (π × r²)%22%22%22%0A        # 여기에 코드를 작성하세요%0A        pass%0A"
-     data-height="280px">
+<div class="python-editor-placeholder" data-code="import math%0A%0Aclass Circle:%0A    def __init__(self, r):%0A        %22%22%22반지름 r로 Circle을 초기화합니다.%22%22%22%0A        # 여기에 코드를 작성하세요%0A        pass%0A    %0A    def area(self):%0A        %22%22%22원의 면적을 반환합니다. (π × r²)%22%22%22%0A        # 여기에 코드를 작성하세요%0A        pass%0A" data-height="280px" id="q52-editor">
 </div>
-
 </div>
-
 <div class="admonition tip">
 <p class="admonition-title">💡 힌트</p>
 <ul>
@@ -9235,29 +9122,19 @@
 <hr />
 <h2 id="q53-rectangle">Q53. Rectangle 클래스</h2>
 <div class="text-exercise" data-exercise-id="q53-rectangle-class">
-
-<div class="text-exercise-mission" markdown="1">
-
-**문제**: 가로와 세로를 받아 **면적과 둘레**를 계산하는 `Rectangle` 클래스를 작성하세요.
-
-**구현할 것**:
-- `__init__(self, width, height)`: 가로, 세로로 초기화
-- `area(self)`: 면적 반환 (가로 × 세로)
-- `perimeter(self)`: 둘레 반환 (2 × (가로 + 세로))
-
-**테스트**:
-- `Rectangle(5, 10).area()` → `50`
-- `Rectangle(5, 10).perimeter()` → `30`
-
+<div class="text-exercise-mission">
+<p><strong>문제</strong>: 가로와 세로를 받아 <strong>면적과 둘레</strong>를 계산하는 <code>Rectangle</code> 클래스를 작성하세요.</p>
+<p><strong>구현할 것</strong>:
+- <code>__init__(self, width, height)</code>: 가로, 세로로 초기화
+- <code>area(self)</code>: 면적 반환 (가로 × 세로)
+- <code>perimeter(self)</code>: 둘레 반환 (2 × (가로 + 세로))</p>
+<p><strong>테스트</strong>:
+- <code>Rectangle(5, 10).area()</code> → <code>50</code>
+- <code>Rectangle(5, 10).perimeter()</code> → <code>30</code></p>
 </div>
-
-<div id="q53-editor" class="python-editor-placeholder"
-     data-code="class Rectangle:%0A    def __init__(self, width, height):%0A        %22%22%22가로 width, 세로 height로 Rectangle을 초기화합니다.%22%22%22%0A        # 여기에 코드를 작성하세요%0A        pass%0A    %0A    def area(self):%0A        %22%22%22사각형의 면적을 반환합니다.%22%22%22%0A        # 여기에 코드를 작성하세요%0A        pass%0A    %0A    def perimeter(self):%0A        %22%22%22사각형의 둘레를 반환합니다.%22%22%22%0A        # 여기에 코드를 작성하세요%0A        pass%0A"
-     data-height="320px">
+<div class="python-editor-placeholder" data-code="class Rectangle:%0A    def __init__(self, width, height):%0A        %22%22%22가로 width, 세로 height로 Rectangle을 초기화합니다.%22%22%22%0A        # 여기에 코드를 작성하세요%0A        pass%0A    %0A    def area(self):%0A        %22%22%22사각형의 면적을 반환합니다.%22%22%22%0A        # 여기에 코드를 작성하세요%0A        pass%0A    %0A    def perimeter(self):%0A        %22%22%22사각형의 둘레를 반환합니다.%22%22%22%0A        # 여기에 코드를 작성하세요%0A        pass%0A" data-height="320px" id="q53-editor">
 </div>
-
 </div>
-
 <div class="admonition tip">
 <p class="admonition-title">💡 힌트</p>
 <ul>
@@ -9270,29 +9147,19 @@
 <hr />
 <h2 id="q54-stack">Q54. Stack 클래스</h2>
 <div class="text-exercise" data-exercise-id="q54-stack-class">
-
-<div class="text-exercise-mission" markdown="1">
-
-**문제**: **스택(Stack)** 자료구조를 클래스로 구현하세요.
-
-**구현할 메서드**:
-- `__init__(self)`: 빈 스택 초기화
-- `push(self, item)`: 아이템 추가
-- `pop(self)`: 마지막 아이템 제거 및 반환
-- `peek(self)`: 마지막 아이템 반환 (제거 안함)
-- `is_empty(self)`: 비어있는지 확인
-
-**스택 특성**: LIFO (Last In, First Out)
-
+<div class="text-exercise-mission">
+<p><strong>문제</strong>: <strong>스택(Stack)</strong> 자료구조를 클래스로 구현하세요.</p>
+<p><strong>구현할 메서드</strong>:
+- <code>__init__(self)</code>: 빈 스택 초기화
+- <code>push(self, item)</code>: 아이템 추가
+- <code>pop(self)</code>: 마지막 아이템 제거 및 반환
+- <code>peek(self)</code>: 마지막 아이템 반환 (제거 안함)
+- <code>is_empty(self)</code>: 비어있는지 확인</p>
+<p><strong>스택 특성</strong>: LIFO (Last In, First Out)</p>
 </div>
-
-<div id="q54-editor" class="python-editor-placeholder"
-     data-code="class Stack:%0A    def __init__(self):%0A        %22%22%22빈 스택을 초기화합니다.%22%22%22%0A        # 여기에 코드를 작성하세요%0A        pass%0A    %0A    def push(self, item):%0A        %22%22%22스택에 아이템을 추가합니다.%22%22%22%0A        # 여기에 코드를 작성하세요%0A        pass%0A    %0A    def pop(self):%0A        %22%22%22스택에서 아이템을 제거하고 반환합니다.%22%22%22%0A        # 여기에 코드를 작성하세요%0A        pass%0A    %0A    def peek(self):%0A        %22%22%22스택의 맨 위 아이템을 반환합니다. (제거하지 않음)%22%22%22%0A        # 여기에 코드를 작성하세요%0A        pass%0A    %0A    def is_empty(self):%0A        %22%22%22스택이 비어있는지 확인합니다.%22%22%22%0A        # 여기에 코드를 작성하세요%0A        pass%0A"
-     data-height="400px">
+<div class="python-editor-placeholder" data-code="class Stack:%0A    def __init__(self):%0A        %22%22%22빈 스택을 초기화합니다.%22%22%22%0A        # 여기에 코드를 작성하세요%0A        pass%0A    %0A    def push(self, item):%0A        %22%22%22스택에 아이템을 추가합니다.%22%22%22%0A        # 여기에 코드를 작성하세요%0A        pass%0A    %0A    def pop(self):%0A        %22%22%22스택에서 아이템을 제거하고 반환합니다.%22%22%22%0A        # 여기에 코드를 작성하세요%0A        pass%0A    %0A    def peek(self):%0A        %22%22%22스택의 맨 위 아이템을 반환합니다. (제거하지 않음)%22%22%22%0A        # 여기에 코드를 작성하세요%0A        pass%0A    %0A    def is_empty(self):%0A        %22%22%22스택이 비어있는지 확인합니다.%22%22%22%0A        # 여기에 코드를 작성하세요%0A        pass%0A" data-height="400px" id="q54-editor">
 </div>
-
 </div>
-
 <div class="admonition tip">
 <p class="admonition-title">💡 힌트</p>
 <ul>

@@ -578,7 +578,7 @@
   <span class="md-ellipsis">
     
   
-    I. 거북이의 비밀 쪽지 (주석)
+    I. 주석 (Comment)
   
 
     
@@ -8472,7 +8472,7 @@
   <span class="md-ellipsis">
     
   
-    기타
+    📚 학부모 가이드
   
 
     
@@ -8485,88 +8485,6 @@
         
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_41_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_41">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    기타
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../SETUP_GUIDE.html" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    설치 가이드
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    
-    
-    
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_42" >
-        
-          
-          <label class="md-nav__link" for="__nav_42" id="__nav_42_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    📚 학부모 가이드
-  
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_42_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_42">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -8703,10 +8621,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_42_5" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_41_5" >
         
           
-          <label class="md-nav__link" for="__nav_42_5" id="__nav_42_5_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_41_5" id="__nav_41_5_label" tabindex="0">
             
   
   
@@ -8724,8 +8642,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_42_5_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_42_5">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_41_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_41_5">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -9135,12 +9053,9 @@
 <h2 id="ufo">첫 번째 UFO 지도</h2>
 <p>가장 유명한 UFO 목격 장소들을 지도에 표시해볼까요?</p>
 <div class="map-exercise" data-exercise-id="ufo-first-map" data-language="python">
-<div class="map-exercise-mission" markdown="1">
-
-**미션**: 코드를 실행해서 유명 UFO 목격 장소를 확인하세요
-
+<div class="map-exercise-mission">
+<p><strong>미션</strong>: 코드를 실행해서 유명 UFO 목격 장소를 확인하세요</p>
 </div>
-
 <div class="map-code-editor" data-height="350px">
 <pre><code class="language-python">from leaflet_python import Map
 
@@ -9162,20 +9077,15 @@ m.add_marker([37.24, -115.81], popup="👽 에어리어 51")
 
 m.show()</code></pre>
 </div>
-
 <div class="map-container" id="map-ufo-first" style="height: 400px; border-radius: 8px; margin: 16px 0;"></div>
 </div>
-
 <hr />
 <h2 id="_2">실제 데이터로 지도 만들기</h2>
 <p>이제 실제 UFO 목격 데이터를 사용해봅시다! 1947년 7월의 목격 데이터예요.</p>
 <div class="map-exercise" data-exercise-id="ufo-1947-data" data-language="python">
-<div class="map-exercise-mission" markdown="1">
-
-**미션**: 1947년 7월 UFO 목격 데이터를 지도에 표시하세요
-
+<div class="map-exercise-mission">
+<p><strong>미션</strong>: 1947년 7월 UFO 목격 데이터를 지도에 표시하세요</p>
 </div>
-
 <div class="map-code-editor" data-height="420px">
 <pre><code class="language-python">from leaflet_python import Map
 
@@ -9200,20 +9110,15 @@ m.show()
 
 print(f"총 {len(sightings_1947_july)}개의 목격 표시 완료!")</code></pre>
 </div>
-
 <div class="map-container" id="map-ufo-1947" style="height: 400px; border-radius: 8px; margin: 16px 0;"></div>
 </div>
-
 <hr />
 <h2 id="_3">모양별 이모지 사용하기</h2>
 <p>UFO 모양에 따라 다른 이모지를 사용해봅시다!</p>
 <div class="map-exercise" data-exercise-id="ufo-emoji-shapes" data-language="python">
-<div class="map-exercise-mission" markdown="1">
-
-**미션**: 모양별로 다른 이모지를 사용해서 구분하세요
-
+<div class="map-exercise-mission">
+<p><strong>미션</strong>: 모양별로 다른 이모지를 사용해서 구분하세요</p>
 </div>
-
 <div class="map-code-editor" data-height="480px">
 <pre><code class="language-python">from leaflet_python import Map
 
@@ -9252,10 +9157,8 @@ m.show()
 
 print("모양별 이모지 지도 완성!")</code></pre>
 </div>
-
 <div class="map-container" id="map-ufo-emoji" style="height: 400px; border-radius: 8px; margin: 16px 0;"></div>
 </div>
-
 <hr />
 <h2 id="_4">🕵️‍♂️ 데이터 탐정 미션</h2>
 <div class="admonition success">
@@ -9290,12 +9193,9 @@ print("모양별 이모지 지도 완성!")</code></pre>
 <h3 id="_6">도전: 더 많은 목격 추가하기</h3>
 <p>아래 데이터에 <strong>새로운 목격 3개</strong>를 추가해보세요!</p>
 <div class="map-exercise" data-exercise-id="ufo-challenge-add" data-language="python">
-<div class="map-exercise-mission" markdown="1">
-
-**도전**: sightings 리스트에 3개의 목격 데이터를 추가하세요
-
+<div class="map-exercise-mission">
+<p><strong>도전</strong>: sightings 리스트에 3개의 목격 데이터를 추가하세요</p>
 </div>
-
 <div class="map-code-editor" data-height="450px">
 <pre><code class="language-python">from leaflet_python import Map
 
@@ -9327,10 +9227,8 @@ m.show()
 
 print(f"총 {len(sightings)}개의 마커가 표시되었어요!")</code></pre>
 </div>
-
 <div class="map-container" id="map-ufo-challenge" style="height: 400px; border-radius: 8px; margin: 16px 0;"></div>
 </div>
-
 <details class="success">
 <summary>예시 정답</summary>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">sightings</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;shape&quot;</span><span class="p">:</span> <span class="s2">&quot;triangle&quot;</span><span class="p">,</span> <span class="s2">&quot;lat&quot;</span><span class="p">:</span> <span class="mf">40.71</span><span class="p">,</span> <span class="s2">&quot;lng&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mf">74.01</span><span class="p">})</span>  <span class="c1"># 뉴욕</span>

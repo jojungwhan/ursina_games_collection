@@ -578,7 +578,7 @@
   <span class="md-ellipsis">
     
   
-    I. 거북이의 비밀 쪽지 (주석)
+    I. 주석 (Comment)
   
 
     
@@ -8572,7 +8572,7 @@
   <span class="md-ellipsis">
     
   
-    기타
+    📚 학부모 가이드
   
 
     
@@ -8585,88 +8585,6 @@
         
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_41_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_41">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    기타
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../SETUP_GUIDE.html" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    설치 가이드
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    
-    
-    
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_42" >
-        
-          
-          <label class="md-nav__link" for="__nav_42" id="__nav_42_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    📚 학부모 가이드
-  
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_42_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_42">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -8803,10 +8721,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_42_5" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_41_5" >
         
           
-          <label class="md-nav__link" for="__nav_42_5" id="__nav_42_5_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_41_5" id="__nav_41_5_label" tabindex="0">
             
   
   
@@ -8824,8 +8742,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_42_5_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_42_5">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_41_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_41_5">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -9388,19 +9306,17 @@
 <hr />
 <h2 id="_4">🚀 완성 예시</h2>
 <div class="map-exercise" data-exercise-id="project-final">
-<div class="map-exercise-mission" markdown="1">
-
-**최종 프로젝트**: 모든 Python 지도 기능이 통합된 인구 대시보드
-
-- 원형 마커: 인구 비례 크기
-- 색상: 인구 밀도에 따른 색상
-- 팝업: 클릭 시 상세 정보
-- 마커: 주요 도시 표시
-- 폴리곤: 주요 지역 경계
-- 라인: 도시 간 연결
-
+<div class="map-exercise-mission">
+<p><strong>최종 프로젝트</strong>: 모든 Python 지도 기능이 통합된 인구 대시보드</p>
+<ul>
+<li>원형 마커: 인구 비례 크기</li>
+<li>색상: 인구 밀도에 따른 색상</li>
+<li>팝업: 클릭 시 상세 정보</li>
+<li>마커: 주요 도시 표시</li>
+<li>폴리곤: 주요 지역 경계</li>
+<li>라인: 도시 간 연결</li>
+</ul>
 </div>
-
 <div class="map-code-editor" data-height="700px">
 <pre><code class="language-python" data-language="python"># ===== 대한민국 인구 대시보드 =====
 from leaflet_python import Map, CITIES, get_city_coords
@@ -9424,21 +9340,21 @@ province_data = [
 # ===== 색상 함수 =====
 def get_pop_color(pop):
     """인구에 따른 색상 반환"""
-    if pop > 1000: return '#08306b'
-    if pop > 500: return '#08519c'
-    if pop > 300: return '#2171b5'
-    if pop > 200: return '#4292c6'
-    if pop > 100: return '#6baed6'
-    if pop > 50: return '#9ecae1'
+    if pop &gt; 1000: return '#08306b'
+    if pop &gt; 500: return '#08519c'
+    if pop &gt; 300: return '#2171b5'
+    if pop &gt; 200: return '#4292c6'
+    if pop &gt; 100: return '#6baed6'
+    if pop &gt; 50: return '#9ecae1'
     return '#c6dbef'
 
 def get_density_color(density):
     """인구 밀도에 따른 색상 반환"""
-    if density > 10000: return '#7a0177'
-    if density > 1000: return '#ae017e'
-    if density > 500: return '#dd3497'
-    if density > 100: return '#f768a1'
-    if density > 50: return '#fa9fb5'
+    if density &gt; 10000: return '#7a0177'
+    if density &gt; 1000: return '#ae017e'
+    if density &gt; 500: return '#dd3497'
+    if density &gt; 100: return '#f768a1'
+    if density &gt; 50: return '#fa9fb5'
     return '#fde0dd'
 
 # ===== CITIES 딕셔너리 활용 =====
@@ -9560,10 +9476,8 @@ if "제주" in CITIES:
 # 지도 표시
 m.show()</code></pre>
 </div>
-
 <div class="map-container" id="map-project-final" style="height: 550px; border-radius: 8px; margin: 16px 0;"></div>
 </div>
-
 <hr />
 <h2 id="_5">🎨 단계별 구현</h2>
 <h3 id="1">1단계: 기본 지도와 데이터</h3>

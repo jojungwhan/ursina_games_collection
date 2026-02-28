@@ -578,7 +578,7 @@
   <span class="md-ellipsis">
     
   
-    I. 거북이의 비밀 쪽지 (주석)
+    I. 주석 (Comment)
   
 
     
@@ -8308,88 +8308,6 @@
       
   
   
-  
-  
-    
-    
-    
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_41" >
-        
-          
-          <label class="md-nav__link" for="__nav_41" id="__nav_41_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    기타
-  
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_41_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_41">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    기타
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../SETUP_GUIDE.html" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    설치 가이드
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
     
   
   
@@ -8403,10 +8321,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_42" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_41" checked>
         
           
-          <label class="md-nav__link" for="__nav_42" id="__nav_42_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_41" id="__nav_41_label" tabindex="0">
             
   
   
@@ -8424,8 +8342,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_42_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_42">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_41_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_41">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -9074,10 +8992,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_42_5" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_41_5" >
         
           
-          <label class="md-nav__link" for="__nav_42_5" id="__nav_42_5_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_41_5" id="__nav_41_5_label" tabindex="0">
             
   
   
@@ -9095,8 +9013,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_42_5_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_42_5">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_41_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_41_5">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -10046,12 +9964,9 @@
 <h3 id="1">연습 1: 지도 만들기</h3>
 <p>Python으로 대한민국 지도를 만들어보세요!</p>
 <div class="map-exercise" data-exercise-id="dataviz2-map-basic">
-<div class="map-exercise-mission" markdown="1">
-
-**미션**: 지도를 생성하고 마커를 추가해보세요
-
+<div class="map-exercise-mission">
+<p><strong>미션</strong>: 지도를 생성하고 마커를 추가해보세요</p>
 </div>
-
 <div class="map-code-editor" data-height="300px">
 <pre><code class="language-python" data-language="python">from leaflet_python import Map, CITIES
 
@@ -10070,20 +9985,15 @@ m.add_marker(
 
 m.show()</code></pre>
 </div>
-
 <div class="map-container" id="map-dataviz2-map-basic" style="height: 350px; border-radius: 8px; margin: 16px 0;"></div>
 </div>
-
 <hr />
 <h3 id="2">연습 2: 원형 마커로 인구 표시</h3>
 <p>원의 크기로 도시 인구를 표현해보세요!</p>
 <div class="map-exercise" data-exercise-id="dataviz2-circle">
-<div class="map-exercise-mission" markdown="1">
-
-**미션**: 인구에 비례하는 원형 마커를 추가하세요
-
+<div class="map-exercise-mission">
+<p><strong>미션</strong>: 인구에 비례하는 원형 마커를 추가하세요</p>
 </div>
-
 <div class="map-code-editor" data-height="380px">
 <pre><code class="language-python" data-language="python">from leaflet_python import Map, CITIES
 
@@ -10112,10 +10022,8 @@ for city in cities:
 
 m.show()</code></pre>
 </div>
-
 <div class="map-container" id="map-dataviz2-circle" style="height: 400px; border-radius: 8px; margin: 16px 0;"></div>
 </div>
-
 <hr />
 <h3 id="3">연습 3: 데이터 필터링</h3>
 <p>빈칸을 채워서 데이터를 필터링하세요!</p>
@@ -10325,12 +10233,9 @@ m.show()</code></pre>
 <h3 id="4-1">연습 4-1: 여러 마커 추가하기</h3>
 <p>반복문으로 여러 마커를 지도에 추가해보세요!</p>
 <div class="map-exercise" data-exercise-id="dataviz2-multi-marker">
-<div class="map-exercise-mission" markdown="1">
-
-**미션**: 여러 도시에 마커를 추가하세요
-
+<div class="map-exercise-mission">
+<p><strong>미션</strong>: 여러 도시에 마커를 추가하세요</p>
 </div>
-
 <div class="map-code-editor" data-height="350px">
 <pre><code class="language-python" data-language="python">from leaflet_python import Map, CITIES
 
@@ -10350,20 +10255,15 @@ for city in cities_to_visit:
 
 m.show()</code></pre>
 </div>
-
 <div class="map-container" id="map-dataviz2-multi-marker" style="height: 350px; border-radius: 8px; margin: 16px 0;"></div>
 </div>
-
 <hr />
 <h3 id="4-2">연습 4-2: 조건에 따른 색상 변경</h3>
 <p>인구에 따라 다른 색상의 원을 표시해보세요!</p>
 <div class="map-exercise" data-exercise-id="dataviz2-conditional-color">
-<div class="map-exercise-mission" markdown="1">
-
-**미션**: 인구에 따라 색상을 다르게 표시하세요
-
+<div class="map-exercise-mission">
+<p><strong>미션</strong>: 인구에 따라 색상을 다르게 표시하세요</p>
 </div>
-
 <div class="map-code-editor" data-height="420px">
 <pre><code class="language-python" data-language="python">from leaflet_python import Map, CITIES
 
@@ -10382,9 +10282,9 @@ cities = [
 for city in cities:
     if city["name"] in CITIES:
         # 인구 500만 이상: 빨강, 300만 이상: 주황, 그 외: 파랑
-        if city["pop"] >= 500:
+        if city["pop"] &gt;= 500:
             color = 'red'
-        elif city["pop"] >= 300:
+        elif city["pop"] &gt;= 300:
             color = 'orange'
         else:
             color = 'blue'
@@ -10400,20 +10300,15 @@ for city in cities:
 
 m.show()</code></pre>
 </div>
-
 <div class="map-container" id="map-dataviz2-conditional-color" style="height: 400px; border-radius: 8px; margin: 16px 0;"></div>
 </div>
-
 <hr />
 <h3 id="4-3">연습 4-3: 선으로 경로 연결하기</h3>
 <p>도시들을 선으로 연결해보세요!</p>
 <div class="map-exercise" data-exercise-id="dataviz2-route">
-<div class="map-exercise-mission" markdown="1">
-
-**미션**: 도시들을 선으로 연결하세요
-
+<div class="map-exercise-mission">
+<p><strong>미션</strong>: 도시들을 선으로 연결하세요</p>
 </div>
-
 <div class="map-code-editor" data-height="350px">
 <pre><code class="language-python" data-language="python">from leaflet_python import Map, CITIES
 
@@ -10438,10 +10333,8 @@ for i, city in enumerate(route):
 
 m.show()</code></pre>
 </div>
-
 <div class="map-container" id="map-dataviz2-route" style="height: 350px; border-radius: 8px; margin: 16px 0;"></div>
 </div>
-
 <hr />
 <h2 id="5_1">🐛 파트 5: 디버깅 연습</h2>
 <h3 id="1_2">디버깅 1: 딕셔너리 키 오류</h3>

@@ -578,7 +578,7 @@
   <span class="md-ellipsis">
     
   
-    I. 거북이의 비밀 쪽지 (주석)
+    I. 주석 (Comment)
   
 
     
@@ -8505,7 +8505,7 @@
   <span class="md-ellipsis">
     
   
-    기타
+    📚 학부모 가이드
   
 
     
@@ -8518,88 +8518,6 @@
         
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_41_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_41">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    기타
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../SETUP_GUIDE.html" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    설치 가이드
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    
-    
-    
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_42" >
-        
-          
-          <label class="md-nav__link" for="__nav_42" id="__nav_42_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    📚 학부모 가이드
-  
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_42_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_42">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -8736,10 +8654,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_42_5" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_41_5" >
         
           
-          <label class="md-nav__link" for="__nav_42_5" id="__nav_42_5_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_41_5" id="__nav_41_5_label" tabindex="0">
             
   
   
@@ -8757,8 +8675,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_42_5_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_42_5">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_41_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_41_5">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -9229,12 +9147,9 @@
 <h2 id="step-3">Step 3: 지도에 핫스팟 표시하기 🗺️</h2>
 <p>지도에 원의 <strong>크기</strong>로 목격 빈도를 표시해봅시다!</p>
 <div class="map-exercise" data-exercise-id="ufo-hotspot-map" data-language="python">
-<div class="map-exercise-mission" markdown="1">
-
-**미션**: 원의 크기가 목격 수에 비례하는 것을 확인하세요
-
+<div class="map-exercise-mission">
+<p><strong>미션</strong>: 원의 크기가 목격 수에 비례하는 것을 확인하세요</p>
 </div>
-
 <div class="map-code-editor" data-height="450px">
 <pre><code class="language-python">from leaflet_python import Map
 
@@ -9272,10 +9187,8 @@ m.show()
 
 print("원이 클수록 목격이 많아요!")</code></pre>
 </div>
-
 <div class="map-container" id="map-ufo-hotspot" style="height: 450px; border-radius: 8px; margin: 16px 0;"></div>
 </div>
-
 <hr />
 <h2 id="_2">핫스팟 분석</h2>
 <div class="admonition tip">
@@ -9326,12 +9239,9 @@ print("원이 클수록 목격이 많아요!")</code></pre>
 <h2 id="step-5">Step 5: 지역별 마커 + 크기 조합 🗺️</h2>
 <p>마커와 원을 조합해서 더 풍부한 정보를 표시해봅시다.</p>
 <div class="map-exercise" data-exercise-id="ufo-combo-map" data-language="python">
-<div class="map-exercise-mission" markdown="1">
-
-**미션**: 마커를 클릭해서 상세 정보를 확인하세요
-
+<div class="map-exercise-mission">
+<p><strong>미션</strong>: 마커를 클릭해서 상세 정보를 확인하세요</p>
 </div>
-
 <div class="map-code-editor" data-height="500px">
 <pre><code class="language-python">from leaflet_python import Map
 
@@ -9381,10 +9291,8 @@ m.show()
 
 print("마커를 클릭해서 상세 정보를 확인하세요!")</code></pre>
 </div>
-
 <div class="map-container" id="map-ufo-combo" style="height: 450px; border-radius: 8px; margin: 16px 0;"></div>
 </div>
-
 <hr />
 <h2 id="_3">🕵️‍♂️ 데이터 탐정 미션</h2>
 <div class="admonition success">
@@ -9418,12 +9326,9 @@ print("마커를 클릭해서 상세 정보를 확인하세요!")</code></pre>
 <h3 id="_5">도전: 나만의 핫스팟 추가하기</h3>
 <p>한국의 UFO 핫스팟을 상상해서 추가해보세요!</p>
 <div class="map-exercise" data-exercise-id="ufo-korea-hotspot" data-language="python">
-<div class="map-exercise-mission" markdown="1">
-
-**도전**: 한국에서 UFO가 많이 보일 것 같은 지역을 추가하세요
-
+<div class="map-exercise-mission">
+<p><strong>도전</strong>: 한국에서 UFO가 많이 보일 것 같은 지역을 추가하세요</p>
 </div>
-
 <div class="map-code-editor" data-height="450px">
 <pre><code class="language-python">from leaflet_python import Map
 
@@ -9460,10 +9365,8 @@ m.show()
 
 print(f"총 {len(korea_hotspots)}개 도시 표시!")</code></pre>
 </div>
-
 <div class="map-container" id="map-ufo-korea" style="height: 400px; border-radius: 8px; margin: 16px 0;"></div>
 </div>
-
 <hr />
 <h2 id="_6">🎯 이번 레슨 요약</h2>
 <div class="admonition success">

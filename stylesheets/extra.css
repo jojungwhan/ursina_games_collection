@@ -578,6 +578,7 @@ details.quiz-answer-section .highlight {
     max-width: 120%;
     margin-left: 0;
     box-sizing: border-box;
+    overflow-x: auto;
 }
 
 /* Ensure tables also get wider treatment */

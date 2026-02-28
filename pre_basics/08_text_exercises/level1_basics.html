@@ -578,7 +578,7 @@
   <span class="md-ellipsis">
     
   
-    I. 거북이의 비밀 쪽지 (주석)
+    I. 주석 (Comment)
   
 
     
@@ -8501,7 +8501,7 @@
   <span class="md-ellipsis">
     
   
-    기타
+    📚 학부모 가이드
   
 
     
@@ -8514,88 +8514,6 @@
         
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_41_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_41">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    기타
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../SETUP_GUIDE.html" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    설치 가이드
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    
-    
-    
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_42" >
-        
-          
-          <label class="md-nav__link" for="__nav_42" id="__nav_42_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    📚 학부모 가이드
-  
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_42_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_42">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -8732,10 +8650,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_42_5" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_41_5" >
         
           
-          <label class="md-nav__link" for="__nav_42_5" id="__nav_42_5_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_41_5" id="__nav_41_5_label" tabindex="0">
             
   
   
@@ -8753,8 +8671,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_42_5_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_42_5">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_41_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_41_5">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -9190,22 +9108,13 @@
 <hr />
 <h2 id="q1">Q1. 나눗셈 조건</h2>
 <div class="text-exercise" data-exercise-id="q1-divisible">
-
-<div class="text-exercise-mission" markdown="1">
-
-**문제**: 2000부터 3200 사이의 숫자 중 **7로 나누어지고 5로 나누어지지 않는** 모든 숫자를 찾아 콤마로 구분하여 출력하세요.
-
-**예상 출력 형식**: `2002,2009,2016,...`
-
+<div class="text-exercise-mission">
+<p><strong>문제</strong>: 2000부터 3200 사이의 숫자 중 <strong>7로 나누어지고 5로 나누어지지 않는</strong> 모든 숫자를 찾아 콤마로 구분하여 출력하세요.</p>
+<p><strong>예상 출력 형식</strong>: <code>2002,2009,2016,...</code></p>
 </div>
-
-<div id="q1-editor" class="python-editor-placeholder"
-     data-code="# 2000부터 3200 사이의 숫자 중%0A# 7로 나누어지고 5로 나누어지지 않는 수를 찾으세요%0A# 결과를 콤마로 구분하여 한 줄에 출력하세요%0A%0Aresult = []%0Afor n in range(2000, 3201):%0A    # 여기에 조건을 작성하세요%0A    pass%0A%0Aprint(%22,%22.join([str(x) for x in result]))%0A"
-     data-height="250px">
+<div class="python-editor-placeholder" data-code="# 2000부터 3200 사이의 숫자 중%0A# 7로 나누어지고 5로 나누어지지 않는 수를 찾으세요%0A# 결과를 콤마로 구분하여 한 줄에 출력하세요%0A%0Aresult = []%0Afor n in range(2000, 3201):%0A    # 여기에 조건을 작성하세요%0A    pass%0A%0Aprint(%22,%22.join([str(x) for x in result]))%0A" data-height="250px" id="q1-editor">
 </div>
-
 </div>
-
 <div class="admonition tip">
 <p class="admonition-title">💡 힌트</p>
 <ul>
@@ -9217,26 +9126,16 @@
 <hr />
 <h2 id="q2">Q2. 팩토리얼 함수</h2>
 <div class="text-exercise" data-exercise-id="q2-factorial">
-
-<div class="text-exercise-mission" markdown="1">
-
-**문제**: 주어진 숫자의 **팩토리얼**을 계산하는 함수를 작성하세요.
-
-**팩토리얼 공식**: `n! = n × (n-1) × ... × 2 × 1`
-
-**예시**:
-- `factorial(5)` → `120` (5×4×3×2×1)
-- `factorial(0)` → `1`
-
+<div class="text-exercise-mission">
+<p><strong>문제</strong>: 주어진 숫자의 <strong>팩토리얼</strong>을 계산하는 함수를 작성하세요.</p>
+<p><strong>팩토리얼 공식</strong>: <code>n! = n × (n-1) × ... × 2 × 1</code></p>
+<p><strong>예시</strong>:
+- <code>factorial(5)</code> → <code>120</code> (5×4×3×2×1)
+- <code>factorial(0)</code> → <code>1</code></p>
 </div>
-
-<div id="q2-editor" class="python-editor-placeholder"
-     data-code="def factorial(n):%0A    %22%22%22n의 팩토리얼을 계산합니다.%0A    %0A    예: factorial(5) = 5 * 4 * 3 * 2 * 1 = 120%0A    %22%22%22%0A    # 여기에 코드를 작성하세요%0A    pass%0A"
-     data-height="220px">
+<div class="python-editor-placeholder" data-code="def factorial(n):%0A    %22%22%22n의 팩토리얼을 계산합니다.%0A    %0A    예: factorial(5) = 5 * 4 * 3 * 2 * 1 = 120%0A    %22%22%22%0A    # 여기에 코드를 작성하세요%0A    pass%0A" data-height="220px" id="q2-editor">
 </div>
-
 </div>
-
 <div class="admonition tip">
 <p class="admonition-title">💡 힌트</p>
 <ul>
@@ -9248,24 +9147,14 @@
 <hr />
 <h2 id="q3">Q3. 제곱 딕셔너리</h2>
 <div class="text-exercise" data-exercise-id="q3-dict-squares">
-
-<div class="text-exercise-mission" markdown="1">
-
-**문제**: 숫자 n을 입력받아 1부터 n까지의 숫자와 그 제곱을 **딕셔너리**로 만들어 출력하세요.
-
-**테스트 입력**: `8`
-
-**예상 출력**: `{1: 1, 2: 4, 3: 9, 4: 16, 5: 25, 6: 36, 7: 49, 8: 64}`
-
+<div class="text-exercise-mission">
+<p><strong>문제</strong>: 숫자 n을 입력받아 1부터 n까지의 숫자와 그 제곱을 <strong>딕셔너리</strong>로 만들어 출력하세요.</p>
+<p><strong>테스트 입력</strong>: <code>8</code></p>
+<p><strong>예상 출력</strong>: <code>{1: 1, 2: 4, 3: 9, 4: 16, 5: 25, 6: 36, 7: 49, 8: 64}</code></p>
 </div>
-
-<div id="q3-editor" class="python-editor-placeholder"
-     data-code="# 숫자 n을 입력받아%0A# {1: 1, 2: 4, 3: 9, ...} 형태의 딕셔너리를 출력하세요%0A%0An = int(input())%0A%0A# 여기에 코드를 작성하세요%0A"
-     data-height="180px">
+<div class="python-editor-placeholder" data-code="# 숫자 n을 입력받아%0A# {1: 1, 2: 4, 3: 9, ...} 형태의 딕셔너리를 출력하세요%0A%0An = int(input())%0A%0A# 여기에 코드를 작성하세요%0A" data-height="180px" id="q3-editor">
 </div>
-
 </div>
-
 <div class="admonition tip">
 <p class="admonition-title">💡 힌트</p>
 <ul>
@@ -9276,27 +9165,17 @@
 <hr />
 <h2 id="q4">Q4. 입력 파싱</h2>
 <div class="text-exercise" data-exercise-id="q4-parse-input">
-
-<div class="text-exercise-mission" markdown="1">
-
-**문제**: 콤마로 구분된 단어들을 입력받아 **리스트**와 **튜플**로 각각 출력하세요.
-
-**테스트 입력**: `hello,world,test`
-
-**예상 출력**:
+<div class="text-exercise-mission">
+<p><strong>문제</strong>: 콤마로 구분된 단어들을 입력받아 <strong>리스트</strong>와 <strong>튜플</strong>로 각각 출력하세요.</p>
+<p><strong>테스트 입력</strong>: <code>hello,world,test</code></p>
+<p><strong>예상 출력</strong>:
 <div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>[&#39;hello&#39;, &#39;world&#39;, &#39;test&#39;]
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>(&#39;hello&#39;, &#39;world&#39;, &#39;test&#39;)
-</span></code></pre></div>
-
+</span></code></pre></div></p>
 </div>
-
-<div id="q4-editor" class="python-editor-placeholder"
-     data-code="# 콤마로 구분된 입력을 받아%0A# 리스트와 튜플로 출력하세요%0A%0Adata = input()%0A%0A# 여기에 코드를 작성하세요%0A"
-     data-height="180px">
+<div class="python-editor-placeholder" data-code="# 콤마로 구분된 입력을 받아%0A# 리스트와 튜플로 출력하세요%0A%0Adata = input()%0A%0A# 여기에 코드를 작성하세요%0A" data-height="180px" id="q4-editor">
 </div>
-
 </div>
-
 <div class="admonition tip">
 <p class="admonition-title">💡 힌트</p>
 <ul>
@@ -9308,22 +9187,13 @@
 <hr />
 <h2 id="q5-5-7">Q5. 5와 7의 공배수</h2>
 <div class="text-exercise" data-exercise-id="q5-divisible-5-7">
-
-<div class="text-exercise-mission" markdown="1">
-
-**문제**: 0부터 100 사이에서 **5로도 나누어지고 7로도 나누어지는** 모든 숫자를 콤마로 구분하여 출력하세요.
-
-**예상 출력**: `0,35,70`
-
+<div class="text-exercise-mission">
+<p><strong>문제</strong>: 0부터 100 사이에서 <strong>5로도 나누어지고 7로도 나누어지는</strong> 모든 숫자를 콤마로 구분하여 출력하세요.</p>
+<p><strong>예상 출력</strong>: <code>0,35,70</code></p>
 </div>
-
-<div id="q5-editor" class="python-editor-placeholder"
-     data-code="# 0부터 100 사이에서%0A# 5로도 나누어지고 7로도 나누어지는 수를 찾으세요%0A%0Aresult = []%0Afor n in range(101):%0A    # 여기에 조건을 작성하세요%0A    pass%0A%0Aprint(%22,%22.join([str(x) for x in result]))%0A"
-     data-height="220px">
+<div class="python-editor-placeholder" data-code="# 0부터 100 사이에서%0A# 5로도 나누어지고 7로도 나누어지는 수를 찾으세요%0A%0Aresult = []%0Afor n in range(101):%0A    # 여기에 조건을 작성하세요%0A    pass%0A%0Aprint(%22,%22.join([str(x) for x in result]))%0A" data-height="220px" id="q5-editor">
 </div>
-
 </div>
-
 <div class="admonition tip">
 <p class="admonition-title">💡 힌트</p>
 <ul>
@@ -9334,24 +9204,14 @@
 <hr />
 <h2 id="q6">Q6. 짝수 개수 세기</h2>
 <div class="text-exercise" data-exercise-id="q6-even-count">
-
-<div class="text-exercise-mission" markdown="1">
-
-**문제**: 숫자 n을 입력받아 **0부터 n까지 짝수의 개수**를 출력하세요.
-
-**테스트 입력**: `10`
-
-**예상 출력**: `6` (0, 2, 4, 6, 8, 10)
-
+<div class="text-exercise-mission">
+<p><strong>문제</strong>: 숫자 n을 입력받아 <strong>0부터 n까지 짝수의 개수</strong>를 출력하세요.</p>
+<p><strong>테스트 입력</strong>: <code>10</code></p>
+<p><strong>예상 출력</strong>: <code>6</code> (0, 2, 4, 6, 8, 10)</p>
 </div>
-
-<div id="q6-editor" class="python-editor-placeholder"
-     data-code="# 숫자 n을 입력받아%0A# 0부터 n까지 짝수의 개수를 출력하세요%0A%0An = int(input())%0A%0A# 여기에 코드를 작성하세요%0A"
-     data-height="180px">
+<div class="python-editor-placeholder" data-code="# 숫자 n을 입력받아%0A# 0부터 n까지 짝수의 개수를 출력하세요%0A%0An = int(input())%0A%0A# 여기에 코드를 작성하세요%0A" data-height="180px" id="q6-editor">
 </div>
-
 </div>
-
 <div class="admonition tip">
 <p class="admonition-title">💡 힌트</p>
 <ul>
@@ -9363,24 +9223,15 @@
 <hr />
 <h2 id="q7">Q7. 제곱의 합 함수</h2>
 <div class="text-exercise" data-exercise-id="q7-squares-sum">
-
-<div class="text-exercise-mission" markdown="1">
-
-**문제**: 1부터 n까지 모든 숫자의 **제곱의 합**을 계산하는 함수를 작성하세요.
-
-**예시**:
-- `sum_of_squares(3)` → `14` (1² + 2² + 3² = 1 + 4 + 9)
-- `sum_of_squares(5)` → `55`
-
+<div class="text-exercise-mission">
+<p><strong>문제</strong>: 1부터 n까지 모든 숫자의 <strong>제곱의 합</strong>을 계산하는 함수를 작성하세요.</p>
+<p><strong>예시</strong>:
+- <code>sum_of_squares(3)</code> → <code>14</code> (1² + 2² + 3² = 1 + 4 + 9)
+- <code>sum_of_squares(5)</code> → <code>55</code></p>
 </div>
-
-<div id="q7-editor" class="python-editor-placeholder"
-     data-code="def sum_of_squares(n):%0A    %22%22%22 1부터 n까지 제곱의 합을 계산합니다.%0A    %0A    예: sum_of_squares(3) = 1 + 4 + 9 = 14%0A    %22%22%22%0A    # 여기에 코드를 작성하세요%0A    pass%0A"
-     data-height="200px">
+<div class="python-editor-placeholder" data-code="def sum_of_squares(n):%0A    %22%22%22 1부터 n까지 제곱의 합을 계산합니다.%0A    %0A    예: sum_of_squares(3) = 1 + 4 + 9 = 14%0A    %22%22%22%0A    # 여기에 코드를 작성하세요%0A    pass%0A" data-height="200px" id="q7-editor">
 </div>
-
 </div>
-
 <div class="admonition tip">
 <p class="admonition-title">💡 힌트</p>
 <ul>
@@ -9391,24 +9242,15 @@
 <hr />
 <h2 id="q8">Q8. 회문 판별</h2>
 <div class="text-exercise" data-exercise-id="q8-palindrome">
-
-<div class="text-exercise-mission" markdown="1">
-
-**문제**: 주어진 문자열이 **회문**(앞뒤가 같은 문자열)인지 판별하는 함수를 작성하세요.
-
-**예시**:
-- `is_palindrome("radar")` → `True`
-- `is_palindrome("hello")` → `False`
-
+<div class="text-exercise-mission">
+<p><strong>문제</strong>: 주어진 문자열이 <strong>회문</strong>(앞뒤가 같은 문자열)인지 판별하는 함수를 작성하세요.</p>
+<p><strong>예시</strong>:
+- <code>is_palindrome("radar")</code> → <code>True</code>
+- <code>is_palindrome("hello")</code> → <code>False</code></p>
 </div>
-
-<div id="q8-editor" class="python-editor-placeholder"
-     data-code="def is_palindrome(s):%0A    %22%22%22문자열이 회문인지 판별합니다.%0A    %0A    회문: 앞에서 읽으나 뒤에서 읽으나 같은 문자열%0A    예: %22radar%22, %22level%22%0A    %22%22%22%0A    # 여기에 코드를 작성하세요%0A    pass%0A"
-     data-height="220px">
+<div class="python-editor-placeholder" data-code="def is_palindrome(s):%0A    %22%22%22문자열이 회문인지 판별합니다.%0A    %0A    회문: 앞에서 읽으나 뒤에서 읽으나 같은 문자열%0A    예: %22radar%22, %22level%22%0A    %22%22%22%0A    # 여기에 코드를 작성하세요%0A    pass%0A" data-height="220px" id="q8-editor">
 </div>
-
 </div>
-
 <div class="admonition tip">
 <p class="admonition-title">💡 힌트</p>
 <ul>
@@ -9419,16 +9261,13 @@
 <hr />
 <h2 id="q9-fizzbuzz">Q9. FizzBuzz</h2>
 <div class="text-exercise" data-exercise-id="q9-fizzbuzz">
-
-<div class="text-exercise-mission" markdown="1">
-
-**문제**: 1부터 15까지 숫자를 출력하되:
-- 3의 배수이면 `"Fizz"`
-- 5의 배수이면 `"Buzz"`
-- 15의 배수(3과 5 모두의 배수)이면 `"FizzBuzz"`
-- 그 외에는 숫자 그대로
-
-**예상 출력**:
+<div class="text-exercise-mission">
+<p><strong>문제</strong>: 1부터 15까지 숫자를 출력하되:
+- 3의 배수이면 <code>"Fizz"</code>
+- 5의 배수이면 <code>"Buzz"</code>
+- 15의 배수(3과 5 모두의 배수)이면 <code>"FizzBuzz"</code>
+- 그 외에는 숫자 그대로</p>
+<p><strong>예상 출력</strong>:
 <div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>1
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>2
 </span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>Fizz
@@ -9436,17 +9275,11 @@
 </span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>Buzz
 </span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>...
 </span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>FizzBuzz
-</span></code></pre></div>
-
+</span></code></pre></div></p>
 </div>
-
-<div id="q9-editor" class="python-editor-placeholder"
-     data-code="# FizzBuzz 게임%0A# 1부터 15까지 출력하되:%0A# - 3의 배수: %22Fizz%22%0A# - 5의 배수: %22Buzz%22%0A# - 15의 배수: %22FizzBuzz%22%0A# - 그 외: 숫자 그대로%0A%0Afor i in range(1, 16):%0A    # 여기에 코드를 작성하세요%0A    pass%0A"
-     data-height="250px">
+<div class="python-editor-placeholder" data-code="# FizzBuzz 게임%0A# 1부터 15까지 출력하되:%0A# - 3의 배수: %22Fizz%22%0A# - 5의 배수: %22Buzz%22%0A# - 15의 배수: %22FizzBuzz%22%0A# - 그 외: 숫자 그대로%0A%0Afor i in range(1, 16):%0A    # 여기에 코드를 작성하세요%0A    pass%0A" data-height="250px" id="q9-editor">
 </div>
-
 </div>
-
 <div class="admonition tip">
 <p class="admonition-title">💡 힌트</p>
 <ul>
@@ -9457,24 +9290,15 @@
 <hr />
 <h2 id="q10">Q10. 문자열 뒤집기</h2>
 <div class="text-exercise" data-exercise-id="q10-reverse-string">
-
-<div class="text-exercise-mission" markdown="1">
-
-**문제**: 주어진 문자열을 **뒤집어서 반환**하는 함수를 작성하세요.
-
-**예시**:
-- `reverse_string("hello")` → `"olleh"`
-- `reverse_string("Python")` → `"nohtyP"`
-
+<div class="text-exercise-mission">
+<p><strong>문제</strong>: 주어진 문자열을 <strong>뒤집어서 반환</strong>하는 함수를 작성하세요.</p>
+<p><strong>예시</strong>:
+- <code>reverse_string("hello")</code> → <code>"olleh"</code>
+- <code>reverse_string("Python")</code> → <code>"nohtyP"</code></p>
 </div>
-
-<div id="q10-editor" class="python-editor-placeholder"
-     data-code="def reverse_string(s):%0A    %22%22%22문자열을 뒤집어서 반환합니다.%0A    %0A    예: reverse_string(%22hello%22) -> %22olleh%22%0A    %22%22%22%0A    # 여기에 코드를 작성하세요%0A    pass%0A"
-     data-height="200px">
+<div class="python-editor-placeholder" data-code="def reverse_string(s):%0A    %22%22%22문자열을 뒤집어서 반환합니다.%0A    %0A    예: reverse_string(%22hello%22) -&gt; %22olleh%22%0A    %22%22%22%0A    # 여기에 코드를 작성하세요%0A    pass%0A" data-height="200px" id="q10-editor">
 </div>
-
 </div>
-
 <div class="admonition tip">
 <p class="admonition-title">💡 힌트</p>
 <ul>

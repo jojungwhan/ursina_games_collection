@@ -191,22 +191,24 @@
 
     /**
      * Get stored track preference or detect from URL
+     * Priority: 1) localStorage (user's explicit choice), 2) URL pattern, 3) default
      * @returns {{ trackId: string, source: 'url'|'storage'|'default' }}
      */
     function getInitialTrack() {
-        const path = window.location.pathname;
+        // Check localStorage first — respect the user's previous choice
+        const stored = localStorage.getItem(STORAGE_KEY);
+        if (stored && TRACKS[stored]) {
+            return { trackId: stored, source: 'storage' };
+        }
 
+        // Fall back to URL pattern detection only if no stored preference
+        const path = window.location.pathname;
         for (const [trackId, track] of Object.entries(TRACKS)) {
             for (const pattern of (track.urlPatterns || [])) {
                 if (path.includes(pattern)) {
                     return { trackId, source: 'url' };
                 }
             }
-        }
-
-        const stored = localStorage.getItem(STORAGE_KEY);
-        if (stored && TRACKS[stored]) {
-            return { trackId: stored, source: 'storage' };
         }
 
         return { trackId: DEFAULT_TRACK, source: 'default' };

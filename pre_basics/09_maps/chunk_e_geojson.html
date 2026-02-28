@@ -578,7 +578,7 @@
   <span class="md-ellipsis">
     
   
-    I. 거북이의 비밀 쪽지 (주석)
+    I. 주석 (Comment)
   
 
     
@@ -8611,7 +8611,7 @@
   <span class="md-ellipsis">
     
   
-    기타
+    📚 학부모 가이드
   
 
     
@@ -8624,88 +8624,6 @@
         
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_41_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_41">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    기타
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../SETUP_GUIDE.html" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    설치 가이드
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    
-    
-    
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_42" >
-        
-          
-          <label class="md-nav__link" for="__nav_42" id="__nav_42_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    📚 학부모 가이드
-  
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_42_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_42">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -8842,10 +8760,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_42_5" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_41_5" >
         
           
-          <label class="md-nav__link" for="__nav_42_5" id="__nav_42_5_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_41_5" id="__nav_41_5_label" tabindex="0">
             
   
   
@@ -8863,8 +8781,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_42_5_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_42_5">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_41_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_41_5">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -9699,12 +9617,9 @@
 </span><span id="__span-7-30"><a id="__codelineno-7-30" name="__codelineno-7-30" href="#__codelineno-7-30"></a><span class="n">m</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </span></code></pre></div>
 <div class="map-exercise" data-exercise-id="geojson-point">
-<div class="map-exercise-mission" markdown="1">
-
-**미션**: GeoJSON 점 데이터로 주요 도시를 표시하세요
-
+<div class="map-exercise-mission">
+<p><strong>미션</strong>: GeoJSON 점 데이터로 주요 도시를 표시하세요</p>
 </div>
-
 <div class="map-code-editor" data-height="380px">
 <pre><code class="language-python" data-language="python">from leaflet_python import Map
 
@@ -9754,10 +9669,8 @@ m.add_geojson(cities, style={
 
 m.show()</code></pre>
 </div>
-
 <div class="map-container" id="map-geojson-point" style="height: 350px; border-radius: 8px; margin: 16px 0;"></div>
 </div>
-
 <hr />
 <h2 id="linestring">📏 선 (LineString) 데이터</h2>
 <p>선 데이터는 경로, 도로, 강 등을 표현합니다.</p>
@@ -9776,12 +9689,9 @@ m.show()</code></pre>
 </span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a><span class="p">}</span>
 </span></code></pre></div>
 <div class="map-exercise" data-exercise-id="geojson-line">
-<div class="map-exercise-mission" markdown="1">
-
-**미션**: 서울에서 부산까지의 경로를 선으로 표시하세요
-
+<div class="map-exercise-mission">
+<p><strong>미션</strong>: 서울에서 부산까지의 경로를 선으로 표시하세요</p>
 </div>
-
 <div class="map-code-editor" data-height="340px">
 <pre><code class="language-python" data-language="python">from leaflet_python import Map
 
@@ -9818,10 +9728,8 @@ m.add_geojson(route, style={
 
 m.show()</code></pre>
 </div>
-
 <div class="map-container" id="map-geojson-line" style="height: 350px; border-radius: 8px; margin: 16px 0;"></div>
 </div>
-
 <hr />
 <h2 id="polygon">🔷 다각형 (Polygon) 데이터</h2>
 <p>다각형은 구역, 건물, 호수 등 영역을 표현합니다.</p>
@@ -9841,12 +9749,9 @@ m.show()</code></pre>
 </span><span id="__span-9-14"><a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a><span class="p">}</span>
 </span></code></pre></div>
 <div class="map-exercise" data-exercise-id="geojson-polygon">
-<div class="map-exercise-mission" markdown="1">
-
-**미션**: 서울 주요 구역을 다각형으로 표시하세요
-
+<div class="map-exercise-mission">
+<p><strong>미션</strong>: 서울 주요 구역을 다각형으로 표시하세요</p>
 </div>
-
 <div class="map-code-editor" data-height="420px">
 <pre><code class="language-python" data-language="python">from leaflet_python import Map
 
@@ -9910,10 +9815,8 @@ m.add_geojson(districts, style={
 
 m.show()</code></pre>
 </div>
-
 <div class="map-container" id="map-geojson-polygon" style="height: 400px; border-radius: 8px; margin: 16px 0;"></div>
 </div>
-
 <hr />
 <h2 id="python-geojson">🔧 Python에서 GeoJSON 다루기</h2>
 <p><code>leaflet_python</code>의 <code>add_geojson()</code>은 다양한 스타일 옵션을 지원합니다:</p>
@@ -10079,10 +9982,8 @@ m.add_geojson(my_data, style={
 
 m.show()</code></pre>
 </div>
-
 <div class="map-container" id="map-geojson-practice" style="height: 400px; border-radius: 8px; margin: 16px 0;"></div>
 </div>
-
 <hr />
 <h2 id="_6">📝 정리 퀴즈</h2>
 <details class="question">
