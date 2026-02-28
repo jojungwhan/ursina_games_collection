@@ -1,0 +1,334 @@
+# 학부모를 위한 커리큘럼 가이드
+
+!!! info "이 가이드의 목적"
+    이 문서는 자녀가 배우는 프로그래밍 커리큘럼의 **교육적 가치**를 학부모님께 설명하기 위해 작성되었습니다. 각 수업이 **왜 중요한지**, **어떤 사고력을 기르는지**, 그리고 **실생활과 어떻게 연결되는지** 이해하실 수 있습니다.
+
+---
+
+## AI와 프로그래밍(코딩) 교육이 왜 중요한가요?
+
+### 1. 논리적 사고력 개발
+
+프로그래밍은 **복잡한 문제를 작은 단계로 분해**하는 능력을 키웁니다. 이것은 수학, 과학, 심지어 일상생활의 문제 해결에도 적용됩니다. 컴퓨터에게 명령을 내리려면 모호함 없이 정확하게 단계를 나열해야 하므로, 학생들은 자연스럽게 체계적인 사고 방식을 배우게 됩니다.
+
+### 2. 데이터 이해력 (AI의 연료)
+
+현대 사회는 **데이터 기반**입니다. 프로그래밍을 통해 학생들은 데이터가 무엇인지, 컴퓨터가 어떻게 정보를 저장하고 처리하는지 이해합니다. 숫자, 문자, 목록, 표 등 다양한 형태의 데이터를 다루는 경험은 디지털 시대를 살아가는 데 필수적인 능력입니다.
+
+!!! info "데이터는 AI의 원천입니다"
+
+    AI의 성능과 판단력은 **학습 데이터의 품질**에 의해 결정됩니다. 편향되거나 불완전한 데이터로 학습된 AI는 편향된 결과를 도출하고, 다양하고 균형 잡힌 데이터를 기반으로 한 AI는 더 신뢰할 수 있는 판단을 내립니다.
+
+    데이터의 본질을 이해하는 사람만이 **AI의 결과를 비판적으로 평가하고 올바르게 활용**할 수 있습니다. "이 AI가 왜 이런 결론에 도달했는가?", "학습 데이터가 충분히 대표성을 갖추고 있는가?" — 이러한 질문을 던질 수 있는 **데이터 리터러시**가 AI 시대의 필수 역량입니다.
+
+### 3. 창의적 문제 해결 (AI가 대신할 수 없는 것)
+
+코딩은 정답이 하나가 아닙니다. 같은 문제를 여러 방법으로 해결할 수 있으며, 학생들은 **자신만의 해결책을 설계**하는 창의성을 기릅니다. 게임이나 시각화 프로젝트를 만들면서 아이디어를 현실로 구현하는 경험은 자신감과 성취감을 줍니다.
+
+!!! info "AI 시대, 인간만이 할 수 있는 일"
+
+    AI는 "어떻게(How)" 해결할지는 잘 찾아내지만, **"무엇을(What)" 해결해야 하는지**, **"왜(Why)" 그것이 중요한지**는 인간이 결정해야 합니다.
+
+    - **어떤 문제가 풀 가치가 있는가?** - 사회적 가치, 윤리적 판단
+    - **여러 해결책 중 무엇이 더 나은가?** - 인간의 가치관과 상황 판단
+    - **새로운 문제를 발견하고 정의하기** - 창의적 질문 능력
+
+    AI가 코드를 작성해줄 수 있는 시대에, **어떤 문제를 어떻게 정의하고, 어떤 방향으로 해결할지 결정하는 능력**이야말로 미래 인재의 핵심 역량입니다.
+
+### AI × Human Synergy
+
+<div style="color:#555; margin-top:-8px; margin-bottom:24px; font-size:1.05em;">
+미래는 AI를 거부하는 자가 아닌, AI를 <strong style="color:#333;">도구로 지휘하는 자</strong>의 것입니다.
+</div>
+
+<div style="background: linear-gradient(135deg, #f0fdf4 0%, #ffffff 100%); border: 1px solid #d1fae5; border-radius: 12px; padding: 28px 24px; margin-bottom: 40px;">
+
+<div style="text-align:center; color:#6b7280; font-size:0.8em; letter-spacing:2px; margin-bottom:12px;">THE FUTURE FORMULA</div>
+
+<div style="display:flex; align-items:center; justify-content:center; gap:12px; flex-wrap:wrap; font-size:1.15em;">
+<span style="color:#555; font-weight:300;">(인간의 지능 × 창의성)</span>
+<span style="font-size:1.6em; color:#d97706; font-weight:bold;">×</span>
+<span style="color:#15803d; font-weight:700; font-size:1.15em;">AI</span>
+</div>
+
+<div style="text-align:center; margin-top:16px; font-size:1.1em;">
+<span style="color:#6b7280;">=</span> <span style="font-weight:700; color:#111;">대체 불가능한 경쟁력</span>
+</div>
+
+</div>
+
+<div style="position:relative; padding-left:28px; border-left:3px solid #e5e7eb;">
+
+<div style="margin-bottom:28px;">
+<div style="position:absolute; left:-14px; width:24px; height:24px; background:#fff; border:3px solid #fbbf24; border-radius:50%; display:flex; align-items:center; justify-content:center;">⚡</div>
+<div style="font-weight:700; color:#333; margin-bottom:4px;">1️⃣ 증폭 <span style="color:#888; font-weight:500;">(Leverage)</span> — AI로 지능 확장</div>
+<div style="color:#666; font-size:0.95em; line-height:1.6;">단순 반복과 데이터 처리는 AI에게 맡기세요. 정보 수집과 초안 작성의 속도가 10배 빨라집니다.</div>
+</div>
+
+<div style="margin-bottom:28px;">
+<div style="position:absolute; left:-14px; width:24px; height:24px; background:#fff; border:3px solid #a78bfa; border-radius:50%; display:flex; align-items:center; justify-content:center;">🎨</div>
+<div style="font-weight:700; color:#333; margin-bottom:4px;">2️⃣ 차별화 <span style="color:#888; font-weight:500;">(Differentiate)</span> — 창의성의 마법</div>
+<div style="color:#666; font-size:0.95em; line-height:1.6;">AI가 내놓은 평범한 답 위에 <strong>인간만의 통찰, 감성, 엉뚱함</strong>을 더해 고유한 결과물로 만듭니다.</div>
+</div>
+
+<div style="margin-bottom:8px;">
+<div style="position:absolute; left:-14px; width:24px; height:24px; background:#fff; border:3px solid #34d399; border-radius:50%; display:flex; align-items:center; justify-content:center;">⚖️</div>
+<div style="font-weight:700; color:#333; margin-bottom:4px;">3️⃣ 결정 <span style="color:#888; font-weight:500;">(Direct)</span> — 윤리와 가치 판단</div>
+<div style="color:#666; font-size:0.95em; line-height:1.6;">결국 '어떤 선택이 옳은가'는 인간의 몫입니다. 기술을 올바른 방향으로 이끄는 리더십을 배웁니다.</div>
+</div>
+
+</div>
+
+<div style="background-color:#f8fafc; padding:16px 20px; border-radius:8px; border-left:4px solid #15803d; margin-top:32px; font-size:0.95em; line-height:1.7;">
+코딩 교육은 단순히 기술을 배우는 것이 아닙니다. <strong>AI라는 강력한 도구를 통제하며, 당신의 상상력을 현실로 만드는 훈련</strong>입니다.
+</div>
+
+### 4. 인내심과 디버깅 능력 (Grit & Growth Mindset)
+
+프로그래밍에서 **오류(버그)는 자연스러운 과정**입니다. 학생들은 코드가 예상대로 작동하지 않을 때 원인을 분석하고 수정하는 방법을 배웁니다. 이 과정에서 좌절을 극복하고 끈기 있게 문제를 해결하는 태도를 기릅니다.
+
+!!! tip "미래 핵심 역량: Grit & Growth Mindset"
+
+    **Grit (끈기)** - 펜실베이니아 대학교 Angela Duckworth 교수의 연구에 따르면, 장기적 목표를 향한 **열정과 끈기(Grit)**가 IQ보다 성공을 더 잘 예측합니다. 프로그래밍은 버그를 만나고, 분석하고, 해결하는 반복 과정에서 자연스럽게 Grit을 훈련합니다.
+
+    **Growth Mindset (성장 마인드셋)** - 스탠포드 대학교 Carol Dweck 교수의 연구는 "능력은 노력으로 성장할 수 있다"는 **성장 마인드셋**이 학습 성과를 크게 향상시킨다는 것을 보여줍니다. 코딩에서 "아직 못 하는 것"은 "아직 배우지 않은 것"일 뿐이며, 오류는 실패가 아니라 **학습의 기회**입니다.
+
+    최신 교육 연구들은 AI 시대에 **암기 지식보다 문제 해결 태도**가 더 중요해질 것이라고 강조합니다. 프로그래밍 교육은 이러한 핵심 역량을 자연스럽게 길러줍니다.
+
+### 5. 확률적 사고 (Probabilistic Thinking)
+
+세상은 **불확실**합니다. 날씨, 주식, 질병, 심지어 내일 일어날 일도 100% 확신할 수 없습니다. 확률적 사고는 이러한 **불확실한 세상에서 현명한 결정을 내리는 능력**입니다.
+
+프로그래밍과 데이터 분석을 통해 학생들은 **데이터와 통계에 기반한 판단**을 배웁니다. "이 약이 효과가 있을 확률은 70%", "이 투자가 성공할 확률은 60%" 같은 정보를 이해하고 활용하는 능력은 AI 시대의 필수 역량입니다.
+
+!!! tip "데이터 + 가치 = 결정"
+
+    현명한 결정은 **데이터와 통계**만으로 이루어지지 않습니다. 우리의 **가치관, 윤리, 감정** 같은 정량화할 수 없는 요소도 중요합니다.
+
+    - **데이터가 말해주는 것**: "A 선택이 성공 확률 80%, B 선택이 60%"
+    - **가치가 말해주는 것**: "하지만 B가 더 윤리적이고, 더 많은 사람을 돕는다"
+    - **최종 결정**: 데이터와 가치를 종합하여 **나만의 판단**을 내림
+
+    프로그래밍 교육은 데이터를 다루는 능력뿐 아니라, **데이터의 한계를 인식**하고 **인간적 판단과 조화**시키는 지혜도 함께 기릅니다.
+
+---
+
+## 각 코스 상세 가이드
+
+각 코스의 **수업별 상세 설명**을 확인하세요:
+
+### 기초 과정
+
+<div class="grid cards" markdown>
+
+-   🧩 **Python Basics I: 코드의 논리**
+
+    ---
+
+    <div style="background: linear-gradient(135deg, rgba(76, 175, 80, 0.08) 0%, rgba(76, 175, 80, 0.02) 100%); padding: 12px 14px; border-radius: 8px; margin-bottom: 20px;">
+    <span style="background-color:#E8F5E9; color:#2E7D32; padding:3px 10px; border-radius:12px; font-size:0.85em; font-weight:600;">Algorithmic Thinking</span>
+    <div style="color:#666; font-size:0.9em; margin-top:8px;">시각적 피드백으로 컴퓨터처럼 생각하는 법을 배웁니다</div>
+    </div>
+
+    <div style="margin-bottom:20px;">
+    <span style="color:#4CAF50; font-weight:600;">✓</span> **자동화** <span style="color:#888; font-weight:normal;">(반복문)</span><br><span style="color:#555; font-size:0.9em;">반복 작업을 한 줄로 해결하는 효율성의 힘</span>
+    </div>
+
+    <div style="margin-bottom:20px;">
+    <span style="color:#4CAF50; font-weight:600;">✓</span> **의사결정** <span style="color:#888; font-weight:normal;">(조건문)</span><br><span style="color:#555; font-size:0.9em;">상황에 따라 다르게 반응하는 스마트한 프로그램</span>
+    </div>
+
+    <div style="margin-bottom:20px;">
+    <span style="color:#4CAF50; font-weight:600;">✓</span> **기억** <span style="color:#888; font-weight:normal;">(변수)</span><br><span style="color:#555; font-size:0.9em;">정보를 저장하고 불러오는 모든 프로그램의 기초</span>
+    </div>
+
+    <div style="margin-bottom:20px;">
+    <span style="color:#4CAF50; font-weight:600;">✓</span> **추상화** <span style="color:#888; font-weight:normal;">(함수)</span><br><span style="color:#555; font-size:0.9em;">복잡한 문제를 재사용 가능한 블록으로 분해</span>
+    </div>
+
+    <div style="color:#888; font-size:0.8em; margin-bottom:10px;">⏱️ 8-16시간 | ⚡ 입문</div>
+
+    <span style="display:inline-block; padding:6px 16px; border:2px solid #4CAF50; border-radius:6px; color:#2E7D32; font-weight:600; font-size:0.9em;">[상세 내용 →](01_python_basics_1.md)</span>
+
+-   🔧 **Python Basics II: 데이터와 신뢰성**
+
+    ---
+
+    <div style="background: linear-gradient(135deg, rgba(33, 150, 243, 0.08) 0%, rgba(33, 150, 243, 0.02) 100%); padding: 12px 14px; border-radius: 8px; margin-bottom: 20px;">
+    <span style="background-color:#E3F2FD; color:#1565C0; padding:3px 10px; border-radius:12px; font-size:0.85em; font-weight:600;">Data Structures</span>
+    <div style="color:#666; font-size:0.9em; margin-top:8px;">텍스트 기반 프로그래밍으로 실제 데이터를 다룹니다</div>
+    </div>
+
+    <div style="margin-bottom:20px;">
+    <span style="color:#2196F3; font-weight:600;">✓</span> **디지털 표현** <span style="color:#888; font-weight:normal;">(자료형)</span><br><span style="color:#555; font-size:0.9em;">세상을 숫자, 텍스트, 논리값으로 매핑하는 방법</span>
+    </div>
+
+    <div style="margin-bottom:20px;">
+    <span style="color:#2196F3; font-weight:600;">✓</span> **정보 처리** <span style="color:#888; font-weight:normal;">(파싱)</span><br><span style="color:#555; font-size:0.9em;">원시 텍스트에서 의미를 추출하는 기술</span>
+    </div>
+
+    <div style="margin-bottom:20px;">
+    <span style="color:#2196F3; font-weight:600;">✓</span> **상호작용** <span style="color:#888; font-weight:normal;">(입출력)</span><br><span style="color:#555; font-size:0.9em;">사용자와 프로그램 사이의 다리를 구축</span>
+    </div>
+
+    <div style="margin-bottom:20px;">
+    <span style="color:#2196F3; font-weight:600;">✓</span> **견고함** <span style="color:#888; font-weight:normal;">(예외처리)</span><br><span style="color:#555; font-size:0.9em;">예상치 못한 상황에도 멈추지 않는 코드</span>
+    </div>
+
+    <div style="color:#888; font-size:0.8em; margin-bottom:10px;">⏱️ 12-20시간 | ⚡ 초급</div>
+
+    <span style="display:inline-block; padding:6px 16px; border:2px solid #2196F3; border-radius:6px; color:#1565C0; font-weight:600; font-size:0.9em;">[상세 내용 →](02_python_basics_2.md)</span>
+
+-   📊 **데이터와 시각화 I: 정보의 구조화**
+
+    ---
+
+    <div style="background: linear-gradient(135deg, rgba(255, 152, 0, 0.08) 0%, rgba(255, 152, 0, 0.02) 100%); padding: 12px 14px; border-radius: 8px; margin-bottom: 20px;">
+    <span style="background-color:#FFF3E0; color:#E65100; padding:3px 10px; border-radius:12px; font-size:0.85em; font-weight:600;">Data Literacy</span>
+    <div style="color:#666; font-size:0.9em; margin-top:8px;">숫자를 의미 있는 시각적 정보로 변환합니다</div>
+    </div>
+
+    <div style="margin-bottom:20px;">
+    <span style="color:#FF9800; font-weight:600;">✓</span> **데이터 조직화** <span style="color:#888; font-weight:normal;">(리스트)</span><br><span style="color:#555; font-size:0.9em;">단일 값에서 대규모 데이터셋 관리로 확장</span>
+    </div>
+
+    <div style="margin-bottom:20px;">
+    <span style="color:#FF9800; font-weight:600;">✓</span> **비교 분석** <span style="color:#888; font-weight:normal;">(막대 그래프)</span><br><span style="color:#555; font-size:0.9em;">크기와 규모를 한눈에 비교</span>
+    </div>
+
+    <div style="margin-bottom:20px;">
+    <span style="color:#FF9800; font-weight:600;">✓</span> **추세 분석** <span style="color:#888; font-weight:normal;">(선 그래프)</span><br><span style="color:#555; font-size:0.9em;">시간에 따른 변화 패턴을 발견</span>
+    </div>
+
+    <div style="margin-bottom:20px;">
+    <span style="color:#FF9800; font-weight:600;">✓</span> **근거 기반 사고**<br><span style="color:#555; font-size:0.9em;">"직감"을 "데이터"로 대체하는 사고방식</span>
+    </div>
+
+    <div style="color:#888; font-size:0.8em; margin-bottom:10px;">⏱️ 12-20시간 | ⚡ 초급</div>
+
+    <span style="display:inline-block; padding:6px 16px; border:2px solid #FF9800; border-radius:6px; color:#E65100; font-weight:600; font-size:0.9em;">[상세 내용 →](03_data_visualization.md)</span>
+
+-   📈 **데이터와 시각화 II: 인사이트 도출**
+
+    ---
+
+    <div style="background: linear-gradient(135deg, rgba(233, 30, 99, 0.08) 0%, rgba(233, 30, 99, 0.02) 100%); padding: 12px 14px; border-radius: 8px; margin-bottom: 20px;">
+    <span style="background-color:#FCE4EC; color:#C2185B; padding:3px 10px; border-radius:12px; font-size:0.85em; font-weight:600;">Data Storytelling</span>
+    <div style="color:#666; font-size:0.9em; margin-top:8px;">전문 도구로 데이터에서 통찰을 이끌어냅니다</div>
+    </div>
+
+    <div style="margin-bottom:20px;">
+    <span style="color:#E91E63; font-weight:600;">✓</span> **탐색적 분석** <span style="color:#888; font-weight:normal;">(인터랙티브)</span><br><span style="color:#555; font-size:0.9em;">데이터에 "질문"할 수 있는 시각화</span>
+    </div>
+
+    <div style="margin-bottom:20px;">
+    <span style="color:#E91E63; font-weight:600;">✓</span> **실전 데이터** <span style="color:#888; font-weight:normal;">(Dirty Data)</span><br><span style="color:#555; font-size:0.9em;">현실 세계의 지저분한 데이터 다루기</span>
+    </div>
+
+    <div style="margin-bottom:20px;">
+    <span style="color:#E91E63; font-weight:600;">✓</span> **공간 분석** <span style="color:#888; font-weight:normal;">(지도)</span><br><span style="color:#555; font-size:0.9em;">위치 정보를 지도 위에 시각화</span>
+    </div>
+
+    <div style="margin-bottom:20px;">
+    <span style="color:#E91E63; font-weight:600;">✓</span> **커뮤니케이션**<br><span style="color:#555; font-size:0.9em;">숫자를 설득력 있는 이야기로 변환</span>
+    </div>
+
+    <div style="color:#888; font-size:0.8em; margin-bottom:10px;">⏱️ 16-32시간 | ⚡ 중급</div>
+
+    <span style="display:inline-block; padding:6px 16px; border:2px solid #E91E63; border-radius:6px; color:#C2185B; font-weight:600; font-size:0.9em;">[상세 내용 →](03b_data_visualization_2.md)</span>
+
+</div>
+
+??? note "Visual Python 3D (이해+ 선택과정)"
+
+    <div class="grid cards" markdown>
+
+    -   📦 **1. One Basics**
+
+        ---
+
+        [3D 게임 입문](02_one_basics.md)
+
+    -   🔄 **2. Two Flow**
+
+        ---
+
+        [제어 흐름 마스터하기](03_two_flow.md)
+
+    -   📋 **3. Four Data**
+
+        ---
+
+        [데이터 구조 - 리스트](05_four_data.md)
+
+    -   🎮 **4. Three Ursina 3D**
+
+        ---
+
+        [3D 게임 개발](04_three_ursina.md)
+
+    -   ⚙️ **5. Five Functions**
+
+        ---
+
+        [함수와 이벤트 처리](06_five_functions.md)
+
+    -   🏛️ **6. Six Classes**
+
+        ---
+
+        [객체지향 프로그래밍](07_six_classes.md)
+
+    -   🔲 **7. Seven 2D Arrays**
+
+        ---
+
+        [2D 배열과 그리드](08_seven_2d_arrays.md)
+
+    -   🏆 **8. Eight Advanced**
+
+        ---
+
+        [종합 프로젝트](09_eight_advanced.md)
+
+    </div>
+
+---
+
+## 학습 팁
+
+!!! tip "학부모님께 드리는 조언"
+
+    1. **완성보다 과정을 칭찬하세요** - 코드가 완벽하지 않아도 시도한 노력을 인정해주세요.
+
+    2. **오류는 학습 기회입니다** - 버그가 발생하면 함께 원인을 찾아보세요. "왜 이렇게 됐을까?" 질문이 사고력을 키웁니다.
+
+    3. **작은 성공을 축하하세요** - 첫 그림, 첫 게임, 첫 그래프... 작은 성취가 큰 동기부여가 됩니다.
+
+    4. **비교하지 마세요** - 각 학생의 학습 속도는 다릅니다. 자녀만의 페이스를 존중해주세요.
+
+    5. **실생활과 연결하세요** - "이 앱은 어떻게 만들었을까?", "이 게임의 규칙은 어떻게 코드로 만들까?" 같은 대화가 흥미를 유지합니다.
+
+---
+
+## 자주 묻는 질문
+
+??? question "프로그래밍을 배우려면 수학을 잘해야 하나요?"
+    기초 수학(덧셈, 뺄셈, 곱셈, 나눗셈)만 알면 됩니다. 오히려 프로그래밍을 하면서 수학적 개념을 더 잘 이해하게 되는 경우가 많습니다. 반복문은 곱셈의 원리를, 좌표 시스템은 기하학을, 데이터 분석은 통계를 자연스럽게 익히게 해줍니다.
+
+??? question "몇 살부터 시작할 수 있나요?"
+    이 커리큘럼은 초등학교 고학년(10세 이상)부터 적합합니다. 타이핑이 가능하고 기본적인 영어 알파벳을 읽을 수 있으면 충분합니다.
+
+??? question "나중에 어떤 분야로 발전할 수 있나요?"
+    - **AI + 의료**: 의료 영상 분석, 질병 예측, 신약 개발, 맞춤형 치료
+    - **AI + 법률**: 법률 문서 분석, 계약서 검토, 판례 연구 자동화
+    - **AI + 금융**: 투자 분석, 리스크 관리, 사기 탐지, 자산 관리
+    - **AI + 교육**: 맞춤형 학습, 자동 채점, 교육 콘텐츠 생성
+    - **AI + 과학**: 기후 모델링, 천문학 데이터 분석, 신소재 발견
+    - **웹/앱 개발**: 웹사이트, 모바일 앱, SaaS 서비스 제작
+    - **로보틱스**: 드론, 자율주행, 산업용 로봇 프로그래밍
+    - **어떤 분야든**: 프로그래밍과 데이터 사고력은 모든 분야에서 핵심 역량입니다
+    - **게임 개발**: Unity, Unreal 등 전문 게임 엔진으로 발전
+
+??? question "영어를 몰라도 되나요?"
+    코드의 키워드(if, for, print 등)는 영어이지만, 모든 설명은 한국어로 되어 있습니다. 학생들은 자연스럽게 필요한 영어 단어를 익히게 됩니다.

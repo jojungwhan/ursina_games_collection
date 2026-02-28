@@ -1,0 +1,1032 @@
+{
+  "keywords": {
+    "def": {
+      "ko": "함수 정의",
+      "en": "Function definition",
+      "description": "새로운 함수를 정의할 때 사용합니다."
+    },
+    "함수": {
+      "ko": "함수",
+      "en": "Function",
+      "description": "특정 작업을 수행하는 코드 블록입니다. def 키워드로 정의합니다.",
+      "syntax": "def 함수이름(): ..."
+    },
+    "변수": {
+      "ko": "변수",
+      "en": "Variable",
+      "description": "데이터를 저장하는 이름이 붙은 공간입니다.",
+      "syntax": "변수이름 = 값"
+    },
+    "라이브러리": {
+      "ko": "라이브러리",
+      "en": "Library",
+      "description": "미리 만들어진 함수와 기능의 모음입니다. import로 불러옵니다.",
+      "syntax": "import 라이브러리이름"
+    },
+    "모듈": {
+      "ko": "모듈",
+      "en": "Module",
+      "description": "파이썬 코드가 담긴 파일입니다. import로 불러와 사용합니다.",
+      "syntax": "import 모듈이름"
+    },
+    "메서드": {
+      "ko": "메서드",
+      "en": "Method",
+      "description": "객체에 속한 함수입니다. 점(.)으로 호출합니다.",
+      "syntax": "객체.메서드()"
+    },
+    "객체": {
+      "ko": "객체",
+      "en": "Object",
+      "description": "데이터와 기능을 함께 가진 것입니다. 클래스로 만듭니다."
+    },
+    "인스턴스": {
+      "ko": "인스턴스",
+      "en": "Instance",
+      "description": "클래스로부터 만들어진 실제 객체입니다."
+    },
+    "속성": {
+      "ko": "속성",
+      "en": "Attribute/Property",
+      "description": "객체가 가진 데이터나 특성입니다.",
+      "syntax": "객체.속성"
+    },
+    "인자": {
+      "ko": "인자",
+      "en": "Argument",
+      "description": "함수를 호출할 때 전달하는 값입니다.",
+      "syntax": "함수(인자1, 인자2)"
+    },
+    "매개변수": {
+      "ko": "매개변수",
+      "en": "Parameter",
+      "description": "함수가 받는 값의 이름입니다.",
+      "syntax": "def 함수(매개변수): ..."
+    },
+    "반환값": {
+      "ko": "반환값",
+      "en": "Return value",
+      "description": "함수가 돌려주는 결과값입니다.",
+      "syntax": "return 값"
+    },
+    "조건문": {
+      "ko": "조건문",
+      "en": "Conditional statement",
+      "description": "조건에 따라 다른 코드를 실행합니다.",
+      "syntax": "if 조건: ..."
+    },
+    "반복문": {
+      "ko": "반복문",
+      "en": "Loop",
+      "description": "코드를 여러 번 반복해서 실행합니다. for와 while 키워드로 사용할 수 있습니다.",
+      "syntax": "for i in range(n): ... 또는 while 조건: ..."
+    },
+    "들여쓰기": {
+      "ko": "들여쓰기",
+      "en": "Indentation",
+      "description": "코드 블록을 나타내는 공백입니다. 파이썬에서 매우 중요합니다."
+    },
+    "주석": {
+      "ko": "주석",
+      "en": "Comment",
+      "description": "코드에 대한 설명입니다. # 뒤에 작성합니다.",
+      "syntax": "# 이것은 주석입니다"
+    },
+    "문자열": {
+      "ko": "문자열",
+      "en": "String",
+      "description": "텍스트 데이터입니다. 따옴표로 감싸서 만듭니다.",
+      "syntax": "\"안녕\" 또는 '안녕'"
+    },
+    "정수": {
+      "ko": "정수",
+      "en": "Integer",
+      "description": "소수점이 없는 숫자입니다.",
+      "syntax": "1, 42, -7"
+    },
+    "실수": {
+      "ko": "실수",
+      "en": "Float",
+      "description": "소수점이 있는 숫자입니다.",
+      "syntax": "3.14, -0.5"
+    },
+    "불리언": {
+      "ko": "불리언",
+      "en": "Boolean",
+      "description": "참(True) 또는 거짓(False) 값입니다."
+    },
+    "리스트": {
+      "ko": "리스트",
+      "en": "List",
+      "description": "여러 값을 순서대로 저장하는 자료구조입니다.",
+      "syntax": "[1, 2, 3]"
+    },
+    "딕셔너리": {
+      "ko": "딕셔너리",
+      "en": "Dictionary",
+      "description": "키-값 쌍으로 데이터를 저장합니다.",
+      "syntax": "{\"키\": \"값\"}"
+    },
+    "튜플": {
+      "ko": "튜플",
+      "en": "Tuple",
+      "description": "변경할 수 없는 순서가 있는 자료구조입니다.",
+      "syntax": "(1, 2, 3)"
+    },
+    "인덱스": {
+      "ko": "인덱스",
+      "en": "Index",
+      "description": "리스트나 문자열에서 위치를 나타내는 숫자입니다. 0부터 시작합니다.",
+      "syntax": "리스트[0]"
+    },
+    "슬라이싱": {
+      "ko": "슬라이싱",
+      "en": "Slicing",
+      "description": "리스트나 문자열의 일부분을 잘라내는 것입니다.",
+      "syntax": "리스트[시작:끝]"
+    },
+    "프로그램": {
+      "ko": "프로그램",
+      "en": "Program",
+      "description": "컴퓨터가 실행할 수 있는 명령어들의 집합입니다.",
+      "syntax": "프로그램 파일을 실행합니다."
+    },
+    "픽셀": {
+      "ko": "픽셀",
+      "en": "Pixel",
+      "description": "디지털 이미지나 화면의 가장 작은 단위입니다.",
+      "syntax": "화면 해상도: 1920x1080 픽셀"
+    },
+    "알고리즘": {
+      "ko": "알고리즘",
+      "en": "Algorithm",
+      "description": "문제를 해결하기 위한 단계별 절차입니다.",
+      "syntax": "알고리즘을 코드로 구현합니다."
+    },
+    "코드": {
+      "ko": "코드",
+      "en": "Code",
+      "description": "프로그래밍 언어로 작성된 명령어입니다.",
+      "syntax": "코드를 작성하고 실행합니다."
+    },
+    "버그": {
+      "ko": "버그",
+      "en": "Bug",
+      "description": "코드에 있는 오류나 결함입니다.",
+      "syntax": "버그를 찾아서 수정합니다."
+    },
+    "디버깅": {
+      "ko": "디버깅",
+      "en": "Debugging",
+      "description": "버그를 찾아서 수정하는 과정입니다.",
+      "syntax": "디버깅 도구를 사용합니다."
+    },
+    "디버그": {
+      "ko": "디버그",
+      "en": "Debug",
+      "description": "버그를 찾아서 수정하는 것입니다.",
+      "syntax": "코드를 디버그합니다."
+    },
+    "프로그래밍": {
+      "ko": "프로그래밍",
+      "en": "Programming",
+      "description": "코드를 작성하는 행위입니다.",
+      "syntax": "파이썬 프로그래밍을 배웁니다."
+    },
+    "개발자": {
+      "ko": "개발자",
+      "en": "Developer",
+      "description": "코드를 작성하는 사람입니다.",
+      "syntax": "프로그래머, 개발자"
+    },
+    "문법": {
+      "ko": "문법",
+      "en": "Syntax",
+      "description": "코드를 올바르게 작성하기 위한 규칙입니다.",
+      "syntax": "파이썬 문법을 따릅니다."
+    },
+    "오류": {
+      "ko": "오류",
+      "en": "Error",
+      "description": "프로그램이 실행되지 못하게 하는 문제입니다.",
+      "syntax": "문법 오류 (SyntaxError)"
+    },
+    "예외": {
+      "ko": "예외",
+      "en": "Exception",
+      "description": "프로그램 실행 중에 발생하는 오류입니다.",
+      "syntax": "try-except로 예외를 처리합니다."
+    },
+    "데이터": {
+      "ko": "데이터",
+      "en": "Data",
+      "description": "컴퓨터가 저장하거나 처리하는 정보입니다.",
+      "syntax": "데이터를 변수에 저장합니다."
+    },
+    "타입": {
+      "ko": "타입",
+      "en": "Type",
+      "description": "데이터의 종류입니다. (예: int, str, bool)",
+      "syntax": "type(변수)로 타입을 확인합니다."
+    },
+    "값": {
+      "ko": "값",
+      "en": "Value",
+      "description": "하나의 데이터입니다.",
+      "syntax": "변수 = 값"
+    },
+    "연산자": {
+      "ko": "연산자",
+      "en": "Operator",
+      "description": "연산을 수행하는 기호입니다. (+, -, *, /, == 등)",
+      "syntax": "1 + 2 (연산자: +)"
+    },
+    "표현식": {
+      "ko": "표현식",
+      "en": "Expression",
+      "description": "값과 연산자를 조합한 것입니다.",
+      "syntax": "1 + 2 * 3"
+    },
+    "명령문": {
+      "ko": "명령문",
+      "en": "Statement",
+      "description": "작업을 수행하는 완전한 코드 줄입니다.",
+      "syntax": "print('Hello')"
+    },
+    "블록": {
+      "ko": "블록",
+      "en": "Block",
+      "description": "함께 실행되는 명령문들의 묶음입니다.",
+      "syntax": "들여쓰기로 블록을 구분합니다."
+    },
+    "시퀀스": {
+      "ko": "시퀀스",
+      "en": "Sequence",
+      "description": "순서가 있는 항목들의 모음입니다.",
+      "syntax": "리스트, 튜플, 문자열은 시퀀스입니다."
+    },
+    "컬렉션": {
+      "ko": "컬렉션",
+      "en": "Collection",
+      "description": "여러 항목을 담는 자료구조입니다.",
+      "syntax": "리스트, 딕셔너리, 집합"
+    },
+    "반복": {
+      "ko": "반복",
+      "en": "Iteration",
+      "description": "코드를 반복해서 실행하는 것입니다.",
+      "syntax": "반복문으로 반복합니다."
+    },
+    "조건": {
+      "ko": "조건",
+      "en": "Condition",
+      "description": "참 또는 거짓으로 평가되는 표현식입니다.",
+      "syntax": "if 조건: ..."
+    },
+    "실행": {
+      "ko": "실행",
+      "en": "Execution",
+      "description": "컴퓨터가 코드를 읽고 명령을 수행하는 과정입니다.",
+      "syntax": "python script.py"
+    },
+    "호출": {
+      "ko": "호출",
+      "en": "Call",
+      "description": "함수를 실행하는 것입니다.",
+      "syntax": "함수()로 호출합니다."
+    },
+    "정의": {
+      "ko": "정의",
+      "en": "Definition",
+      "description": "함수, 클래스, 변수를 만드는 것입니다.",
+      "syntax": "def 함수(): ..."
+    },
+    "초기화": {
+      "ko": "초기화",
+      "en": "Initialization",
+      "description": "초기값을 설정하는 것입니다.",
+      "syntax": "변수 = 0 (초기화)"
+    },
+    "할당": {
+      "ko": "할당",
+      "en": "Assignment",
+      "description": "변수에 값을 주는 것입니다. = 기호를 사용합니다.",
+      "syntax": "변수 = 값"
+    },
+    "비교": {
+      "ko": "비교",
+      "en": "Comparison",
+      "description": "값이 같은지, 큰지 등을 확인하는 것입니다.",
+      "syntax": "==, !=, <, >, <=, >="
+    },
+    "논리": {
+      "ko": "논리",
+      "en": "Logic",
+      "description": "코드의 흐름과 추론입니다.",
+      "syntax": "논리 연산자: and, or, not"
+    },
+    "제어 흐름": {
+      "ko": "제어 흐름",
+      "en": "Control flow",
+      "description": "코드가 실행되는 순서입니다.",
+      "syntax": "조건문, 반복문으로 제어합니다."
+    },
+    "재귀": {
+      "ko": "재귀",
+      "en": "Recursion",
+      "description": "함수가 자신을 호출하는 것입니다.",
+      "syntax": "def 함수(): return 함수()"
+    },
+    "모델": {
+      "ko": "모델",
+      "en": "Model",
+      "description": "3D 게임에서 객체의 모양이나 메시입니다.",
+      "syntax": "Entity(model='cube')"
+    },
+    "텍스처": {
+      "ko": "텍스처",
+      "en": "Texture",
+      "description": "3D 표면에 적용되는 이미지입니다.",
+      "syntax": "Entity(texture='image.png')"
+    },
+    "프레임": {
+      "ko": "프레임",
+      "en": "Frame",
+      "description": "애니메이션이나 게임 루프에서 한 번에 그려지는 화면입니다.",
+      "syntax": "매 프레임마다 업데이트됩니다."
+    },
+    "프레임레이트": {
+      "ko": "프레임레이트",
+      "en": "Frame rate",
+      "description": "초당 프레임 수 (FPS)입니다.",
+      "syntax": "60 FPS = 초당 60 프레임"
+    },
+    "좌표": {
+      "ko": "좌표",
+      "en": "Coordinate",
+      "description": "2D 또는 3D 공간에서의 위치입니다.",
+      "syntax": "Vec3(x, y, z)"
+    },
+    "축": {
+      "ko": "축",
+      "en": "Axis",
+      "description": "3D 공간에서 X, Y, Z 방향입니다.",
+      "syntax": "x축, y축, z축"
+    },
+    "회전": {
+      "ko": "회전",
+      "en": "Rotation",
+      "description": "축을 중심으로 도는 것입니다.",
+      "syntax": "entity.rotation = Vec3(0, 90, 0)"
+    },
+    "크기": {
+      "ko": "크기",
+      "en": "Scale",
+      "description": "크기를 바꾸는 것입니다.",
+      "syntax": "entity.scale = Vec3(2, 2, 2)"
+    },
+    "렌더링": {
+      "ko": "렌더링",
+      "en": "Rendering",
+      "description": "그래픽을 화면에 그리는 것입니다.",
+      "syntax": "매 프레임마다 렌더링됩니다."
+    },
+    "애니메이션": {
+      "ko": "애니메이션",
+      "en": "Animation",
+      "description": "시간에 따라 움직이는 것입니다.",
+      "syntax": "entity.animate('position', ...)"
+    },
+    "충돌": {
+      "ko": "충돌",
+      "en": "Collision",
+      "description": "두 객체가 만나는 것입니다.",
+      "syntax": "collider='box'"
+    },
+    "물리": {
+      "ko": "물리",
+      "en": "Physics",
+      "description": "움직임과 상호작용의 법칙입니다.",
+      "syntax": "중력, 충돌 감지"
+    },
+    "입력": {
+      "ko": "입력",
+      "en": "Input",
+      "description": "사용자의 동작입니다. (키보드, 마우스)",
+      "syntax": "held_keys['w'], mouse.position"
+    },
+    "이벤트": {
+      "ko": "이벤트",
+      "en": "Event",
+      "description": "발생하는 일입니다. (클릭, 키 누르기 등)",
+      "syntax": "on_click 이벤트"
+    },
+    "게임 루프": {
+      "ko": "게임 루프",
+      "en": "Game loop",
+      "description": "업데이트와 렌더링을 반복하는 주기입니다.",
+      "syntax": "app.run()으로 시작됩니다."
+    },
+    "스프라이트": {
+      "ko": "스프라이트",
+      "en": "Sprite",
+      "description": "게임에서 사용하는 2D 이미지입니다.",
+      "syntax": "Entity(model='quad', texture='...')"
+    },
+    "UI": {
+      "ko": "UI",
+      "en": "User Interface",
+      "description": "화면에 표시되는 버튼, 메뉴, 텍스트입니다.",
+      "syntax": "Button, Text"
+    },
+    "씬": {
+      "ko": "씬",
+      "en": "Scene",
+      "description": "게임의 레벨이나 장면입니다.",
+      "syntax": "메인 씬, 게임 씬"
+    },
+    "class": {
+      "ko": "클래스 정의",
+      "en": "Class definition",
+      "description": "새로운 클래스를 정의할 때 사용합니다."
+    },
+    "if": {
+      "ko": "조건문",
+      "en": "Conditional statement",
+      "description": "조건이 참일 때 코드를 실행합니다."
+    },
+    "elif": {
+      "ko": "그렇지 않고 만약",
+      "en": "Else if",
+      "description": "이전 조건이 거짓이고, 새 조건이 참일 때 실행합니다."
+    },
+    "else": {
+      "ko": "그렇지 않으면",
+      "en": "Otherwise",
+      "description": "모든 조건이 거짓일 때 실행합니다."
+    },
+    "for": {
+      "ko": "반복문 (for)",
+      "en": "For loop",
+      "description": "시퀀스의 각 요소에 대해 코드를 반복 실행합니다."
+    },
+    "while": {
+      "ko": "반복문 (while)",
+      "en": "While loop",
+      "description": "조건이 참인 동안 코드를 반복 실행합니다."
+    },
+    "in": {
+      "ko": "~안에",
+      "en": "In (membership)",
+      "description": "시퀀스에 요소가 포함되어 있는지 확인하거나, for 루프에서 반복할 때 사용합니다."
+    },
+    "return": {
+      "ko": "반환",
+      "en": "Return value",
+      "description": "함수에서 값을 반환하고 함수를 종료합니다."
+    },
+    "import": {
+      "ko": "가져오기",
+      "en": "Import module",
+      "description": "다른 모듈이나 패키지를 가져옵니다."
+    },
+    "from": {
+      "ko": "~로부터",
+      "en": "From (import)",
+      "description": "모듈에서 특정 항목을 가져올 때 사용합니다."
+    },
+    "as": {
+      "ko": "~로서 (별칭)",
+      "en": "Alias",
+      "description": "가져온 모듈이나 항목에 별칭을 부여합니다."
+    },
+    "True": {
+      "ko": "참",
+      "en": "Boolean True",
+      "description": "불리언 참 값입니다."
+    },
+    "False": {
+      "ko": "거짓",
+      "en": "Boolean False",
+      "description": "불리언 거짓 값입니다."
+    },
+    "and": {
+      "ko": "그리고 (논리 AND)",
+      "en": "Logical AND",
+      "description": "두 조건이 모두 참일 때 참을 반환합니다."
+    },
+    "or": {
+      "ko": "또는 (논리 OR)",
+      "en": "Logical OR",
+      "description": "두 조건 중 하나라도 참이면 참을 반환합니다."
+    },
+    "not": {
+      "ko": "아닌 (논리 NOT)",
+      "en": "Logical NOT",
+      "description": "조건의 반대 값을 반환합니다."
+    },
+    "try": {
+      "ko": "시도",
+      "en": "Try block",
+      "description": "예외가 발생할 수 있는 코드를 시도합니다."
+    },
+    "except": {
+      "ko": "예외 처리",
+      "en": "Exception handler",
+      "description": "예외가 발생했을 때 실행할 코드를 정의합니다."
+    },
+    "finally": {
+      "ko": "마지막으로",
+      "en": "Finally block",
+      "description": "예외 발생 여부와 관계없이 항상 실행됩니다."
+    },
+    "raise": {
+      "ko": "예외 발생",
+      "en": "Raise exception",
+      "description": "예외를 명시적으로 발생시킵니다."
+    },
+    "with": {
+      "ko": "~와 함께",
+      "en": "Context manager",
+      "description": "리소스를 자동으로 관리하는 컨텍스트 매니저를 사용합니다."
+    },
+    "pass": {
+      "ko": "통과 (아무것도 안 함)",
+      "en": "Pass (no operation)",
+      "description": "아무 작업도 수행하지 않는 자리 표시자입니다."
+    },
+    "break": {
+      "ko": "중단",
+      "en": "Break loop",
+      "description": "현재 반복문을 즉시 종료합니다."
+    },
+    "continue": {
+      "ko": "계속",
+      "en": "Continue loop",
+      "description": "현재 반복을 건너뛰고 다음 반복으로 진행합니다."
+    },
+    "lambda": {
+      "ko": "람다 (익명 함수)",
+      "en": "Lambda function",
+      "description": "간단한 익명 함수를 정의합니다."
+    },
+    "global": {
+      "ko": "전역 변수",
+      "en": "Global variable",
+      "description": "함수 내에서 전역 변수를 사용하도록 선언합니다."
+    },
+    "self": {
+      "ko": "자기 자신 (인스턴스)",
+      "en": "Instance reference",
+      "description": "클래스의 인스턴스 자신을 참조합니다."
+    }
+  },
+  "builtins": {
+    "print": {
+      "ko": "출력",
+      "en": "Print output",
+      "description": "콘솔에 값을 출력합니다.",
+      "syntax": "print(value, ...)"
+    },
+    "len": {
+      "ko": "길이",
+      "en": "Length",
+      "description": "시퀀스나 컬렉션의 길이를 반환합니다.",
+      "syntax": "len(sequence)"
+    },
+    "range": {
+      "ko": "범위",
+      "en": "Range of numbers",
+      "description": "숫자의 시퀀스를 생성합니다.",
+      "syntax": "range(start, stop, step)"
+    },
+    "int": {
+      "ko": "정수",
+      "en": "Integer",
+      "description": "값을 정수로 변환합니다.",
+      "syntax": "int(value)"
+    },
+    "float": {
+      "ko": "실수",
+      "en": "Floating point",
+      "description": "값을 실수(소수점 숫자)로 변환합니다.",
+      "syntax": "float(value)"
+    },
+    "str": {
+      "ko": "문자열",
+      "en": "String",
+      "description": "값을 문자열로 변환합니다.",
+      "syntax": "str(value)"
+    },
+    "list": {
+      "ko": "리스트",
+      "en": "List",
+      "description": "리스트를 생성하거나 시퀀스를 리스트로 변환합니다.",
+      "syntax": "list(iterable)"
+    },
+    "dict": {
+      "ko": "딕셔너리",
+      "en": "Dictionary",
+      "description": "키-값 쌍의 딕셔너리를 생성합니다.",
+      "syntax": "dict(key=value, ...)"
+    },
+    "set": {
+      "ko": "집합",
+      "en": "Set",
+      "description": "고유한 요소의 집합을 생성합니다.",
+      "syntax": "set(iterable)"
+    },
+    "tuple": {
+      "ko": "튜플",
+      "en": "Tuple",
+      "description": "변경 불가능한 순서가 있는 시퀀스를 생성합니다.",
+      "syntax": "tuple(iterable)"
+    },
+    "bool": {
+      "ko": "불리언",
+      "en": "Boolean",
+      "description": "값을 True 또는 False로 변환합니다.",
+      "syntax": "bool(value)"
+    },
+    "input": {
+      "ko": "입력",
+      "en": "User input",
+      "description": "사용자로부터 입력을 받습니다.",
+      "syntax": "input(prompt)"
+    },
+    "type": {
+      "ko": "타입",
+      "en": "Type",
+      "description": "객체의 타입을 반환합니다.",
+      "syntax": "type(object)"
+    },
+    "abs": {
+      "ko": "절대값",
+      "en": "Absolute value",
+      "description": "숫자의 절대값을 반환합니다.",
+      "syntax": "abs(number)"
+    },
+    "max": {
+      "ko": "최대값",
+      "en": "Maximum",
+      "description": "가장 큰 값을 반환합니다.",
+      "syntax": "max(iterable)"
+    },
+    "min": {
+      "ko": "최소값",
+      "en": "Minimum",
+      "description": "가장 작은 값을 반환합니다.",
+      "syntax": "min(iterable)"
+    },
+    "sum": {
+      "ko": "합계",
+      "en": "Sum",
+      "description": "시퀀스의 모든 요소의 합을 반환합니다.",
+      "syntax": "sum(iterable)"
+    },
+    "sorted": {
+      "ko": "정렬",
+      "en": "Sorted",
+      "description": "정렬된 새 리스트를 반환합니다.",
+      "syntax": "sorted(iterable, key, reverse)"
+    },
+    "reversed": {
+      "ko": "역순",
+      "en": "Reversed",
+      "description": "시퀀스를 역순으로 반복합니다.",
+      "syntax": "reversed(sequence)"
+    },
+    "enumerate": {
+      "ko": "열거",
+      "en": "Enumerate",
+      "description": "인덱스와 값을 함께 반복합니다.",
+      "syntax": "enumerate(iterable, start=0)"
+    },
+    "zip": {
+      "ko": "묶기",
+      "en": "Zip",
+      "description": "여러 시퀀스를 병렬로 묶어서 반복합니다.",
+      "syntax": "zip(iterable1, iterable2, ...)"
+    },
+    "map": {
+      "ko": "매핑",
+      "en": "Map",
+      "description": "함수를 시퀀스의 모든 요소에 적용합니다.",
+      "syntax": "map(function, iterable)"
+    },
+    "filter": {
+      "ko": "필터",
+      "en": "Filter",
+      "description": "조건을 만족하는 요소만 필터링합니다.",
+      "syntax": "filter(function, iterable)"
+    },
+    "open": {
+      "ko": "파일 열기",
+      "en": "Open file",
+      "description": "파일을 열어서 읽거나 씁니다.",
+      "syntax": "open(filename, mode)"
+    },
+    "isinstance": {
+      "ko": "인스턴스 확인",
+      "en": "Instance check",
+      "description": "객체가 특정 클래스의 인스턴스인지 확인합니다.",
+      "syntax": "isinstance(object, class)"
+    },
+    "hasattr": {
+      "ko": "속성 확인",
+      "en": "Has attribute",
+      "description": "객체가 특정 속성을 가지고 있는지 확인합니다.",
+      "syntax": "hasattr(object, name)"
+    },
+    "getattr": {
+      "ko": "속성 가져오기",
+      "en": "Get attribute",
+      "description": "객체의 속성 값을 가져옵니다.",
+      "syntax": "getattr(object, name, default)"
+    },
+    "setattr": {
+      "ko": "속성 설정",
+      "en": "Set attribute",
+      "description": "객체의 속성 값을 설정합니다.",
+      "syntax": "setattr(object, name, value)"
+    },
+    "super": {
+      "ko": "부모 클래스",
+      "en": "Super class",
+      "description": "부모 클래스의 메서드를 호출합니다.",
+      "syntax": "super()"
+    },
+    "append": {
+      "ko": "추가 (끝에)",
+      "en": "Append to list",
+      "description": "리스트의 끝에 요소를 추가합니다.",
+      "syntax": "list.append(item)"
+    },
+    "extend": {
+      "ko": "확장",
+      "en": "Extend list",
+      "description": "리스트에 다른 시퀀스의 모든 요소를 추가합니다.",
+      "syntax": "list.extend(iterable)"
+    },
+    "pop": {
+      "ko": "꺼내기",
+      "en": "Pop item",
+      "description": "리스트에서 요소를 제거하고 반환합니다.",
+      "syntax": "list.pop(index)"
+    },
+    "remove": {
+      "ko": "제거",
+      "en": "Remove item",
+      "description": "리스트에서 특정 값을 제거합니다.",
+      "syntax": "list.remove(value)"
+    },
+    "insert": {
+      "ko": "삽입",
+      "en": "Insert item",
+      "description": "리스트의 특정 위치에 요소를 삽입합니다.",
+      "syntax": "list.insert(index, item)"
+    },
+    "clear": {
+      "ko": "비우기",
+      "en": "Clear all",
+      "description": "리스트의 모든 요소를 제거합니다.",
+      "syntax": "list.clear()"
+    },
+    "copy": {
+      "ko": "복사",
+      "en": "Copy",
+      "description": "리스트의 얕은 복사본을 반환합니다.",
+      "syntax": "list.copy()"
+    },
+    "index": {
+      "ko": "인덱스 찾기",
+      "en": "Find index",
+      "description": "특정 값의 인덱스를 반환합니다.",
+      "syntax": "list.index(value)"
+    },
+    "count": {
+      "ko": "개수 세기",
+      "en": "Count occurrences",
+      "description": "특정 값의 출현 횟수를 반환합니다.",
+      "syntax": "list.count(value)"
+    },
+    "sort": {
+      "ko": "정렬 (제자리)",
+      "en": "Sort in place",
+      "description": "리스트를 제자리에서 정렬합니다.",
+      "syntax": "list.sort(key, reverse)"
+    },
+    "reverse": {
+      "ko": "뒤집기 (제자리)",
+      "en": "Reverse in place",
+      "description": "리스트를 제자리에서 뒤집습니다.",
+      "syntax": "list.reverse()"
+    },
+    "join": {
+      "ko": "연결",
+      "en": "Join strings",
+      "description": "문자열로 시퀀스의 요소들을 연결합니다.",
+      "syntax": "separator.join(iterable)"
+    },
+    "split": {
+      "ko": "분할",
+      "en": "Split string",
+      "description": "문자열을 구분자로 분할하여 리스트를 반환합니다.",
+      "syntax": "string.split(separator)"
+    },
+    "strip": {
+      "ko": "공백 제거",
+      "en": "Strip whitespace",
+      "description": "문자열의 앞뒤 공백을 제거합니다.",
+      "syntax": "string.strip()"
+    },
+    "replace": {
+      "ko": "대체",
+      "en": "Replace",
+      "description": "문자열의 일부를 다른 문자열로 대체합니다.",
+      "syntax": "string.replace(old, new)"
+    },
+    "upper": {
+      "ko": "대문자로",
+      "en": "Uppercase",
+      "description": "문자열을 대문자로 변환합니다.",
+      "syntax": "string.upper()"
+    },
+    "lower": {
+      "ko": "소문자로",
+      "en": "Lowercase",
+      "description": "문자열을 소문자로 변환합니다.",
+      "syntax": "string.lower()"
+    },
+    "format": {
+      "ko": "포맷",
+      "en": "Format string",
+      "description": "문자열을 포맷팅합니다.",
+      "syntax": "string.format(args)"
+    },
+    "startswith": {
+      "ko": "~로 시작",
+      "en": "Starts with",
+      "description": "문자열이 특정 문자열로 시작하는지 확인합니다.",
+      "syntax": "string.startswith(prefix)"
+    },
+    "endswith": {
+      "ko": "~로 끝남",
+      "en": "Ends with",
+      "description": "문자열이 특정 문자열로 끝나는지 확인합니다.",
+      "syntax": "string.endswith(suffix)"
+    },
+    "find": {
+      "ko": "찾기",
+      "en": "Find substring",
+      "description": "부분 문자열의 위치를 반환합니다 (없으면 -1).",
+      "syntax": "string.find(substring)"
+    },
+    "keys": {
+      "ko": "키들",
+      "en": "Dictionary keys",
+      "description": "딕셔너리의 모든 키를 반환합니다.",
+      "syntax": "dict.keys()"
+    },
+    "values": {
+      "ko": "값들",
+      "en": "Dictionary values",
+      "description": "딕셔너리의 모든 값을 반환합니다.",
+      "syntax": "dict.values()"
+    },
+    "items": {
+      "ko": "항목들",
+      "en": "Dictionary items",
+      "description": "딕셔너리의 모든 키-값 쌍을 반환합니다.",
+      "syntax": "dict.items()"
+    },
+    "get": {
+      "ko": "가져오기 (기본값)",
+      "en": "Get with default",
+      "description": "키의 값을 반환하고, 없으면 기본값을 반환합니다.",
+      "syntax": "dict.get(key, default)"
+    },
+    "update": {
+      "ko": "업데이트",
+      "en": "Update dictionary",
+      "description": "딕셔너리를 다른 딕셔너리나 키-값 쌍으로 업데이트합니다.",
+      "syntax": "dict.update(other)"
+    }
+  },
+  "ursina": {
+    "Entity": {
+      "ko": "엔티티 (게임 객체)",
+      "en": "Game entity",
+      "description": "게임 내의 모든 객체의 기본 클래스입니다.",
+      "syntax": "Entity(model, color, position, ...)"
+    },
+    "Ursina": {
+      "ko": "우르시나 앱",
+      "en": "Ursina application",
+      "description": "게임 애플리케이션을 초기화합니다.",
+      "syntax": "app = Ursina()"
+    },
+    "app.run": {
+      "ko": "앱 실행",
+      "en": "Run application",
+      "description": "게임 루프를 시작합니다.",
+      "syntax": "app.run()"
+    },
+    "camera": {
+      "ko": "카메라",
+      "en": "Camera",
+      "description": "게임의 카메라 객체입니다.",
+      "syntax": "camera.position = Vec3(x, y, z)"
+    },
+    "color": {
+      "ko": "색상",
+      "en": "Color",
+      "description": "엔티티의 색상을 지정합니다.",
+      "syntax": "color.red, color.rgb(r,g,b)"
+    },
+    "Vec3": {
+      "ko": "3D 벡터",
+      "en": "3D Vector",
+      "description": "3차원 좌표 (x, y, z)를 나타냅니다.",
+      "syntax": "Vec3(x, y, z)"
+    },
+    "Vec2": {
+      "ko": "2D 벡터",
+      "en": "2D Vector",
+      "description": "2차원 좌표 (x, y)를 나타냅니다.",
+      "syntax": "Vec2(x, y)"
+    },
+    "held_keys": {
+      "ko": "눌린 키들",
+      "en": "Held keys",
+      "description": "현재 눌려있는 키보드 키들을 확인합니다.",
+      "syntax": "held_keys['w'], held_keys['space']"
+    },
+    "time.dt": {
+      "ko": "델타 타임",
+      "en": "Delta time",
+      "description": "마지막 프레임 이후 경과된 시간 (초)입니다.",
+      "syntax": "time.dt"
+    },
+    "destroy": {
+      "ko": "파괴",
+      "en": "Destroy entity",
+      "description": "게임에서 엔티티를 제거합니다.",
+      "syntax": "destroy(entity)"
+    },
+    "distance": {
+      "ko": "거리",
+      "en": "Distance",
+      "description": "두 점 사이의 거리를 계산합니다.",
+      "syntax": "distance(a, b)"
+    },
+    "invoke": {
+      "ko": "지연 호출",
+      "en": "Delayed call",
+      "description": "일정 시간 후에 함수를 호출합니다.",
+      "syntax": "invoke(function, delay=seconds)"
+    },
+    "Sequence": {
+      "ko": "시퀀스 (연속 동작)",
+      "en": "Action sequence",
+      "description": "여러 동작을 순서대로 실행합니다.",
+      "syntax": "Sequence(action1, action2, ...)"
+    },
+    "Audio": {
+      "ko": "오디오",
+      "en": "Audio",
+      "description": "사운드 효과나 음악을 재생합니다.",
+      "syntax": "Audio('sound_file')"
+    },
+    "Text": {
+      "ko": "텍스트",
+      "en": "Text display",
+      "description": "화면에 텍스트를 표시합니다.",
+      "syntax": "Text(text='Hello', position=...)"
+    },
+    "Button": {
+      "ko": "버튼",
+      "en": "UI Button",
+      "description": "클릭 가능한 UI 버튼을 만듭니다.",
+      "syntax": "Button(text='Click me')"
+    },
+    "mouse": {
+      "ko": "마우스",
+      "en": "Mouse",
+      "description": "마우스 입력을 처리합니다.",
+      "syntax": "mouse.position, mouse.hovered_entity"
+    },
+    "raycast": {
+      "ko": "레이캐스트",
+      "en": "Raycast",
+      "description": "광선을 쏘아 충돌을 감지합니다.",
+      "syntax": "raycast(origin, direction)"
+    },
+    "collider": {
+      "ko": "충돌체",
+      "en": "Collider",
+      "description": "충돌 감지를 위한 형태를 정의합니다.",
+      "syntax": "collider='box', collider='sphere'"
+    }
+  }
+}

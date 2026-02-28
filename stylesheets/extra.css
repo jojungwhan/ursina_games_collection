@@ -1,0 +1,1670 @@
+/**
+ * Extra CSS for K-12 Python Learning Site
+ * 퀴즈 및 학습 요소 스타일링
+ *
+ * SSOT: Uses design tokens from _design_tokens.css
+ */
+
+/* ========================================
+   Quiz Container Styles (퀴즈 컨테이너)
+   ======================================== */
+
+.quiz-input-type,
+.quiz-choice-type {
+    background-color: var(--color-accent-bg);
+    border: 2px solid var(--color-accent);
+    border-radius: var(--radius-lg);
+    padding: var(--space-5);
+    margin: var(--space-5) 0;
+    box-shadow: var(--shadow-sm);
+}
+
+.quiz-input-type:hover,
+.quiz-choice-type:hover {
+    border-color: var(--color-accent-hover);
+    box-shadow: var(--shadow-md);
+}
+
+/* ========================================
+   Quiz Title (퀴즈 제목)
+   ======================================== */
+
+.quiz-title {
+    font-size: var(--text-base);
+    font-weight: var(--font-semibold);
+    color: var(--color-accent-text);
+    margin-bottom: var(--space-4);
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+.quiz-title::before {
+    content: "📝";
+}
+
+/* ========================================
+   Quiz Question (퀴즈 질문)
+   ======================================== */
+
+.quiz-question {
+    font-size: var(--text-base);
+    color: var(--color-text-primary);
+    margin-bottom: var(--space-4);
+    line-height: var(--line-relaxed);
+}
+
+/* ========================================
+   Input Quiz Styles (텍스트 입력 퀴즈)
+   ======================================== */
+
+.quiz-input {
+    width: 100%;
+    max-width: 300px;
+    padding: var(--space-3) var(--space-4);
+    font-size: var(--text-base);
+    border: 2px solid var(--color-accent-light);
+    border-radius: var(--radius-md);
+    outline: none;
+    transition: border-color var(--transition-base);
+}
+
+.quiz-input:focus {
+    border-color: var(--color-accent-hover);
+    box-shadow: var(--shadow-focus);
+}
+
+.quiz-submit-btn {
+    display: inline-block;
+    margin-left: var(--space-2);
+    padding: var(--space-3) var(--space-5);
+    font-size: var(--text-base);
+    font-weight: var(--font-semibold);
+    color: var(--color-text-inverse);
+    background-color: var(--color-accent-hover);
+    border: none;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: background-color var(--transition-base), transform var(--transition-fast);
+}
+
+.quiz-submit-btn:hover {
+    background-color: var(--color-accent-text);
+    transform: translateY(-1px);
+}
+
+.quiz-submit-btn:active {
+    transform: translateY(0);
+}
+
+/* ========================================
+   Choice Quiz Styles (객관식 퀴즈)
+   ======================================== */
+
+.quiz-choices {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+}
+
+.quiz-choice-btn {
+    display: block;
+    width: 100%;
+    padding: var(--space-4) var(--space-4);
+    font-size: var(--text-base);
+    text-align: left;
+    color: var(--color-text-primary);
+    background-color: var(--color-bg-surface);
+    border: 2px solid var(--color-accent-light);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all var(--transition-base);
+}
+
+.quiz-choice-btn:hover {
+    background-color: var(--color-accent-bg);
+    border-color: var(--color-accent);
+}
+
+.quiz-choice-btn.selected {
+    background-color: var(--color-accent-bg);
+    border-color: var(--color-accent-hover);
+    font-weight: var(--font-semibold);
+}
+
+/* ========================================
+   Result Message (결과 메시지)
+   ======================================== */
+
+.result-msg {
+    margin-top: var(--space-4);
+    padding: var(--space-3) var(--space-4);
+    font-size: var(--text-base);
+    font-weight: var(--font-bold);
+    border-radius: var(--radius-md);
+    min-height: var(--space-5);
+}
+
+.result-msg.correct {
+    color: var(--color-success-text);
+    background-color: var(--color-success-light);
+    border: 1px solid var(--color-success-border);
+}
+
+.result-msg.incorrect {
+    color: var(--color-error-text);
+    background-color: var(--color-error-light);
+    border: 1px solid var(--color-error-border);
+}
+
+/* ========================================
+   Quiz Answer Sections (퀴즈 정답 섹션)
+   ======================================== */
+
+/* Hide answer sections initially */
+details.quiz-answer-section {
+    display: none;
+    margin-top: var(--space-4);
+    margin-bottom: var(--space-5);
+}
+
+/* Show and style answer sections when visible */
+details.quiz-answer-section.quiz-answer-visible {
+    display: block;
+    background-color: var(--color-success-light);
+    border: 2px solid var(--color-success);
+    border-radius: var(--radius-md);
+    padding: var(--space-4);
+    animation: fadeInSlide 0.4s ease-out;
+}
+
+details.quiz-answer-section summary {
+    font-weight: var(--font-semibold);
+    color: var(--color-success-text);
+    cursor: pointer;
+    padding: var(--space-2);
+    user-select: none;
+    list-style: none;
+}
+
+details.quiz-answer-section summary::-webkit-details-marker {
+    display: none;
+}
+
+details.quiz-answer-section summary:hover {
+    color: var(--color-success);
+}
+
+details.quiz-answer-section[open] summary {
+    margin-bottom: var(--space-4);
+}
+
+details.quiz-answer-section .highlight {
+    background-color: var(--color-warning-light);
+    padding: var(--space-1) var(--space-2);
+    border-radius: var(--radius-sm);
+    font-weight: var(--font-semibold);
+}
+
+@keyframes fadeInSlide {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ========================================
+   Image Display Styles (이미지 표시 스타일)
+   ======================================== */
+
+/* Full-width images with auto height (maintains aspect ratio) */
+.img-full-width {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: var(--space-4) 0;
+}
+
+/* Target images in Material theme's content area - remove all spacing */
+.md-typeset img,
+.md-content img {
+    max-width: 100%;
+    max-height: 500px; /* Limit maximum height to prevent huge images */
+    width: auto; /* Allow width to scale proportionally */
+    height: auto;
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    vertical-align: top;
+    border: none;
+    /* Improve image rendering quality - reduce jaggedness */
+    /* Use high-quality scaling for smooth images */
+    image-rendering: -webkit-optimize-contrast; /* Safari/Chrome - high quality */
+    image-rendering: auto; /* Standard - smooth scaling with anti-aliasing */
+    /* Prevent blurry scaling with hardware acceleration */
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    /* Ensure crisp rendering */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Ensure images in paragraphs display properly - allow multiple images per row, no spacing */
+.md-typeset p img,
+.md-content p img {
+    flex: 0 0 33.333%;
+    width: 100%;
+    max-width: 400px; /* Limit maximum width to prevent huge images */
+    height: auto;
+    margin: 0;
+    padding: 0;
+    min-width: 150px;
+    /* Ensure images maintain aspect ratio without cropping */
+    object-fit: contain;
+    object-position: center top;
+    image-rendering: auto;
+    /* Ensure images align at the top in flexbox */
+    align-self: flex-start;
+}
+
+/* Remove spacing between images - set line-height to 0 for paragraphs with images */
+.md-typeset p:has(img),
+.md-content p:has(img) {
+    line-height: 0;
+    font-size: 0;
+    margin: var(--space-2) 0;
+    /* Use flexbox for better alignment */
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping if images are too large */
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: var(--space-2); /* Add small gap between images */
+}
+
+/* Fallback for browsers without :has() - use direct child selector */
+.md-typeset p > img,
+.md-content p > img {
+    flex: 0 0 100%;
+    max-width: 400px; /* Limit maximum width for single images in paragraphs */
+}
+
+/* Fallback for browsers without :has() support - target paragraphs with only images */
+.md-typeset p img:only-child,
+.md-content p img:only-child {
+    margin: 0;
+}
+
+/* Stack images on mobile */
+@media (max-width: 768px) {
+    .md-typeset p img,
+    .md-content p img {
+        max-width: 100%;
+        display: block;
+        margin: var(--space-2) auto;
+    }
+
+    .md-typeset p:has(img),
+    .md-content p:has(img) {
+        line-height: normal;
+        font-size: inherit;
+    }
+}
+
+/* ========================================
+   Turtle Canvas and Output Layout
+   ======================================== */
+
+.turtle-output-container {
+    display: flex;
+    flex-direction: row;
+    gap: var(--space-4);
+    margin-top: var(--space-4);
+    align-items: flex-start;
+    width: 100%;
+}
+
+#turtleCanvasContainer {
+    flex: 1 1 70%;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    background: var(--color-bg-surface);
+    min-width: 0;
+}
+
+#mycanvas {
+    width: 100% !important;
+    height: 300px !important;
+}
+
+#outputCanvas {
+    flex: 1 1 30%;
+    min-width: 120px;
+    height: 300px;
+    margin: 0 !important;
+    padding: var(--space-3);
+    background-color: var(--color-code-bg);
+    color: var(--color-code-text);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    overflow: auto;
+    box-sizing: border-box;
+}
+
+#outputCanvas.success {
+    color: var(--color-code-success);
+}
+
+#outputCanvas.error {
+    color: var(--color-code-error);
+}
+
+/* Responsive: stack vertically on small screens */
+@media (max-width: 768px) {
+    .turtle-output-container {
+        flex-direction: column;
+    }
+
+    #mycanvas {
+        width: 300px !important;
+    }
+
+    #outputCanvas {
+        max-width: 100%;
+        height: 150px;
+    }
+}
+
+/* ========================================
+   Header Ellipsis Positioning Fix
+   ======================================== */
+
+/* Ensure md-header__ellipsis stays within the header */
+.md-header__ellipsis {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    display: inline-block;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    vertical-align: middle;
+}
+
+/* Ensure the header title container properly contains the ellipsis and track indicator */
+.md-header__title {
+    position: relative !important;
+    display: flex !important;
+    align-items: center !important;
+    flex-wrap: nowrap !important;
+    overflow: visible !important;
+    max-width: 100%;
+    z-index: 1;
+    vertical-align: middle;
+}
+
+/* Fix for Material for MkDocs header structure */
+.md-header-nav__title .md-header-nav__ellipsis,
+.md-header-nav__title .md-ellipsis {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    display: inline-block;
+    max-width: 100%;
+    vertical-align: middle;
+}
+
+/* Ensure header container has proper positioning context */
+.md-header {
+    position: relative;
+    z-index: 2;
+    overflow: visible;
+}
+
+/* Prevent ellipsis from floating outside header */
+.md-header__inner {
+    position: relative;
+    overflow: visible;
+    display: flex;
+    align-items: center;
+}
+
+/* Ensure track indicator in header title is properly positioned */
+.md-header__title .track-indicator {
+    position: relative !important;
+    display: inline-flex !important;
+    vertical-align: middle !important;
+    top: auto !important;
+    left: auto !important;
+    margin-right: var(--space-2);
+    flex-shrink: 0;
+}
+
+/* ========================================
+   Remove margin-top and margin-bottom from .md-typeset elements
+   ======================================== */
+
+.md-typeset blockquote,
+.md-typeset dl,
+.md-typeset figure,
+.md-typeset ol,
+.md-typeset pre,
+.md-typeset ul {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+/* ========================================
+   Remove background-color from code elements
+   ======================================== */
+
+.md-typeset code {
+    background-color: transparent;
+}
+
+/* ========================================
+   Hide Material Theme TOC Sidebar
+   ======================================== */
+
+/* Hide Material theme's built-in TOC sidebar */
+.md-sidebar--secondary {
+    display: none !important;
+}
+
+/* Adjust main content area to fill space */
+.md-content {
+    margin-right: 0 !important;
+}
+
+/* Ensure content area uses full width */
+.content-area {
+    max-width: 100% !important;
+}
+
+/* ========================================
+   Optimized Content Width for K-12 Reading
+   ======================================== */
+
+/* Narrow content for better readability (50-75 chars/line optimal) */
+.md-content__inner {
+    /* Responsive width: min 320px, preferred 720px, max 90% of container */
+    max-width: clamp(320px, 720px, 90%);
+    /* Left-align content to reduce gap with sidebar */
+    margin-left: 0;
+    margin-right: auto;
+    padding-left: var(--space-4);
+}
+
+/* On high-resolution/wide monitors, allow slightly wider content */
+@media (min-width: 1600px) {
+    .md-content__inner {
+        max-width: clamp(320px, 800px, 70%);
+    }
+}
+
+@media (min-width: 2000px) {
+    .md-content__inner {
+        max-width: clamp(320px, 860px, 60%);
+    }
+}
+
+/* ========================================
+   Sidebar Positioning (Prevent overlap)
+   ======================================== */
+
+/* Move primary sidebar further left to accommodate wider content */
+.md-sidebar--primary {
+    left: 0;
+    width: 12.1rem;
+}
+
+/* Adjust content area to have more space from sidebar */
+.md-content {
+    margin-left: 2.5rem;
+}
+
+/* On screens where sidebar is visible, ensure proper spacing */
+@media screen and (min-width: 76.25em) {
+    .md-sidebar--primary {
+        left: 0;
+    }
+
+    .md-content {
+        margin-left: 2.5rem;
+    }
+}
+
+/* Medium screens - reduce sidebar impact */
+@media screen and (min-width: 60em) and (max-width: 76.25em) {
+    .md-sidebar--primary {
+        width: 11rem;
+    }
+
+    .md-content {
+        margin-left: 11.5rem;
+    }
+}
+
+/* ========================================
+   Wider Non-Text Content (~20% wider)
+   Code blocks, Blockly, Python editors
+   ======================================== */
+
+/* Base rule: Make code blocks, editors, and interactive elements 120% wider */
+/* Content is left-aligned, so wider elements expand to the right */
+.md-content__inner .md-typeset pre,
+.md-content__inner .md-typeset .highlight,
+.md-content__inner .md-typeset .highlighttable,
+.md-content__inner .md-typeset .codehilite,
+.md-content__inner .md-typeset .codehilitetable,
+.md-content__inner .python-editor-placeholder,
+.md-content__inner .python-editor-container,
+.md-content__inner .blockly-container,
+.md-content__inner .blockly-wrapper,
+.md-content__inner .turtle-output-container,
+.md-content__inner .quiz-input-type,
+.md-content__inner .quiz-choice-type {
+    width: 120%;
+    max-width: 120%;
+    margin-left: 0;
+    box-sizing: border-box;
+}
+
+/* Ensure tables also get wider treatment */
+.md-content__inner .md-typeset table:not([class]) {
+    width: 140%;
+    max-width: 140%;
+    margin-left: 0;
+}
+
+/* Responsive: maintain 120% width on medium screens */
+@media (max-width: 1200px) {
+    .md-content__inner .md-typeset pre,
+    .md-content__inner .md-typeset .highlight,
+    .md-content__inner .md-typeset .highlighttable,
+    .md-content__inner .md-typeset .codehilite,
+    .md-content__inner .md-typeset .codehilitetable,
+    .md-content__inner .python-editor-placeholder,
+    .md-content__inner .python-editor-container,
+    .md-content__inner .blockly-container,
+    .md-content__inner .blockly-wrapper,
+    .md-content__inner .turtle-output-container,
+    .md-content__inner .quiz-input-type,
+    .md-content__inner .quiz-choice-type,
+    .md-content__inner .md-typeset table:not([class]) {
+        width: 120%;
+        max-width: 120%;
+        margin-left: 0;
+    }
+}
+
+/* On mobile, revert to 100% width */
+@media (max-width: 768px) {
+    .md-content__inner .md-typeset pre,
+    .md-content__inner .md-typeset .highlight,
+    .md-content__inner .md-typeset .highlighttable,
+    .md-content__inner .md-typeset .codehilite,
+    .md-content__inner .md-typeset .codehilitetable,
+    .md-content__inner .python-editor-placeholder,
+    .md-content__inner .python-editor-container,
+    .md-content__inner .blockly-container,
+    .md-content__inner .blockly-wrapper,
+    .md-content__inner .turtle-output-container,
+    .md-content__inner .quiz-input-type,
+    .md-content__inner .quiz-choice-type,
+    .md-content__inner .md-typeset table:not([class]) {
+        width: 100%;
+        max-width: 100%;
+        margin-left: 0;
+    }
+}
+
+/* ========================================
+   Responsive Design (반응형 디자인)
+   ======================================== */
+
+@media (max-width: 600px) {
+    .quiz-input-type,
+    .quiz-choice-type {
+        padding: var(--space-4);
+    }
+
+    .quiz-input {
+        max-width: 100%;
+        margin-bottom: var(--space-2);
+    }
+
+    .quiz-submit-btn {
+        display: block;
+        width: 100%;
+        margin-left: 0;
+        margin-top: var(--space-2);
+    }
+}
+
+/* ========================================
+   Lesson Navigation (레슨 네비게이션)
+   ======================================== */
+
+.lesson-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: var(--space-4) 0;
+    padding: var(--space-2) 0;
+    gap: var(--space-3);
+}
+
+.nav-btn {
+    padding: var(--space-2) var(--space-4);
+    border-radius: 20px;
+    text-decoration: none !important;
+    font-weight: var(--font-semibold);
+    font-size: var(--text-sm);
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.nav-prev {
+    background: transparent;
+    border: 2px solid #4051b5;
+    color: #1a237e !important;
+}
+
+.nav-prev:hover {
+    background: #4051b5;
+    color: #ffffff !important;
+}
+
+.nav-next {
+    background: #4051b5;
+    color: #ffffff !important;
+    border: 2px solid #4051b5;
+}
+
+.nav-next:hover {
+    background: #5c6bc0;
+    border-color: #5c6bc0;
+    color: #ffffff !important;
+}
+
+.nav-time {
+    color: var(--md-default-fg-color--light, #666);
+    font-size: var(--text-sm);
+    flex-shrink: 0;
+}
+
+/* Responsive navigation */
+@media (max-width: 600px) {
+    .lesson-nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: var(--space-2);
+    }
+
+    .nav-btn {
+        padding: var(--space-2) var(--space-3);
+        font-size: var(--text-xs);
+    }
+
+    .nav-time {
+        width: 100%;
+        text-align: center;
+        order: -1;
+    }
+}
+
+/* ========================================
+   Iframe Styling (HTML Content Embeds)
+   ======================================== */
+
+/* All iframes with HTML content should be 125% of parent width */
+.md-typeset iframe,
+.md-content iframe {
+    width: 125% !important;
+    max-width: 125% !important;
+    display: block;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-left: 0;
+    margin-right: 0;
+}
+
+/* Ensure parent containers allow overflow for wider iframes */
+.md-content__inner {
+    overflow-x: visible;
+}
+
+/* ========================================
+   Pixel Demo Table (픽셀 시각화 테이블)
+   ======================================== */
+
+.pixel-demo-table {
+    margin: var(--space-4) 0;
+    padding: var(--space-4);
+    background: var(--md-code-bg-color, #f5f5f5);
+    border-radius: var(--radius-lg);
+}
+
+.pixel-row {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    padding: var(--space-3) 0;
+    border-bottom: 1px solid var(--md-default-fg-color--lightest, #eee);
+}
+
+.pixel-row:last-child {
+    border-bottom: none;
+}
+
+.pixel-label {
+    font-weight: var(--font-bold);
+    min-width: 70px;
+    color: var(--md-default-fg-color, #333);
+    font-family: var(--font-mono);
+}
+
+.pixel-bar {
+    height: 12px;
+    border-radius: 6px;
+    background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    flex-shrink: 0;
+}
+
+.pixel-size {
+    color: var(--md-default-fg-color--light, #666);
+    font-size: var(--text-sm);
+}
+
+/* ========================================
+   1. DARK CODE BLOCKS (IDE-Style)
+   Premium "tech" look with high-contrast syntax
+   ======================================== */
+
+/* Code block container - dark theme */
+.md-typeset pre {
+    background-color: #1E1E1E !important;
+    border-radius: 0;
+    border: 1px solid #3E3E3E;
+    box-shadow: var(--shadow-md);
+    margin: 0;
+    position: relative;
+    overflow-x: auto;
+    color:#fff;
+}
+
+/* Code block content area */
+.md-typeset pre > code {
+    background-color: transparent !important;
+    color: #E8E8E8 !important;
+    font-family: 'JetBrains Mono', 'Fira Code', 'Roboto Mono', monospace;
+    font-size: 0.875rem;
+    line-height: 1.6;
+    padding: var(--space-4);
+    display: block;
+}
+
+/* Language label in top-right corner */
+.md-typeset pre::before {
+    content: attr(data-lang);
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: var(--space-1) var(--space-3);
+    background-color: #2D2D2D;
+    color: #9CDCFE;
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    font-weight: var(--font-medium);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom-left-radius: var(--radius-sm);
+    z-index: 1;
+}
+
+/* Python-specific label */
+.md-typeset .language-python::before,
+.md-typeset pre:has(.language-python)::before {
+    content: "Python";
+}
+
+/* Copy button styling - visible and interactive */
+.md-typeset .md-clipboard {
+    position: absolute;
+    top: var(--space-2);
+    right: var(--space-2);
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-sm);
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #9CA3AF;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+    transition: all var(--transition-base);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+}
+
+.md-typeset .md-clipboard:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #FFFFFF;
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.md-typeset .md-clipboard::after {
+    content: "Copy";
+    position: absolute;
+    bottom: -24px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 2px 6px;
+    background-color: #333;
+    color: #FFF;
+    font-size: 10px;
+    border-radius: 3px;
+    opacity: 0;
+    transition: opacity var(--transition-fast);
+    white-space: nowrap;
+}
+
+.md-typeset .md-clipboard:hover::after {
+    opacity: 1;
+}
+
+/* Default color for code block container - ensures base visibility */
+.md-typeset .highlight {
+    color: #E8E8E8 !important;
+}
+
+/* Syntax highlighting - One Dark Pro / Dracula inspired */
+.md-typeset .highlight .k,  /* Keywords */
+.md-typeset .highlight .kn, /* Keyword namespace (import) */
+.md-typeset .highlight .kd, /* Keyword declaration */
+.md-typeset .highlight .kr  /* Keyword reserved */ {
+    color: #C586C0 !important; /* Purple/Pink */
+    font-weight: var(--font-medium);
+}
+
+.md-typeset .highlight .n,  /* Names */
+.md-typeset .highlight .na, /* Name attribute */
+.md-typeset .highlight .nb, /* Name builtin */
+.md-typeset .highlight .nc  /* Name class */ {
+    color: #4EC9B0 !important; /* Cyan/Teal */
+}
+
+.md-typeset .highlight .nf, /* Name function */
+.md-typeset .highlight .fm  /* Name function magic */ {
+    color: #DCDCAA !important; /* Yellow */
+}
+
+.md-typeset .highlight .s,  /* Strings */
+.md-typeset .highlight .s1, /* String single */
+.md-typeset .highlight .s2, /* String double */
+.md-typeset .highlight .sa, /* String affix */
+.md-typeset .highlight .sb, /* String backtick */
+.md-typeset .highlight .sc, /* String char */
+.md-typeset .highlight .sd, /* String doc (triple quotes used as docstrings/comments) */
+.md-typeset .highlight .se, /* String escape */
+.md-typeset .highlight .sh, /* String heredoc */
+.md-typeset .highlight .si, /* String interpol */
+.md-typeset .highlight .sr, /* String regex */
+.md-typeset .highlight .ss, /* String symbol */
+.md-typeset .highlight .sx  /* String other */ {
+    color: #CE9178 !important; /* Orange/Brown */
+}
+
+.md-typeset .highlight .mi, /* Number integer */
+.md-typeset .highlight .mf, /* Number float */
+.md-typeset .highlight .mh, /* Number hex */
+.md-typeset .highlight .mo  /* Number octal */ {
+    color: #B5CEA8 !important; /* Light green */
+}
+
+.md-typeset .highlight .c,  /* Comments */
+.md-typeset .highlight .c1, /* Comment single */
+.md-typeset .highlight .cm  /* Comment multiline */ {
+    color: #6A9955 !important; /* Green */
+    font-style: italic;
+}
+
+.md-typeset .highlight .o,  /* Operators */
+.md-typeset .highlight .ow  /* Operator word */ {
+    color: #D4D4D4 !important;
+}
+
+.md-typeset .highlight .p   /* Punctuation */ {
+    color: #D4D4D4 !important;
+}
+
+.md-typeset .highlight .bp  /* Builtin pseudo (self, True, False) */ {
+    color: #569CD6 !important; /* Blue */
+}
+
+/* ========================================
+   2. TABLE IMPROVEMENTS (Visual Hierarchy)
+   Better scanning with icons and pills
+   ======================================== */
+
+/* Table base styling */
+.md-typeset table:not([class]) {
+    border-collapse: separate;
+    border-spacing: 0;
+    border: 1px solid var(--color-bg-subtle);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    width: 100%;
+    margin: var(--space-4) 0;
+    box-shadow: var(--shadow-sm);
+}
+
+/* Table header - distinct background */
+.md-typeset table:not([class]) thead {
+    background-color: #F8FAFC;
+    border-bottom: 2px solid var(--color-bg-subtle);
+}
+
+.md-typeset table:not([class]) thead th {
+    font-weight: var(--font-semibold);
+    color: var(--color-text-primary);
+    padding: var(--space-3) var(--space-4);
+    text-align: left;
+    font-size: var(--text-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    border-bottom: none;
+}
+
+/* Table body rows */
+.md-typeset table:not([class]) tbody tr {
+    transition: background-color var(--transition-fast);
+}
+
+.md-typeset table:not([class]) tbody tr:hover {
+    background-color: #F8FAFC;
+}
+
+.md-typeset table:not([class]) tbody td {
+    padding: var(--space-3) var(--space-4);
+    border-bottom: 1px solid var(--color-bg-subtle);
+    vertical-align: middle;
+}
+
+.md-typeset table:not([class]) tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Pill/Tag styling for table cells */
+.pill, .tag {
+    display: inline-block;
+    padding: var(--space-1) var(--space-3);
+    font-size: var(--text-xs);
+    font-weight: var(--font-semibold);
+    border-radius: var(--radius-full);
+    white-space: nowrap;
+}
+
+/* Pill color variants */
+.pill-purple, .tag-purple {
+    background-color: #EDE9FE;
+    color: #7C3AED;
+}
+
+.pill-blue, .tag-blue {
+    background-color: #DBEAFE;
+    color: #2563EB;
+}
+
+.pill-green, .tag-green {
+    background-color: #D1FAE5;
+    color: #059669;
+}
+
+.pill-orange, .tag-orange {
+    background-color: #FFEDD5;
+    color: #EA580C;
+}
+
+.pill-teal, .tag-teal {
+    background-color: #CCFBF1;
+    color: #0D9488;
+}
+
+.pill-pink, .tag-pink {
+    background-color: #FCE7F3;
+    color: #DB2777;
+}
+
+/* Library icons in tables */
+.lib-icon {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+.lib-icon::before {
+    font-size: var(--text-lg);
+}
+
+.lib-icon.math::before { content: "🧮"; }
+.lib-icon.turtle::before { content: "🐢"; }
+.lib-icon.ursina::before { content: "🎮"; }
+.lib-icon.random::before { content: "🎲"; }
+.lib-icon.time::before { content: "⏱️"; }
+
+/* ========================================
+   3. INLINE CODE (Dark styling)
+   Links code references to code blocks
+   ======================================== */
+
+/* Inline code - dark background like code blocks */
+.md-typeset code:not(pre code) {
+    background-color: #2D2D2D !important;
+    color: #E8E8E8 !important;
+    padding: 0.15em 0.4em;
+    border-radius: var(--radius-sm);
+    font-family: 'JetBrains Mono', 'Fira Code', 'Roboto Mono', monospace;
+    font-size: 0.85em;
+    font-weight: var(--font-medium);
+    border: 1px solid #3E3E3E;
+    white-space: nowrap;
+}
+
+/* Inline code in headings */
+.md-typeset h1 code,
+.md-typeset h2 code,
+.md-typeset h3 code,
+.md-typeset h4 code {
+    font-size: 0.9em;
+}
+
+/* Inline code in tables */
+.md-typeset table code:not(pre code) {
+    background-color: #2D2D2D !important;
+    color: #E8E8E8 !important;
+}
+
+/* ========================================
+   4. ADMONITIONS / CALLOUTS (Modern Style)
+   Thick left border, icons, bold headers
+   ======================================== */
+
+/* Base admonition style - modern callout */
+.md-typeset .admonition,
+.md-typeset details {
+    border: none !important;
+    border-left: 4px solid !important;
+    border-radius: 0 var(--radius-md) var(--radius-md) 0 !important;
+    box-shadow: var(--shadow-sm);
+    margin: var(--space-5) 0;
+    overflow: hidden;
+}
+.md-typeset .admonition.success{
+    width: 120%;
+}
+/* Admonition title styling */
+.md-typeset .admonition-title,
+.md-typeset details summary {
+    font-weight: var(--font-bold) !important;
+    font-size: var(--text-base);
+    padding: var(--space-3) var(--space-4);
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+/* Admonition content */
+.md-typeset .admonition > p:last-child,
+.md-typeset details > p:last-child {
+    margin-bottom: 0;
+    padding: 0 var(--space-4) var(--space-4);
+}
+
+/* TIP - Lightbulb icon, green accent */
+.md-typeset .admonition.tip,
+.md-typeset details.tip {
+    background-color: #F0FDF4 !important;
+    border-left-color: #22C55E !important;
+    width:130%;
+}
+
+.md-typeset .admonition.tip .admonition-title,
+.md-typeset details.tip summary {
+    background-color: rgba(34, 197, 94, 0.1);
+    color: #15803D;
+}
+
+.md-typeset .admonition.tip .admonition-title::before,
+.md-typeset details.tip summary::before {
+    content: "💡";
+    font-size: var(--text-lg);
+}
+
+/* WARNING - Triangle icon, orange accent */
+.md-typeset .admonition.warning,
+.md-typeset details.warning {
+    background-color: #FFFBEB !important;
+    border-left-color: #F59E0B !important;
+}
+
+.md-typeset .admonition.warning .admonition-title,
+.md-typeset details.warning summary {
+    background-color: rgba(245, 158, 11, 0.1);
+    color: #B45309;
+}
+
+.md-typeset .admonition.warning .admonition-title::before,
+.md-typeset details.warning summary::before {
+    content: "⚠️";
+    font-size: var(--text-lg);
+}
+
+/* BUG - Bug icon, red accent */
+.md-typeset .admonition.bug,
+.md-typeset details.bug {
+    background-color: #FEF2F2 !important;
+    border-left-color: #EF4444 !important;
+}
+
+.md-typeset .admonition.bug .admonition-title,
+.md-typeset details.bug summary {
+    background-color: rgba(239, 68, 68, 0.1);
+    color: #B91C1C;
+}
+
+.md-typeset .admonition.bug .admonition-title::before,
+.md-typeset details.bug summary::before {
+    content: "🐛";
+    font-size: var(--text-lg);
+}
+
+/* SUCCESS - Checkmark icon, green accent */
+.md-typeset .admonition.success,
+.md-typeset details.success {
+    background-color: #F0FDF4 !important;
+    border-left-color: #22C55E !important;
+}
+
+.md-typeset .admonition.success .admonition-title,
+.md-typeset details.success summary {
+    background-color: rgba(34, 197, 94, 0.1);
+    color: #15803D;
+}
+
+.md-typeset .admonition.success .admonition-title::before,
+.md-typeset details.success summary::before {
+    content: "✅";
+    font-size: var(--text-lg);
+}
+
+/* INFO - Info icon, blue accent */
+.md-typeset .admonition.info,
+.md-typeset .admonition.note,
+.md-typeset details.info,
+.md-typeset details.note {
+    background-color: #EFF6FF !important;
+    border-left-color: #3B82F6 !important;
+}
+
+.md-typeset .admonition.info .admonition-title,
+.md-typeset .admonition.note .admonition-title,
+.md-typeset details.info summary,
+.md-typeset details.note summary {
+    background-color: rgba(59, 130, 246, 0.1);
+    color: #1D4ED8;
+}
+
+.md-typeset .admonition.info .admonition-title::before,
+.md-typeset .admonition.note .admonition-title::before,
+.md-typeset details.info summary::before,
+.md-typeset details.note summary::before {
+    content: "ℹ️";
+    font-size: var(--text-lg);
+}
+
+/* EXAMPLE - Code icon, purple accent */
+.md-typeset .admonition.example,
+.md-typeset details.example {
+    background-color: #FAF5FF !important;
+    border-left-color: #8B5CF6 !important;
+}
+
+.md-typeset .admonition.example .admonition-title,
+.md-typeset details.example summary {
+    background-color: rgba(139, 92, 246, 0.1);
+    color: #6D28D9;
+}
+
+.md-typeset .admonition.example .admonition-title::before,
+.md-typeset details.example summary::before {
+    content: "📝";
+    font-size: var(--text-lg);
+}
+
+/* ABSTRACT - Summary icon, teal accent */
+.md-typeset .admonition.abstract,
+.md-typeset details.abstract {
+    background-color: #F0FDFA !important;
+    border-left-color: #14B8A6 !important;
+}
+
+.md-typeset .admonition.abstract .admonition-title,
+.md-typeset details.abstract summary {
+    background-color: rgba(20, 184, 166, 0.1);
+    color: #0F766E;
+}
+
+.md-typeset .admonition.abstract .admonition-title::before,
+.md-typeset details.abstract summary::before {
+    content: "📋";
+    font-size: var(--text-lg);
+}
+
+/* DANGER - Danger icon, red accent */
+.md-typeset .admonition.danger,
+.md-typeset details.danger {
+    background-color: #FEF2F2 !important;
+    border-left-color: #DC2626 !important;
+}
+
+.md-typeset .admonition.danger .admonition-title,
+.md-typeset details.danger summary {
+    background-color: rgba(220, 38, 38, 0.1);
+    color: #991B1B;
+}
+
+.md-typeset .admonition.danger .admonition-title::before,
+.md-typeset details.danger summary::before {
+    content: "🚨";
+    font-size: var(--text-lg);
+}
+
+/* Hide default Material icons */
+.md-typeset .admonition-title::before,
+.md-typeset details summary::before {
+    margin-right: 0 !important;
+}
+
+.md-typeset .admonition > .admonition-title::before,
+.md-typeset details > summary::before {
+    -webkit-mask-image: none !important;
+    mask-image: none !important;
+    background-color: transparent !important;
+}
+
+/* Collapsible details arrow */
+.md-typeset details summary::after {
+    content: "▶";
+    font-size: var(--text-sm);
+    margin-left: auto;
+    transition: transform var(--transition-base);
+}
+
+.md-typeset details[open] summary::after {
+    transform: rotate(90deg);
+}
+
+/* ========================================
+   5. STEP-BY-STEP NUMBERED LISTS
+   Recipe-style instructions
+   ======================================== */
+
+/* Numbered list as steps */
+.md-typeset ol.steps,
+.md-typeset .steps ol {
+    counter-reset: step-counter;
+    list-style: none;
+    padding-left: 0;
+}
+
+.md-typeset ol.steps > li,
+.md-typeset .steps ol > li {
+    counter-increment: step-counter;
+    position: relative;
+    padding-left: var(--space-10);
+    margin-bottom: var(--space-4);
+}
+
+.md-typeset ol.steps > li::before,
+.md-typeset .steps ol > li::before {
+    content: counter(step-counter);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 28px;
+    height: 28px;
+    background-color: var(--color-primary);
+    color: var(--color-text-inverse);
+    font-weight: var(--font-bold);
+    font-size: var(--text-sm);
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ========================================
+   6. MISSION SECTION STYLING
+   ======================================== */
+
+.mission-section {
+    background: var(--color-mission-bg);
+    border: 1px solid var(--color-mission-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-5);
+    margin: var(--space-5) 0;
+}
+
+.mission-section h3,
+.mission-section .mission-title {
+    color: var(--color-mission-title);
+    font-weight: var(--font-bold);
+    margin-bottom: var(--space-3);
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+.mission-section h3::before,
+.mission-section .mission-title::before {
+    content: "🎯";
+}
+
+/* ========================================
+   Pyodide Editor Styles (Matplotlib 지원)
+   ======================================== */
+
+.pyodide-editor-wrapper {
+    background: var(--md-code-bg-color, #f5f5f5);
+    border: 2px solid var(--md-primary-fg-color, #4051b5);
+    border-radius: 8px;
+    padding: 16px;
+    margin: 16px 0;
+}
+
+.pyodide-editor-mission {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 12px 16px;
+    border-radius: 6px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.pyodide-editor-mission .mission-icon {
+    font-size: 1.2em;
+}
+
+.pyodide-editor-mission .mission-text {
+    color: white;
+}
+
+.pyodide-editor-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+    padding: 8px;
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 4px;
+}
+
+.pyodide-status {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.85em;
+}
+
+.status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.status-dot.loading {
+    background: #ffc107;
+    animation: pulse 1s infinite;
+}
+
+.status-dot.ready {
+    background: #28a745;
+}
+
+.status-dot.error {
+    background: #dc3545;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+.pyodide-hint-btn {
+    background: #fff3cd;
+    border: 1px solid #ffc107;
+    border-radius: 4px;
+    padding: 4px 12px;
+    cursor: pointer;
+    font-size: 0.85em;
+}
+
+.pyodide-hint-btn:hover {
+    background: #ffeeba;
+}
+
+.pyodide-code-input {
+    width: 100%;
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    font-size: 14px;
+    line-height: 1.5;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    resize: vertical;
+    background: #1e1e1e;
+    color: #d4d4d4;
+    box-sizing: border-box;
+}
+
+.pyodide-code-input:focus {
+    outline: none;
+    border-color: var(--md-primary-fg-color, #4051b5);
+    box-shadow: 0 0 0 2px rgba(64, 81, 181, 0.2);
+}
+
+.pyodide-hint-box {
+    background: #fff3cd;
+    border: 1px solid #ffc107;
+    border-radius: 4px;
+    padding: 12px;
+    margin: 8px 0;
+    font-size: 0.9em;
+}
+
+.pyodide-run-btn {
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 12px 24px;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    margin: 12px 0;
+    transition: all 0.2s;
+}
+
+.pyodide-run-btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(40, 167, 69, 0.4);
+}
+
+.pyodide-run-btn:disabled {
+    background: #6c757d;
+    cursor: not-allowed;
+}
+
+.pyodide-output {
+    background: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    padding: 12px;
+    min-height: 40px;
+    margin-top: 8px;
+}
+
+.pyodide-output.success {
+    border-color: #28a745;
+    background: #d4edda;
+}
+
+.pyodide-output.error {
+    border-color: #dc3545;
+    background: #f8d7da;
+}
+
+.pyodide-output-placeholder {
+    color: #6c757d;
+    font-style: italic;
+}
+
+.pyodide-stdout {
+    margin: 0;
+    white-space: pre-wrap;
+    font-family: monospace;
+    font-size: 0.9em;
+}
+
+.pyodide-error {
+    margin: 0;
+    color: #ff4d4d !important;
+    font-family: monospace;
+    font-size: 0.9em;
+    font-weight: 600;
+    text-shadow: 0 0 1px rgba(0, 0, 0, 0.3);
+}
+
+/* Error text on light error background */
+.pyodide-output.error .pyodide-error {
+    color: #b71c1c !important;
+    text-shadow: none;
+}
+
+.pyodide-success {
+    color: #155724;
+    font-weight: 500;
+}
+
+.pyodide-running {
+    color: #856404;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.pyodide-running::before {
+    content: "";
+    width: 16px;
+    height: 16px;
+    border: 2px solid #ffc107;
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.pyodide-plot-container {
+    margin-top: 12px;
+    text-align: center;
+}
+
+.pyodide-plot-img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* ========================================
+   Interactive Demo Iframe Container
+   Unified styling for all embedded HTML demos
+   ======================================== */
+
+.demo-iframe-container {
+    margin: 30px 0;
+    text-align: center;
+    background: #f4f6f8;
+    padding: 20px;
+    border-radius: 12px;
+    overflow: visible;
+    z-index: 9999;
+    width: 130%;
+    box-sizing: border-box;
+}
+
+.demo-iframe-container * {
+    box-sizing: border-box;
+}
+
+.demo-iframe {
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    background: white;
+    width: 100%;
+    min-height: 500px;
+    transition: height 0.3s ease;
+    display: block;
+}
+
+/* Specific min-heights for different demo types */
+.demo-iframe-container[data-demo="import"] .demo-iframe {
+    min-height: 800px;
+}
+
+.demo-iframe-container[data-demo="pixel"] .demo-iframe {
+    min-height: 750px;
+}
+
+.demo-iframe-container[data-demo="for-loop"] .demo-iframe {
+    min-height: 750px;
+}
+
+.demo-iframe-container[data-demo="variable"] .demo-iframe {
+    min-height: 750px;
+}
+
+.demo-iframe-container[data-demo="function"] .demo-iframe {
+    min-height: 750px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .demo-iframe-container {
+        width: 100%;
+        padding: 12px;
+        margin: 16px 0;
+    }
+}

@@ -1,0 +1,494 @@
+/**
+ * Design Tokens - Single Source of Truth (SSOT)
+ * K-12 Python Learning Site
+ *
+ * This file contains all design tokens for the site.
+ * All other CSS files should reference these variables.
+ *
+ * Inspired by: Linear, Vercel, Duolingo (Soft UI)
+ */
+
+:root {
+  /* ============================================================================
+     COLOR PALETTE - BASE
+     ============================================================================ */
+
+  /* Background Colors */
+  --color-bg-page: #FAFAFA;              /* Off-white base (reduces eye strain) */
+  --color-bg-surface: #FFFFFF;           /* Cards, elevated surfaces */
+  --color-bg-muted: #F5F5F5;             /* Subtle backgrounds */
+  --color-bg-subtle: #F0F0F0;            /* Borders, dividers */
+
+  /* Text Colors */
+  --color-text-primary: #1F2937;         /* Main text */
+  --color-text-secondary: #4B5563;       /* Secondary text */
+  --color-text-muted: #6B7280;           /* Muted/hint text */
+  --color-text-disabled: #9CA3AF;        /* Disabled text */
+  --color-text-inverse: #FFFFFF;         /* Text on dark backgrounds */
+
+  /* ============================================================================
+     COLOR PALETTE - BRAND
+     ============================================================================ */
+
+  /* Primary Brand (Indigo/Blue) */
+  --color-primary: #4F46E5;              /* Primary actions */
+  --color-primary-hover: #4338CA;        /* Primary hover */
+  --color-primary-active: #3730A3;       /* Primary active */
+  --color-primary-light: #EEF2FF;        /* Primary backgrounds */
+  --color-primary-border: #C7D2FE;       /* Primary borders */
+
+  /* Accent (Teal) - Used for run buttons, highlights */
+  --color-accent: #4DB6AC;               /* Accent actions */
+  --color-accent-hover: #26A69A;         /* Accent hover */
+  --color-accent-active: #00897B;        /* Accent active */
+  --color-accent-light: #E0F2F1;         /* Accent backgrounds */
+  --color-accent-border: #B2DFDB;        /* Accent borders */
+
+  /* ============================================================================
+     COLOR PALETTE - SEMANTIC
+     ============================================================================ */
+
+  /* Success (Green) */
+  --color-success: #22C55E;
+  --color-success-hover: #16A34A;
+  --color-success-light: #F0FDF4;
+  --color-success-border: #86EFAC;
+  --color-success-text: #15803D;
+
+  /* Error (Red) */
+  --color-error: #EF4444;
+  --color-error-hover: #DC2626;
+  --color-error-light: #FEF2F2;
+  --color-error-border: #FECACA;
+  --color-error-text: #B91C1C;
+
+  /* Warning (Amber) */
+  --color-warning: #F59E0B;
+  --color-warning-hover: #D97706;
+  --color-warning-light: #FFFBEB;
+  --color-warning-border: #FDE68A;
+  --color-warning-text: #B45309;
+
+  /* Info (Blue) */
+  --color-info: #3B82F6;
+  --color-info-hover: #2563EB;
+  --color-info-light: #EFF6FF;
+  --color-info-border: #BFDBFE;
+  --color-info-text: #1D4ED8;
+
+  /* ============================================================================
+     COLOR PALETTE - SECTION PASTELS
+     ============================================================================ */
+
+  /* Mission Section (Sky Blue) */
+  --color-mission-bg: linear-gradient(135deg, #F0F9FF 0%, #E0F2FE 100%);
+  --color-mission-border: #BAE6FD;
+  --color-mission-title: #0369A1;
+  --color-mission-text: #475569;
+
+  /* Quiz Section (Lavender) */
+  --color-quiz-bg: #F8FFFE;
+  --color-quiz-border: #4DB6AC;
+  --color-quiz-title: #00695C;
+  --color-quiz-text: #333333;
+
+  /* Code Section */
+  --color-code-bg: #1E1E1E;
+  --color-code-header: #2D2D2D;
+  --color-code-border: #3E3E3E;
+  --color-code-text: #E8E8E8;
+  --color-code-comment: #6A9955;
+  --color-code-keyword: #569CD6;
+  --color-code-string: #CE9178;
+  --color-code-number: #B5CEA8;
+
+  /* Material for MkDocs Variable Overrides */
+  --md-code-fg-color: #fff;
+
+  /* ============================================================================
+     TYPOGRAPHY
+     ============================================================================ */
+
+  /* Font Families */
+  --font-sans: 'Inter', 'Pretendard', 'Noto Sans KR', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Roboto Mono', 'Fira Code', 'Courier New', monospace;
+
+  /* Font Sizes */
+  --text-xs: 0.75rem;      /* 12px */
+  --text-sm: 0.875rem;     /* 14px */
+  --text-base: 1rem;       /* 16px */
+  --text-lg: 1.125rem;     /* 18px */
+  --text-xl: 1.25rem;      /* 20px */
+  --text-2xl: 1.5rem;      /* 24px */
+  --text-3xl: 1.875rem;    /* 30px */
+
+  /* Font Weights */
+  --font-normal: 400;
+  --font-medium: 500;
+  --font-semibold: 600;
+  --font-bold: 700;
+
+  /* Line Heights */
+  --leading-tight: 1.25;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.625;
+
+  /* ============================================================================
+     SPACING
+     ============================================================================ */
+
+  --space-1: 0.25rem;      /* 4px */
+  --space-2: 0.5rem;       /* 8px */
+  --space-3: 0.75rem;      /* 12px */
+  --space-4: 1rem;         /* 16px */
+  --space-5: 1.25rem;      /* 20px */
+  --space-6: 1.5rem;       /* 24px */
+  --space-8: 2rem;         /* 32px */
+  --space-10: 2.5rem;      /* 40px */
+  --space-12: 3rem;        /* 48px */
+
+  /* ============================================================================
+     BORDER RADIUS
+     ============================================================================ */
+
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 20px;
+  --radius-full: 9999px;   /* Pill shape */
+
+  /* ============================================================================
+     SHADOWS (Soft UI)
+     ============================================================================ */
+
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+  /* Colored shadows for elevation */
+  --shadow-primary: 0 4px 14px rgba(79, 70, 229, 0.25);
+  --shadow-accent: 0 4px 14px rgba(77, 182, 172, 0.25);
+  --shadow-success: 0 4px 14px rgba(34, 197, 94, 0.25);
+
+  /* Card shadow */
+  --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.08);
+  --shadow-card-hover: 0 4px 12px rgba(0, 0, 0, 0.12);
+
+  /* ============================================================================
+     TRANSITIONS
+     ============================================================================ */
+
+  --transition-fast: 150ms ease;
+  --transition-base: 200ms ease;
+  --transition-slow: 300ms ease;
+  --transition-bounce: 300ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+  /* ============================================================================
+     Z-INDEX SCALE
+     ============================================================================ */
+
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-fixed: 300;
+  --z-modal-backdrop: 400;
+  --z-modal: 500;
+  --z-popover: 600;
+  --z-tooltip: 700;
+
+  /* ============================================================================
+     Z-INDEX SCALE - BLOCKLY COMPONENTS
+     These z-index values establish the stacking order for Blockly workspace
+     components. Blockly uses inline styles, so these serve as documentation
+     for the !important overrides in blockly_style.css.
+     ============================================================================ */
+
+  --z-blockly-workspace: 1;         /* Main workspace SVG */
+  --z-blockly-toolbox: 20;          /* Category toolbox panel */
+  --z-blockly-flyout: 30;           /* Block flyout panel */
+  --z-blockly-flyout-scrollbar: 31; /* Flyout scrollbar */
+}
+
+/* ============================================================================
+   DARK MODE TOKENS
+   ============================================================================ */
+
+[data-md-color-scheme="slate"] {
+  /* Background Colors */
+  --color-bg-page: #0F172A;
+  --color-bg-surface: #1E293B;
+  --color-bg-muted: #334155;
+  --color-bg-subtle: #475569;
+
+  /* Text Colors */
+  --color-text-primary: #F1F5F9;
+  --color-text-secondary: #CBD5E1;
+  --color-text-muted: #94A3B8;
+  --color-text-disabled: #64748B;
+  --color-text-inverse: #0F172A;
+
+  /* Primary Brand */
+  --color-primary: #818CF8;
+  --color-primary-hover: #A5B4FC;
+  --color-primary-active: #6366F1;
+  --color-primary-light: #1E1B4B;
+  --color-primary-border: #4338CA;
+
+  /* Accent */
+  --color-accent: #5EEAD4;
+  --color-accent-hover: #2DD4BF;
+  --color-accent-active: #14B8A6;
+  --color-accent-light: #042F2E;
+  --color-accent-border: #0D9488;
+
+  /* Success */
+  --color-success: #4ADE80;
+  --color-success-hover: #22C55E;
+  --color-success-light: #14532D;
+  --color-success-border: #166534;
+  --color-success-text: #86EFAC;
+
+  /* Error */
+  --color-error: #F87171;
+  --color-error-hover: #EF4444;
+  --color-error-light: #450A0A;
+  --color-error-border: #7F1D1D;
+  --color-error-text: #FECACA;
+
+  /* Warning */
+  --color-warning: #FBBF24;
+  --color-warning-hover: #F59E0B;
+  --color-warning-light: #451A03;
+  --color-warning-border: #78350F;
+  --color-warning-text: #FDE68A;
+
+  /* Info */
+  --color-info: #60A5FA;
+  --color-info-hover: #3B82F6;
+  --color-info-light: #1E3A8A;
+  --color-info-border: #1D4ED8;
+  --color-info-text: #BFDBFE;
+
+  /* Mission Section (Dark) */
+  --color-mission-bg: linear-gradient(135deg, #1E3A5F 0%, #172554 100%);
+  --color-mission-border: #1E40AF;
+  --color-mission-title: #93C5FD;
+  --color-mission-text: #CBD5E1;
+
+  /* Quiz Section (Dark) */
+  --color-quiz-bg: #1E293B;
+  --color-quiz-border: #0D9488;
+  --color-quiz-title: #5EEAD4;
+  --color-quiz-text: #E2E8F0;
+
+  /* Code Section (stays similar) */
+  --color-code-bg: #0D1117;
+  --color-code-header: #161B22;
+  --color-code-border: #30363D;
+  --color-code-text: #E6EDF3;
+
+  /* Material for MkDocs Variable Overrides */
+  --md-code-fg-color: #fff;
+
+  /* Shadows (darker for dark mode) */
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4), 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
+  --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --shadow-card-hover: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* ============================================================================
+   UNIFIED COMPONENT CLASSES
+   ============================================================================ */
+
+/* Primary Button */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-5);
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  font-weight: var(--font-semibold);
+  color: var(--color-text-inverse);
+  background-color: var(--color-accent);
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-base);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-accent-hover);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-primary:active {
+  background-color: var(--color-accent-active);
+  transform: translateY(0);
+  box-shadow: var(--shadow-xs);
+}
+
+.btn-primary:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* Secondary Button */
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-5);
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  font-weight: var(--font-semibold);
+  color: var(--color-text-secondary);
+  background-color: var(--color-bg-surface);
+  border: 1px solid var(--color-bg-subtle);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-base);
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-bg-muted);
+  border-color: var(--color-text-muted);
+}
+
+/* Card Component */
+.card {
+  background-color: var(--color-bg-surface);
+  border: 1px solid var(--color-bg-subtle);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  box-shadow: var(--shadow-card);
+  transition: box-shadow var(--transition-base);
+}
+
+.card:hover {
+  box-shadow: var(--shadow-card-hover);
+}
+
+.card-elevated {
+  background-color: var(--color-bg-surface);
+  border: none;
+  border-radius: var(--radius-xl);
+  padding: var(--space-6);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Code Editor Window Frame */
+.code-window {
+  background-color: var(--color-code-bg);
+  border: 1px solid var(--color-code-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+}
+
+.code-window-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-4);
+  background-color: var(--color-code-header);
+  border-bottom: 1px solid var(--color-code-border);
+}
+
+.code-window-dots {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.code-window-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: var(--radius-full);
+}
+
+.code-window-dot--close {
+  background-color: #FF5F57;
+}
+
+.code-window-dot--minimize {
+  background-color: #FFBD2E;
+}
+
+.code-window-dot--maximize {
+  background-color: #28CA41;
+}
+
+.code-window-title {
+  flex: 1;
+  text-align: center;
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  color: var(--color-text-muted);
+}
+
+.code-window-body {
+  padding: var(--space-4);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  line-height: var(--leading-relaxed);
+  color: var(--color-code-text);
+}
+
+/* Section Headers */
+.section-title {
+  font-family: var(--font-sans);
+  font-size: var(--text-lg);
+  font-weight: var(--font-bold);
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-4);
+}
+
+.section-subtitle {
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--space-2);
+}
+
+/* Status Badges */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-1) var(--space-3);
+  font-size: var(--text-xs);
+  font-weight: var(--font-semibold);
+  border-radius: var(--radius-full);
+}
+
+.badge-success {
+  color: var(--color-success-text);
+  background-color: var(--color-success-light);
+}
+
+.badge-warning {
+  color: var(--color-warning-text);
+  background-color: var(--color-warning-light);
+}
+
+.badge-error {
+  color: var(--color-error-text);
+  background-color: var(--color-error-light);
+}
+
+.badge-info {
+  color: var(--color-info-text);
+  background-color: var(--color-info-light);
+}

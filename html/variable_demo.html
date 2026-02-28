@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>변수(Variable): 데이터의 상자</title>
+    <link rel="stylesheet" href="demo_common.css">
+    <style>
+        /* Design width & theme override (Purple theme) */
+        :root {
+            --design-width: 1080px;
+            --accent: #5856D6;
+            --accent-soft: rgba(88, 86, 214, 0.12);
+            --accent-glow: rgba(88, 86, 214, 0.4);
+            --accent-bg: rgba(88, 86, 214, 0.12);
+            --code-highlight: rgba(88, 86, 214, 0.16);
+            --shadow-float: 0 8px 24px rgba(0,0,0,0.12);
+        }
+
+        /* Demo-specific: header */
+        header { text-align: center; margin-bottom: 30px; }
+        h1 { margin: 0 0 8px 0; font-size: 32px; font-weight: 700; letter-spacing: -0.5px; }
+        .subtitle { font-size: 17px; color: var(--text-2); font-weight: 500; }
+        .highlight { color: var(--accent); font-weight: 700; }
+
+        /* Demo-specific: progress stepper */
+        .progress-rail { display: flex; gap: 40px; margin-bottom: 30px; }
+        .step { display: flex; align-items: center; gap: 10px; opacity: 0.5; transition: all 0.3s ease; }
+        .step.active { opacity: 1; transform: scale(1.05); }
+        .step-badge { width: 28px; height: 28px; border-radius: 50%; background: var(--surface); border: 2px solid var(--text-3); color: var(--text-3); display: grid; place-items: center; font-weight: 600; font-size: 14px; }
+        .step.active .step-badge { background: var(--accent); border-color: var(--accent); color: white; box-shadow: 0 2px 8px var(--accent-glow); }
+        .step.done .step-badge { background: var(--success); border-color: var(--success); color: white; }
+
+        /* Demo-specific: three-column stage */
+        .stage-container {
+            display: grid;
+            grid-template-columns: 1.2fr 1.5fr 0.8fr;
+            width: 100%; max-width: 1000px; 
+            height:360px;
+            background: var(--surface);
+            border-radius: var(--r-card);
+            box-shadow: var(--shadow-card);
+            overflow: hidden;
+            border: 1px solid var(--divider);
+            position: relative;
+        }
+
+        .zone { padding: 24px; display: flex; flex-direction: column; position: relative; }
+        .zone-title { font-size: 16px; font-weight: 600; color: var(--text-2); margin-bottom: 16px; display: flex; align-items: center; gap: 6px; }
+
+        /* Demo-specific: code editor zone */
+        .zone-code { background: var(--code-bg); color: white; border-right: 1px solid rgba(255,255,255,0.1); }
+        .code-window { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 15px; line-height: 1.8; }
+        .code-line { display: flex; gap: 12px; padding: 4px 8px; border-radius: 6px; transition: background 0.2s; min-height: 28px; }
+        .code-line.highlight { background: var(--code-highlight); }
+        .ln { color: rgba(255,255,255,0.2); width: 20px; text-align: right; user-select: none; }
+
+        /* Demo-specific: syntax colors */
+        .kwd { color: var(--syntax-keyword); }
+        .var { color: var(--syntax-variable); }
+        .val { color: var(--syntax-function); }
+        .str { color: var(--syntax-string); }
+
+        /* Demo-specific: memory zone with variable box */
+        .zone-memory { background: var(--surface-2); align-items: center; justify-content: center; position: relative; }
+        .variable-box {
+            width: 160px; height: 160px;
+            background: var(--surface);
+            border: 2px dashed var(--text-3);
+            border-radius: 20px;
+            position: relative;
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: flex-end;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            opacity: 0.3; transform: scale(0.9);
+        }
+        .variable-box.created { top:75px; opacity: 1; transform: scale(1); border-style: solid; border-color: var(--text-2); box-shadow: var(--shadow-float); }
+        .name-tag { position: absolute; top: -14px; background: var(--accent); color: white; padding: 4px 12px; border-radius: 12px; font-size: 13px; font-weight: 700; box-shadow: 0 4px 10px var(--accent-glow); opacity: 0; transition: opacity 0.4s; }
+        .variable-box.created .name-tag { opacity: 1; }
+        .box-content { width: 100%; flex-grow: 1; display: flex; align-items: center; justify-content: center; font-size: 32px; font-weight: 700; color: var(--text); z-index: 10; }
+        .data-type-label { font-size: 11px; color: var(--text-3); margin-bottom: 12px; opacity: 0; transition: opacity 0.3s; }
+
+        /* Demo-specific: data store zone */
+        .zone-store { background: var(--surface); border-left: 1px solid var(--divider); }
+        .shelf { display: flex; flex-direction: column; gap: 12px; padding: 10px 0; }
+        .data-chip { height: 50px; border-radius: 12px; background: var(--bg); border: 1px solid var(--divider); display: flex; align-items: center; padding: 0 16px; gap: 10px; cursor: pointer; transition: all 0.2s; font-weight: 600; font-size: 15px; color: var(--text-2); }
+        .data-chip:hover { transform: translateX(-4px); background: var(--surface); box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+        .data-chip.active { border-color: var(--accent); background: var(--accent-bg); color: var(--accent); }
+        .chip-icon { width: 24px; height: 24px; border-radius: 6px; display: grid; place-items: center; font-size: 12px; }
+        .chip-num .chip-icon { background: #ACF2BD; color: #1C5E28; }
+        .chip-str .chip-icon { background: #FFD479; color: #7A5300; }
+
+        /* Demo-specific: flying value animation */
+        #flying-val { position: absolute; padding: 8px 16px; background: var(--surface); border: 2px solid var(--accent); border-radius: 12px; font-weight: 700; font-size: 18px; color: var(--text); box-shadow: 0 10px 30px rgba(0,0,0,0.2); display: none; z-index: 1000; pointer-events: none; transition: top 0.6s cubic-bezier(0.16, 1, 0.3, 1), left 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+
+        /* Demo-specific: control buttons */
+        .controls { margin-top: 30px; display: flex; gap: 16px; }
+        .btn { padding: 0 24px; height: 50px; border-radius: var(--r-btn); border: none; font-size: 16px; font-weight: 600; cursor: pointer; transition: all 0.2s; display: flex; flex-direction: column; justify-content: center; align-items: center; line-height: 1.1; min-width: 140px; }
+        .btn span { font-size: 12px; font-weight: 400; opacity: 0.8; margin-top: 2px; }
+        .btn-primary { background: var(--accent); color: white; box-shadow: 0 4px 12px var(--accent-glow); }
+        .btn-primary:active { transform: scale(0.96); }
+        .btn-primary:disabled { background: #E5E5EA; color: #AEAEB2; cursor: not-allowed; box-shadow: none; }
+        .btn-reset { background: transparent; color: var(--text-2); min-width: auto; }
+        .btn-reset:hover { background: rgba(0,0,0,0.05); color: var(--text); }
+
+        /* Demo-specific: animations */
+        .shake { animation: shake 0.4s cubic-bezier(.36,.07,.19,.97) both; }
+        @keyframes shake { 10%, 90% { transform: translate3d(-1px, 0, 0); } 20%, 80% { transform: translate3d(2px, 0, 0); } 30%, 50%, 70% { transform: translate3d(-4px, 0, 0); } 40%, 60% { transform: translate3d(4px, 0, 0); } }
+        .pop-in { animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
+        @keyframes popIn { from { opacity: 0; transform: scale(0.5); } to { opacity: 1; transform: scale(1); } }
+        .fall-out { animation: fallOut 0.5s ease-in forwards; }
+        @keyframes fallOut { to { transform: translateY(50px) rotate(20deg); opacity: 0; } }
+    </style>
+</head>
+<body>
+    <div id="app">
+
+    <header>
+        <h1>변수 (Variable)</h1>
+        <div class="subtitle">데이터를 담고, 언제든 바꿀 수 있는 <span class="highlight">이름표 붙은 상자</span></div>
+    </header>
+
+    <div class="progress-rail">
+        <div class="step active" id="step1">
+            <div class="step-badge">1</div>
+            <div>상자 만들기<br><span style="font-size:12px; color:var(--text-3)">선언 (Declaration)</span></div>
+        </div>
+        <div class="step" id="step2">
+            <div class="step-badge">2</div>
+            <div>값 넣기<br><span style="font-size:12px; color:var(--text-3)">할당 (Assignment)</span></div>
+        </div>
+        <div class="step" id="step3">
+            <div class="step-badge">3</div>
+            <div>내용 바꾸기<br><span style="font-size:12px; color:var(--text-3)">재할당 (Update)</span></div>
+        </div>
+    </div>
+
+    <div class="stage-container">
+        
+        <!-- ZONE 1: CODE -->
+        <div class="zone zone-code">
+            <div class="zone-title">Python Code</div>
+            <div class="code-window">
+                <div class="code-line" id="line1">
+                    <span class="ln">1</span>
+                    <span id="code-1"></span>
+                </div>
+                <div class="code-line" id="line2">
+                    <span class="ln">2</span>
+                    <span id="code-2"></span>
+                </div>
+                <div class="code-line" id="line3">
+                    <span class="ln">3</span>
+                    <span id="code-3"></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ZONE 2: VISUALIZATION -->
+        <div class="zone zone-memory">
+            <div class="zone-title" style="position: absolute; top: 20px; left: 20px;">Memory Space</div>
+            
+            <div class="variable-box" id="varBox">
+                <div class="name-tag">score</div>
+                <div class="box-content" id="boxContent"></div>
+                <div class="data-type-label" id="typeLabel">Empty</div>
+            </div>
+            
+            <!-- Description Text -->
+            <div id="desc-text" style="position: absolute; top: 60px; left: 50%; transform: translateX(-50%); text-align: center; font-size: 14px; color: var(--text-2); max-width: 80%;">
+                'score'라는 이름의 빈 상자를 준비합니다.
+            </div>
+        </div>
+
+        <!-- ZONE 3: DATA STORE -->
+        <div class="zone zone-store">
+            <div class="zone-title">Data Store (값)</div>
+            <div class="shelf">
+                <div class="data-chip chip-num" id="data-10">
+                    <div class="chip-icon">#</div>
+                    <span>10</span>
+                </div>
+                <div class="data-chip chip-num" id="data-20">
+                    <div class="chip-icon">#</div>
+                    <span>20</span>
+                </div>
+                <div class="data-chip chip-str" id="data-str">
+                    <div class="chip-icon">T</div>
+                    <span>"Game Over"</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Flying Element -->
+        <div id="flying-val">10</div>
+
+    </div>
+
+    <div class="controls">
+        <button class="btn btn-primary" id="main-btn" onclick="nextStep()">
+            상자 만들기
+            <span>변수 선언</span>
+        </button>
+        <button class="btn btn-reset" onclick="resetAll()">
+            ↺ 처음부터 다시
+        </button>
+    </div>
+
+    </div>
+
+    <script src="demo_common.js"></script>
+    <script>
+        // --- VARIABLES ---
+        const varBox = document.getElementById('varBox');
+        const boxContent = document.getElementById('boxContent');
+        const typeLabel = document.getElementById('typeLabel');
+        const flyingVal = document.getElementById('flying-val');
+        const mainBtn = document.getElementById('main-btn');
+        const descText = document.getElementById('desc-text');
+        
+        let currentStep = 0; // 0: Start, 1: Created, 2: Assigned, 3: Updated, 4: Typed
+
+        // --- HELPER: TYPEWRITER EFFECT ---
+        function typeCode(elementId, textHTML, speed = 30) {
+            const el = document.getElementById(elementId);
+            el.innerHTML = '';
+            let i = 0;
+            // Remove HTML tags for typing logic, then inject full HTML at end for simplicity in this demo
+            // Or simple approach: Just inject innerHTML directly but with delay? 
+            // Better approach for syntax highlighting: Pre-build the HTML string and reveal it.
+            el.innerHTML = textHTML;
+            el.style.opacity = 0;
+            
+            // Simple fade in for code line
+            let op = 0;
+            const timer = setInterval(() => {
+                if(op >= 1) clearInterval(timer);
+                el.style.opacity = op;
+                op += 0.1;
+            }, 30);
+        }
+
+        function highlightLine(lineId) {
+            document.querySelectorAll('.code-line').forEach(l => l.classList.remove('highlight'));
+            document.getElementById(lineId).classList.add('highlight');
+        }
+
+        function updateProgress(stepNum) {
+            document.querySelectorAll('.step').forEach((s, idx) => {
+                if(idx < stepNum) s.classList.add('done');
+                if(idx === stepNum - 1) s.classList.add('active');
+                else s.classList.remove('active');
+            });
+        }
+
+        // --- ANIMATION LOGIC ---
+        function moveValueToBox(sourceId, valueText, displayHTML, typeName, callback) {
+            const source = document.getElementById(sourceId);
+            const boxRect = varBox.getBoundingClientRect();
+            const srcRect = source.getBoundingClientRect();
+            const containerRect = document.querySelector('.stage-container').getBoundingClientRect();
+
+            // Setup Flying Element
+            flyingVal.style.display = 'block';
+            flyingVal.innerHTML = displayHTML;
+            flyingVal.style.left = (srcRect.left - containerRect.left) + 'px';
+            flyingVal.style.top = (srcRect.top - containerRect.top) + 'px';
+            
+            // Trigger Move
+            setTimeout(() => {
+                flyingVal.style.left = (boxRect.left - containerRect.left + (boxRect.width/2 - srcRect.width/2)) + 'px';
+                flyingVal.style.top = (boxRect.top - containerRect.top + (boxRect.height/2 - 20)) + 'px'; // slightly up
+            }, 50);
+
+            // On Arrival
+            setTimeout(() => {
+                flyingVal.style.display = 'none';
+                
+                // If there was something, remove it visually
+                if(boxContent.innerHTML !== "") {
+                    // Visual replacement logic could go here
+                }
+                
+                boxContent.innerHTML = displayHTML;
+                boxContent.className = 'box-content pop-in';
+                
+                // Update Type Label
+                typeLabel.innerText = typeName;
+                typeLabel.style.opacity = 1;
+
+                if(callback) callback();
+            }, 650);
+        }
+
+        // --- MAIN STEP FUNCTION ---
+        function nextStep() {
+            if (currentStep === 0) {
+                // STEP 1: DECLARATION (Create Box)
+                currentStep = 1;
+                
+                // Visual
+                varBox.classList.add('created');
+                descText.innerHTML = "<strong>'score'</strong>라는 이름표가 붙은 상자가 만들어졌습니다.<br>아직 내용은 비어있습니다.";
+                
+                // Code
+                typeCode('code-1', '<span class="var">score</span> = <span class="kwd">None</span>');
+                highlightLine('line1');
+
+                // Progress
+                updateProgress(1);
+                
+                // Button
+                mainBtn.innerHTML = "10 넣기<span>값 할당 (Assign)</span>";
+
+            } else if (currentStep === 1) {
+                // STEP 2: ASSIGNMENT (Put 10)
+                currentStep = 2;
+                mainBtn.disabled = true;
+
+                // Visual Animation
+                moveValueToBox('data-10', '10', '<span class="val">10</span>', '숫자 (Integer)', () => {
+                    mainBtn.disabled = false;
+                    mainBtn.innerHTML = "20으로 바꾸기<span>값 재할당 (Re-assign)</span>";
+                    descText.innerHTML = "상자 안에 <strong>10</strong>을 넣었습니다.<br>이제 'score'를 부르면 10이 나옵니다.";
+                });
+
+                // Code
+                typeCode('code-2', '<span class="var">score</span> = <span class="val">10</span>');
+                highlightLine('line2');
+
+                // Progress
+                updateProgress(2);
+
+            } else if (currentStep === 2) {
+                // STEP 3: RE-ASSIGNMENT (Change to 20)
+                currentStep = 3;
+                mainBtn.disabled = true;
+
+                // 1. Old value falls out
+                boxContent.classList.remove('pop-in');
+                boxContent.classList.add('fall-out');
+
+                setTimeout(() => {
+                    // 2. New value flies in
+                    moveValueToBox('data-20', '20', '<span class="val">20</span>', '숫자 (Integer)', () => {
+                        mainBtn.disabled = false;
+                        mainBtn.innerHTML = "글자로 바꾸기<span>데이터 타입 변경</span>";
+                        descText.innerHTML = "기존의 10을 버리고 <strong>20</strong>을 새로 넣었습니다.<br>상자(변수)는 그대로지만 내용물은 변했습니다.";
+                    });
+                }, 400);
+
+                // Code
+                typeCode('code-3', '<span class="var">score</span> = <span class="val">20</span>');
+                highlightLine('line3');
+
+                // Progress
+                updateProgress(3);
+
+            } else if (currentStep === 3) {
+                // STEP 4: TYPE CHANGE
+                currentStep = 4;
+                mainBtn.disabled = true;
+
+                boxContent.classList.remove('pop-in');
+                boxContent.classList.add('fall-out');
+
+                setTimeout(() => {
+                    moveValueToBox('data-str', 'Game Over', '<span class="str" style="font-size:20px">"Game Over"</span>', '문자열 (String)', () => {
+                        mainBtn.disabled = true;
+                        mainBtn.innerHTML = "완료<span>Concept Learned</span>";
+                        mainBtn.classList.remove('btn-primary');
+                        mainBtn.style.background = 'var(--success)';
+                        mainBtn.style.color = 'white';
+                        descText.innerHTML = "숫자 대신 <strong>문자(글자)</strong>도 담을 수 있습니다.<br>변수는 다양한 형태의 데이터를 저장합니다.";
+                    });
+                }, 400);
+                
+                // Reuse line 3 for demo
+                typeCode('code-3', '<span class="var">score</span> = <span class="str">"Game Over"</span>');
+            }
+        }
+
+        function resetAll() {
+            currentStep = 0;
+            
+            // Reset Visuals
+            varBox.classList.remove('created');
+            boxContent.innerHTML = '';
+            boxContent.className = 'box-content';
+            typeLabel.style.opacity = 0;
+            descText.innerHTML = "'score'라는 이름의 빈 상자를 준비합니다.";
+            
+            // Reset Code
+            document.getElementById('code-1').innerHTML = '';
+            document.getElementById('code-2').innerHTML = '';
+            document.getElementById('code-3').innerHTML = '';
+            document.querySelectorAll('.code-line').forEach(l => l.classList.remove('highlight'));
+            
+            // Reset Progress
+            document.querySelectorAll('.step').forEach(s => {
+                s.classList.remove('active', 'done');
+            });
+            document.getElementById('step1').classList.add('active');
+
+            // Reset Button
+            mainBtn.disabled = false;
+            mainBtn.innerHTML = "상자 만들기<span>변수 선언</span>";
+            mainBtn.style.background = '';
+            mainBtn.style.color = '';
+            mainBtn.classList.add('btn-primary');
+        }
+
+        // Initialize common scaling/height system
+        DemoCommon.init({ appId: 'app', designWidth: 1080 });
+
+        // Wrap nextStep to send height after content changes
+        const originalNextStep = nextStep;
+        nextStep = function() {
+            originalNextStep();
+            setTimeout(function() { DemoCommon.updateHeight(); }, 800);
+        };
+
+        // Wrap resetAll to send height after reset
+        const originalResetAll = resetAll;
+        resetAll = function() {
+            originalResetAll();
+            setTimeout(function() { DemoCommon.updateHeight(); }, 200);
+        };
+    </script>
+</body>
+</html>

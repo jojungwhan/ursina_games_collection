@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>파이썬 라이브러리: Import와 함수 호출</title>
+    <link rel="stylesheet" href="demo_common.css">
+    <style>
+        /* Design width and custom variables */
+        :root {
+            --design-width: 1080px;
+            --accent-bg: rgba(10,132,255,0.12);
+            --shadow-chip: 0 6px 14px rgba(0,0,0,0.10);
+        }
+
+        /* Demo-specific: header */
+        header { text-align: center; margin-bottom: 20px; }
+        h1 { margin: 0 0 6px 0; font-size: 28px; font-weight: 700; letter-spacing: -0.5px; }
+        .subtitle { font-size: 15px; color: var(--text-2); line-height: 1.4; font-weight: 500; }
+        .subtitle-sub { font-size: 13px; color: var(--text-3); margin-top: 2px; }
+
+        /* Demo-specific: progress stepper */
+        .progress-rail { display: flex; gap: 40px; margin-bottom: 20px; }
+        .step { display: flex; align-items: center; gap: 10px; transition: all 0.3s ease; }
+        .step-badge {
+            width: 28px; height: 28px; border-radius: 50%;
+            background: transparent; border: 1px solid var(--text-3);
+            color: var(--text-3); display: grid; place-items: center;
+            font-size: 14px; font-weight: 600; transition: all 0.3s;
+        }
+        .step-text { font-size: 15px; font-weight: 500; color: var(--text-2); }
+        .step.active .step-badge { background: var(--accent); border-color: var(--accent); color: white; box-shadow: 0 2px 8px var(--accent-glow); }
+        .step.active .step-text { color: var(--text); font-weight: 600; }
+        .step.done .step-badge { background: var(--accent); border-color: var(--accent); color: white; }
+        .step.done .step-text { color: var(--text); }
+
+        /* Demo-specific: shake animation */
+        .shake { animation: shake 0.4s cubic-bezier(.36,.07,.19,.97) both; }
+        @keyframes shake { 10%, 90% { transform: translate3d(-1px, 0, 0); } 20%, 80% { transform: translate3d(2px, 0, 0); } 30%, 50%, 70% { transform: translate3d(-4px, 0, 0); } 40%, 60% { transform: translate3d(4px, 0, 0); } }
+
+        /* Demo-specific: three-column stage */
+        .stage-container {
+            display: grid;
+            grid-template-columns: 1.4fr 0.6fr 1.2fr;
+            width: 100%; max-width: 1080px; height: 400px;
+            background: var(--surface);
+            border-radius: var(--r-card);
+            box-shadow: var(--shadow-card);
+            overflow: hidden;
+            position: relative;
+            border: 1px solid var(--divider);
+        }
+
+        /* Demo-specific: zone columns */
+        .zone { padding: 20px; display: flex; flex-direction: column; position: relative; }
+        .zone-title { font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+        .zone-workspace { border-right: 1px solid var(--divider); background: var(--surface); z-index: 2; }
+
+        /* Demo-specific: code editor */
+        .code-window { background: var(--code-bg); border-radius: 14px; overflow: hidden; margin-bottom: 16px; display: flex; flex-direction: column; }
+        .window-header { height: 28px; background: rgba(255,255,255,0.05); border-bottom: 1px solid rgba(0,0,0,0.2); display: flex; align-items: center; padding: 0 10px; }
+        .window-tab { font-size: 11px; color: rgba(255,255,255,0.6); background: rgba(255,255,255,0.08); padding: 4px 10px; border-radius: 4px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+        .code-body { padding: 10px 16px; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 14px; line-height: 1.5; color: white; min-height: 50px; }
+        .code-line { display: flex; gap: 16px; padding: 2px 4px; border-radius: 4px; transition: background 0.2s; align-items: center; }
+        .code-line.active { background: var(--code-highlight); }
+        .line-num { color: rgba(255,255,255,0.2); user-select: none; width: 16px; text-align: right; font-size: 13px; }
+
+        /* Demo-specific: syntax colors */
+        .keyword { color: var(--syntax-keyword); }
+        .module { color: var(--syntax-variable); }
+        .func { color: var(--syntax-function); }
+
+        /* Demo-specific: canvas area */
+        .canvas-wrapper { flex-grow: 1; position: relative; border-radius: 12px; border: 1px solid var(--divider); background: var(--surface-2); overflow: hidden; }
+        canvas { display: block; width: 100%; height: 100%; background-image: linear-gradient(var(--divider) 1px, transparent 1px), linear-gradient(90deg, var(--divider) 1px, transparent 1px); background-size: 20px 20px; }
+        .result-badge { position: absolute; top: 10px; left: 10px; background: rgba(255,255,255,0.8); backdrop-filter: blur(4px); padding: 4px 8px; border-radius: 6px; font-size: 11px; color: var(--text-2); border: 1px solid var(--divider); pointer-events: none; }
+
+        /* Demo-specific: loaded zone */
+        .zone-loaded { background: var(--surface-2); border-right: 1px solid var(--divider); align-items: center; z-index: 1; }
+        .loaded-track { flex-grow: 1; width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; gap: 12px; padding-top: 16px; }
+        .chip-slot { width: 100px; height: 44px; border: 1px dashed rgba(0,0,0,0.15); border-radius: 14px; display: flex; align-items: center; justify-content: center; color: var(--text-3); font-size: 13px; transition: all 0.3s; }
+        .chip-slot.placeholder { border-color: rgba(0,0,0,0.08); opacity: 0.6; }
+        .chip-slot.occupied { border: none; background: transparent; }
+        .chip { background: var(--surface); border: 1px solid var(--divider); color: var(--text); padding: 0 16px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 20px; font-weight: 600; font-size: 14px; box-shadow: var(--shadow-chip); cursor: pointer; position: relative; width: 100%; box-sizing: border-box; }
+        .chip::before { content: ''; width: 8px; height: 8px; background: var(--accent); border-radius: 50%; margin-right: 8px; }
+
+        /* Demo-specific: store zone */
+        .zone-store { background: var(--surface); padding: 20px; }
+        .store-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 16px; }
+        .badge { background: var(--accent-bg); color: var(--accent); font-size: 11px; font-weight: 600; padding: 4px 8px; border-radius: 6px; }
+        .shelf-container { display: flex; flex-direction: column; gap: 12px; }
+        .shelf { display: flex; gap: 12px; transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1); }
+        .shelf.shift { transform: translateX(-12px); }
+
+        /* Demo-specific: library boxes */
+        .box { width: 64px; height: 64px; background: var(--surface-2); border: 1px solid var(--divider); border-radius: var(--r-tile); display: flex; flex-direction: column; justify-content: center; align-items: center; color: var(--text); font-weight: 500; font-size: 13px; cursor: pointer; transition: all 0.2s; z-index: 10; }
+        .box:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); background: var(--surface); }
+        .box.selected-glow { border-color: var(--accent); box-shadow: 0 0 0 4px var(--accent-bg); background: var(--surface); transform: scale(1.05); z-index: 50; }
+        .box.faded { opacity: 0.3; pointer-events: none; background: var(--bg); }
+        .box::after { content: ''; width: 6px; height: 6px; border-radius: 50%; margin-top: 6px; background: #ccc; }
+        .box-math::after { background: var(--success); }
+        .box-web::after { background: #5856D6; }
+        .box-ai::after { background: #111; }
+        .box-game::after { background: var(--accent); }
+        .box-sound::after { background: #FF2D55; }
+        .box-data::after { background: #AF52DE; }
+        .box-silhouette { background: var(--bg); border: none; color: transparent; }
+        .box-silhouette::after { display: none; }
+
+        /* Demo-specific: flying agent */
+        #agent { position: absolute; width: 64px; height: 64px; background: var(--surface); border: 1px solid var(--accent); border-radius: var(--r-tile); display: none; justify-content: center; align-items: center; color: var(--accent); font-weight: 600; font-size: 13px; z-index: 1000; box-shadow: 0 10px 30px rgba(0,0,0,0.15); transition: top 1s cubic-bezier(0.16, 1, 0.3, 1), left 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s; }
+
+        /* Demo-specific: control buttons */
+        .controls { margin-top: 16px; display: flex; gap: 16px; align-items: center; }
+        .btn { height: 48px; padding: 0 24px; font-size: 16px; border: none; border-radius: var(--r-btn); cursor: pointer; font-weight: 600; transition: all 0.2s; display: flex; flex-direction: column; justify-content: center; align-items: center; min-width: 140px; line-height: 1.1; }
+        .btn span { font-size: 12px; font-weight: 400; margin-top: 2px; opacity: 0.8; }
+        .btn-primary { background: var(--accent); color: white; box-shadow: 0 4px 12px var(--accent-glow); }
+        .btn-primary:active { transform: scale(0.96); }
+        .btn-primary:disabled { background: #E5E5EA; color: #AEAEB2; box-shadow: none; cursor: not-allowed; }
+        .btn-secondary { background: rgba(0,0,0,0.06); color: var(--text); }
+        .btn-secondary:hover { background: rgba(0,0,0,0.1); }
+        .btn-secondary:disabled { background: var(--bg); color: #D1D1D6; cursor: not-allowed; }
+        .btn-reset { background: transparent; color: var(--text-2); min-width: auto; padding: 0 12px; font-size: 13px; }
+        .btn-reset:hover { color: var(--text); background: rgba(0,0,0,0.04); }
+
+        /* Demo-specific: toast notification */
+        .toast { position: fixed; bottom: 40px; background: rgba(255,255,255,0.9); backdrop-filter: blur(10px); color: var(--text); padding: 12px 20px; border-radius: 30px; opacity: 0; transform: translateY(10px) scale(0.95); transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); pointer-events: none; z-index: 2000; box-shadow: 0 10px 30px rgba(0,0,0,0.12); font-size: 13px; font-weight: 500; border: 1px solid var(--divider); display: flex; align-items: center; gap: 8px; }
+        .toast.show { opacity: 1; transform: translateY(0) scale(1); }
+        .toast::before { content: ''; display: block; width: 6px; height: 6px; border-radius: 50%; background: var(--text); }
+        .toast.error::before { background: var(--danger); }
+        .toast.success::before { background: var(--success); }
+
+        /* Demo-specific: cursor blink */
+        .cursor { display: inline-block; width: 2px; height: 1.2em; background-color: var(--accent); margin-left: 1px; animation: blink 1s step-end infinite; vertical-align: text-bottom; }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+        /* Demo-specific: chip pulse */
+        .pulse { animation: pulse 1.5s infinite; }
+        @keyframes pulse { 0% { box-shadow: 0 0 0 0 var(--accent-glow); } 70% { box-shadow: 0 0 0 10px rgba(10,132,255, 0); } 100% { box-shadow: 0 0 0 0 rgba(10,132,255, 0); } }
+    </style>
+</head>
+<body>
+    <div id="app">
+
+    <header>
+        <h1>파이썬 라이브러리 개념</h1>
+        <div class="subtitle">필요한 도구를 선택(Import)하고 실행(Call)해보세요.</div>
+        <div class="subtitle-sub">전 세계 개발자들이 만든 수천 가지 도구를 사용할 수 있습니다.</div>
+    </header>
+
+    <div class="progress-rail">
+        <div class="step active" id="step1">
+            <div class="step-badge">1</div>
+            <div class="step-text">가져오기</div>
+        </div>
+        <div class="step" id="step2">
+            <div class="step-badge">2</div>
+            <div class="step-text">사용하기</div>
+        </div>
+    </div>
+
+    <div class="stage-container">
+        
+        <!-- LEFT: WORKSPACE -->
+        <div class="zone zone-workspace" id="zone-workspace">
+            <div class="zone-title">
+                <span>나의 프로그램</span>
+            </div>
+            
+            <div class="code-window">
+                <div class="window-header">
+                    <div class="window-tab">main.py</div>
+                </div>
+                <div class="code-body">
+                    <div class="code-line" id="line1">
+                        <span class="line-num">1</span>
+                        <span class="code-content" id="line1-content"></span>
+                    </div>
+                    <div class="code-line" id="line2">
+                        <span class="line-num">2</span>
+                        <span class="code-content" id="line2-content"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="canvas-wrapper">
+                <canvas id="outputCanvas"></canvas>
+                <div class="result-badge">결과 화면</div>
+            </div>
+        </div>
+
+        <!-- MIDDLE: LOADED ZONE -->
+        <div class="zone zone-loaded">
+            <div class="zone-title" style="color: var(--text-3); font-size: 14px;">불러온 도구</div>
+            <div class="loaded-track">
+                <div class="chip-slot" id="slot-painter">
+                    <span style="opacity: 0.5;">(비어있음)</span>
+                </div>
+                <div class="chip-slot placeholder"></div>
+                <div class="chip-slot placeholder"></div>
+            </div>
+        </div>
+
+        <!-- RIGHT: LIBRARY STORE -->
+        <div class="zone zone-store" id="zone-store">
+            <div class="store-header">
+                <div class="zone-title" style="margin:0;">
+                    라이브러리 보관소
+                </div>
+                <div class="badge">Store</div>
+            </div>
+            
+            <div class="shelf-container">
+                <!-- Row 1 -->
+                <div class="shelf" id="shelf1">
+                    <div class="box box-math">Math</div>
+                    <div class="box box-web">Web</div>
+                    <div class="box box-ai">AI</div>
+                    <div class="box box-game" id="box-painter">Painter</div>
+                </div>
+                <!-- Row 2 -->
+                <div class="shelf" id="shelf2">
+                    <div class="box box-sound">Sound</div>
+                    <div class="box box-data">Data</div>
+                    <div class="box box-silhouette"></div>
+                    <div class="box box-silhouette"></div>
+                </div>
+                <!-- Row 3 -->
+                <div class="shelf" id="shelf3">
+                    <div class="box box-silhouette"></div>
+                    <div class="box box-silhouette"></div>
+                    <div class="box box-silhouette"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Moving Agent -->
+        <div id="agent">Painter</div>
+
+    </div>
+
+    <div class="controls">
+        <button class="btn btn-primary" id="btn-import" onclick="runImport()">
+            Import
+            <span>라이브러리 선택</span>
+        </button>
+        <button class="btn btn-secondary" id="btn-call" onclick="runCall()">
+            Call
+            <span>함수 실행</span>
+        </button>
+        <button class="btn btn-reset" id="btn-reset" onclick="resetAll()" style="display:none;">
+            ↺ 처음으로
+        </button>
+    </div>
+
+    <div id="toast" class="toast">메시지</div>
+
+    </div>
+
+    <script src="demo_common.js"></script>
+    <script>
+        // --- DOM ELEMENTS ---
+        const agent = document.getElementById('agent');
+        const boxPainter = document.getElementById('box-painter');
+        const slotPainter = document.getElementById('slot-painter');
+        const canvas = document.getElementById('outputCanvas');
+        const ctx = canvas.getContext('2d');
+        const toastEl = document.getElementById('toast');
+        
+        const line1 = document.getElementById('line1');
+        const line2 = document.getElementById('line2');
+        const line1Content = document.getElementById('line1-content');
+        const line2Content = document.getElementById('line2-content');
+        
+        const btnImport = document.getElementById('btn-import');
+        const btnCall = document.getElementById('btn-call');
+        const btnReset = document.getElementById('btn-reset');
+        
+        const step1 = document.getElementById('step1');
+        const step2 = document.getElementById('step2');
+
+        const shelves = document.querySelectorAll('.shelf');
+
+        // --- CODE CONTENT DATA ---
+        const codeData = {
+            line1: [
+                { text: "import ", class: "keyword" },
+                { text: "painter", class: "module" }
+            ],
+            line2: [
+                { text: "painter", class: "module" },
+                { text: ".", class: "" },
+                { text: "circle", class: "func" },
+                { text: "()", class: "" }
+            ]
+        };
+
+        // --- STATE MACHINE ---
+        const State = {
+            IDLE: 'idle',
+            IMPORTING: 'importing',
+            IMPORTED: 'imported',
+            CALLING: 'calling',
+            DONE: 'done'
+        };
+        let currentState = State.IDLE;
+
+        // --- RESIZE LOGIC (FIX ASPECT RATIO) ---
+        function resizeCanvas() {
+            // Get the display size of the canvas container
+            const wrapper = canvas.parentElement;
+            
+            // Set internal resolution to match display size
+            canvas.width = wrapper.clientWidth;
+            canvas.height = wrapper.clientHeight;
+        }
+
+        // Initialize size on load and resize
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+
+        // --- ACTIONS ---
+
+        function showToast(msg, type = 'normal') {
+            toastEl.innerHTML = msg; 
+            toastEl.className = `toast show ${type}`;
+            setTimeout(() => {
+                toastEl.classList.remove('show');
+            }, 3000);
+        }
+
+        function getPosition(el) {
+            const rect = el.getBoundingClientRect();
+            const containerRect = document.querySelector('.stage-container').getBoundingClientRect();
+            return {
+                x: rect.left - containerRect.left,
+                y: rect.top - containerRect.top,
+                w: rect.width,
+                h: rect.height
+            };
+        }
+
+        // --- TYPEWRITER FUNCTION ---
+        function typeCode(container, tokens, callback) {
+            container.innerHTML = ''; 
+            const cursor = document.createElement('span');
+            cursor.className = 'cursor';
+            container.appendChild(cursor);
+
+            let tokenIndex = 0;
+            let charIndex = 0;
+            let currentSpan = null;
+
+            function type() {
+                if (tokenIndex >= tokens.length) {
+                    if (callback) callback();
+                    return;
+                }
+
+                const token = tokens[tokenIndex];
+                
+                if (!currentSpan) {
+                    currentSpan = document.createElement('span');
+                    if (token.class) currentSpan.className = token.class;
+                    container.insertBefore(currentSpan, cursor);
+                }
+
+                if (charIndex < token.text.length) {
+                    currentSpan.textContent += token.text[charIndex];
+                    charIndex++;
+                    setTimeout(type, 40); 
+                } else {
+                    tokenIndex++;
+                    charIndex = 0;
+                    currentSpan = null;
+                    setTimeout(type, 40);
+                }
+            }
+            type();
+        }
+
+        function runImport() {
+            if (currentState !== State.IDLE) return;
+            currentState = State.IMPORTING;
+            
+            btnImport.disabled = true;
+            
+            // 1. Type Code
+            typeCode(line1Content, codeData.line1, () => {
+                line1.classList.add('active'); 
+                
+                // 2. Abundance Cue (Shift)
+                shelves.forEach((s, i) => {
+                    setTimeout(() => s.classList.add('shift'), i * 50);
+                    setTimeout(() => s.classList.remove('shift'), 400 + i * 50);
+                });
+
+                // 3. Selection Highlight
+                setTimeout(() => {
+                    boxPainter.classList.add('selected-glow');
+                }, 300);
+
+                // 4. Package Extraction
+                setTimeout(() => {
+                    const boxPos = getPosition(boxPainter);
+                    agent.style.left = boxPos.x + 'px';
+                    agent.style.top = boxPos.y + 'px';
+                    agent.style.display = 'flex';
+                    
+                    boxPainter.classList.remove('selected-glow');
+                    boxPainter.classList.add('faded'); 
+
+                    // Move to Slot
+                    setTimeout(() => {
+                        const slotPos = getPosition(slotPainter);
+                        // Center align logic updated for new sizes
+                        const targetX = slotPos.x + (slotPos.w - 64)/2; // Agent width is 64
+                        const targetY = slotPos.y + (slotPos.h - 64)/2; 
+                        
+                        agent.style.left = targetX + 'px';
+                        agent.style.top = targetY + 'px';
+                        agent.style.transform = 'scale(0.8)';
+                    }, 100);
+
+                }, 800);
+
+                // 5. Finish Import
+                setTimeout(() => {
+                    agent.style.display = 'none';
+                    agent.style.transform = 'none'; 
+                    
+                    slotPainter.innerHTML = '';
+                    const chip = document.createElement('div');
+                    chip.className = 'chip';
+                    chip.textContent = 'Painter';
+                    chip.id = 'chip-painter';
+                    slotPainter.appendChild(chip);
+                    slotPainter.classList.add('occupied');
+                    
+                    currentState = State.IMPORTED;
+                    showToast("Import 완료", "success");
+                    
+                    step1.classList.remove('active');
+                    step1.classList.add('done');
+                    step2.classList.add('active');
+                    
+                    line1.classList.remove('active');
+                    
+                    btnCall.disabled = false;
+                    
+                }, 1900);
+            });
+        }
+
+        function runCall() {
+            if (currentState === State.IDLE) {
+                showToast("아직 Import 하지 않았습니다.", "error");
+                step1.classList.add('shake');
+                setTimeout(() => step1.classList.remove('shake'), 500);
+                return;
+            }
+
+            if (currentState !== State.IMPORTED) return;
+            currentState = State.CALLING;
+
+            btnCall.disabled = true;
+
+            // 1. Type Code
+            typeCode(line2Content, codeData.line2, () => {
+                line2.classList.add('active');
+                
+                const chip = document.getElementById('chip-painter');
+                chip.classList.add('pulse');
+
+                setTimeout(() => {
+                    drawCircleAnimation();
+                }, 500);
+            });
+        }
+
+        function drawCircleAnimation() {
+            // Re-sync canvas size right before drawing to be safe
+            resizeCanvas();
+
+            let progress = 0;
+            const centerX = canvas.width / 2;
+            const centerY = canvas.height / 2;
+            const radius = 60;
+            
+            function animate() {
+                progress += 0.04;
+                if(progress > 1) progress = 1;
+
+                ctx.clearRect(0,0, canvas.width, canvas.height);
+                
+                // Draw circle only
+                ctx.beginPath();
+                ctx.arc(centerX, centerY, radius, 0, Math.PI * 2 * progress);
+                ctx.strokeStyle = '#0A84FF';
+                ctx.lineWidth = 4;
+                ctx.lineCap = 'round';
+                ctx.stroke();
+
+                if(progress < 1) {
+                    requestAnimationFrame(animate);
+                } else {
+                    finishCall();
+                }
+            }
+            animate();
+        }
+
+        function finishCall() {
+            currentState = State.DONE;
+            document.getElementById('chip-painter').classList.remove('pulse');
+            line2.classList.remove('active');
+            step2.classList.remove('active');
+            step2.classList.add('done');
+            
+            showToast("실행 성공", "success");
+            
+            btnReset.style.display = 'flex';
+            btnCall.innerHTML = "Done<br><span>완료됨</span>";
+        }
+
+        function resetAll() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            slotPainter.innerHTML = '<span style="opacity: 0.5;">(비어있음)</span>';
+            slotPainter.classList.remove('occupied');
+            boxPainter.classList.remove('faded');
+            
+            step1.className = 'step active';
+            step2.className = 'step';
+            
+            line1.classList.remove('active');
+            line2.classList.remove('active');
+            
+            line1Content.innerHTML = '';
+            line2Content.innerHTML = '';
+
+            btnImport.disabled = false;
+            btnCall.disabled = false;
+            btnCall.innerHTML = "Call<br><span>함수 실행</span>";
+            btnReset.style.display = 'none';
+            
+            currentState = State.IDLE;
+        }
+
+        // Initialize common scaling/height system
+        DemoCommon.init({ appId: 'app', designWidth: 1080 });
+
+        // Send height when state changes
+        const originalUpdateUI = updateUI;
+        updateUI = function() {
+            originalUpdateUI();
+            DemoCommon.updateHeight();
+        };
+
+    </script>
+</body>
+</html>

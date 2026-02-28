@@ -1,0 +1,78 @@
+/**
+ * @file turtle_canvas.css
+ * @description Turtle graphics canvas styles (Skulpt integration).
+ *
+ * Components:
+ *   - Turtle canvas container (#turtleCanvasContainer)
+ *   - Canvas element (#mycanvas)
+ *   - Canvas area (.canvas-area)
+ *
+ * Note: [BLOCKLY-OVERRIDE] marks !important declarations required
+ * because Skulpt sets inline styles via JavaScript.
+ */
+
+/* ========================================
+   Turtle Canvas Container
+   ======================================== */
+
+#turtleCanvasContainer {
+    position: relative;
+    display: block;
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* [BLOCKLY-OVERRIDE] Canvas wrapper - Skulpt sets fixed positioning */
+#mycanvas {
+    position: relative !important;
+    width: 400px;
+    height: 400px;
+    margin: 0;
+    padding: 0;
+}
+
+/* [BLOCKLY-OVERRIDE] Canvas elements inside wrapper */
+#mycanvas canvas {
+    position: relative !important;
+    display: block;
+    margin: 0;
+    padding: 0;
+}
+
+/* ========================================
+   Canvas Area (shared layout component)
+   ======================================== */
+
+.canvas-area {
+    background: var(--color-bg-surface);
+    border: 1px solid var(--color-bg-subtle);
+    border-top: none;
+    border-radius: 0 0 var(--radius-md) var(--radius-md);
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* [BLOCKLY-OVERRIDE] Canvas area positioning */
+.canvas-area > div {
+    position: relative !important;
+}
+
+.canvas-area canvas {
+    position: relative !important;
+}
+
+/* ========================================
+   Dark Mode
+   ======================================== */
+
+[data-md-color-scheme="slate"] .canvas-area {
+    background: var(--color-bg-surface);
+    border-color: var(--color-bg-subtle);
+}

@@ -1,0 +1,327 @@
+/**
+ * Cloze Quiz Styles for MkDocs
+ * Fill-in-the-blank quiz styling
+ */
+
+/* ========================================
+   Quiz Container
+   ======================================== */
+
+.cloze-quiz {
+    background-color: #f8fffe;
+    border: 2px solid #4db6ac;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    box-shadow: 0 2px 8px rgba(77, 182, 172, 0.15);
+    position: relative;
+}
+
+.cloze-quiz:hover {
+    border-color: #26a69a;
+    box-shadow: 0 4px 12px rgba(77, 182, 172, 0.25);
+}
+
+/* ========================================
+   Blank Input Fields
+   ======================================== */
+
+.cloze-blank {
+    display: inline-block;
+    min-width: 120px;
+    max-width: 120px;
+    padding: 0.5rem 0.75rem;
+    font-size: 1rem;
+    font-family: 'Roboto Mono', 'Courier New', monospace;
+    border: 2px solid #b2dfdb;
+    border-radius: 6px;
+    background-color: white;
+    outline: none;
+    transition: all 0.2s ease;
+    margin: 0 0.25rem;
+    vertical-align: baseline;
+}
+
+.cloze-blank::placeholder {
+    color: #80cbc4;
+    opacity: 0.8;
+    font-style: italic;
+}
+
+.cloze-blank:focus::placeholder {
+    opacity: 0.5;
+}
+
+.cloze-blank:focus {
+    border-color: #26a69a;
+    box-shadow: 0 0 0 3px rgba(38, 166, 154, 0.2);
+    background-color: #ffffff;
+}
+
+.cloze-blank.cloze-correct {
+    border-color: #4caf50;
+    background-color: #e8f5e9;
+    color: #2e7d32;
+}
+
+.cloze-blank.cloze-incorrect {
+    border-color: #f44336;
+    background-color: #ffebee;
+    color: #c62828;
+}
+
+/* ========================================
+   Hint Button
+   ======================================== */
+
+.cloze-btn-hint {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+    color: #26a69a;
+    background-color: transparent;
+    border: 1px solid #26a69a;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 0.5rem;
+    transition: all 0.2s ease;
+    vertical-align: middle;
+}
+
+.cloze-btn-hint:hover {
+    background-color: #e0f2f1;
+    border-color: #00897b;
+}
+
+.cloze-hint {
+    display: block;
+    margin: 0.5rem 0;
+    padding: 0.75rem 1rem;
+    background-color: #fff9c4;
+    border-left: 3px solid #fbc02d;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    color: #5d4037;
+    font-style: italic;
+}
+
+/* ========================================
+   Quiz Controls
+   ======================================== */
+
+.cloze-quiz-controls {
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid #b2dfdb;
+}
+
+.cloze-quiz-buttons {
+    display: flex;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+}
+
+.cloze-btn-check,
+.cloze-btn-reset {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    min-width: 120px;
+}
+
+.cloze-btn-check {
+    color: white;
+    background-color: #26a69a;
+}
+
+.cloze-btn-check:hover {
+    background-color: #00897b;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.cloze-btn-check:active {
+    transform: translateY(0);
+}
+
+.cloze-btn-reset {
+    color: #26a69a;
+    background-color: white;
+    border: 2px solid #26a69a;
+}
+
+.cloze-btn-reset:hover {
+    background-color: #e0f2f1;
+    border-color: #00897b;
+}
+
+/* ========================================
+   Score Display
+   ======================================== */
+
+.cloze-quiz-score {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #00695c;
+    background-color: #e0f2f1;
+    border-radius: 6px;
+    margin-bottom: 0.75rem;
+}
+
+.cloze-quiz-score.cloze-perfect {
+    color: #2e7d32;
+    background-color: #c8e6c9;
+    border: 1px solid #4caf50;
+}
+
+/* ========================================
+   Clear Saved Answers Button
+   ======================================== */
+
+.cloze-btn-clear-saved {
+    display: block;
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    color: #666;
+    background-color: transparent;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-top: 0.5rem;
+}
+
+.cloze-btn-clear-saved:hover {
+    background-color: #f5f5f5;
+    border-color: #999;
+    color: #333;
+}
+
+/* ========================================
+   Text Integration
+   ======================================== */
+
+/* Ensure blanks integrate well with surrounding text */
+.cloze-quiz p {
+    line-height: 1.8;
+    margin-bottom: 0.75rem;
+}
+
+.cloze-quiz code {
+    font-family: 'Roboto Mono', 'Courier New', monospace;
+    background-color: #f5f5f5;
+    padding: 0.2rem 0.4rem;
+    border-radius: 3px;
+    font-size: 0.9em;
+}
+
+.cloze-quiz pre {
+    background-color: #f5f5f5;
+    padding: 1rem;
+    border-radius: 6px;
+    overflow-x: auto;
+    margin: 1rem 0;
+}
+
+.cloze-quiz pre code {
+    background-color: transparent;
+    padding: 0;
+}
+
+/* Code block container for split code blocks with blanks */
+.cloze-code-block {
+    background-color: #f5f5f5;
+    padding: 1rem;
+    border-radius: 6px;
+    overflow-x: auto;
+    margin: 1rem 0;
+    font-family: 'Roboto Mono', 'Courier New', monospace;
+    font-size: 0.9em;
+    line-height: 1.6;
+}
+
+.cloze-code-block code {
+    background-color: transparent;
+    padding: 0;
+    font-family: inherit;
+}
+
+/* ========================================
+   Responsive Design
+   ======================================== */
+
+@media (max-width: 600px) {
+    .cloze-quiz {
+        padding: 1rem;
+    }
+    
+    .cloze-blank {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        margin: 0.5rem 0;
+    }
+    
+    .cloze-btn-hint {
+        display: block;
+        width: 100%;
+        margin: 0.5rem 0;
+        text-align: center;
+    }
+    
+    .cloze-quiz-buttons {
+        flex-direction: column;
+    }
+    
+    .cloze-btn-check,
+    .cloze-btn-reset {
+        width: 100%;
+    }
+}
+
+/* ========================================
+   Accessibility
+   ======================================== */
+
+.cloze-blank:focus-visible {
+    outline: 2px solid #26a69a;
+    outline-offset: 2px;
+}
+
+.cloze-btn-check:focus-visible,
+.cloze-btn-reset:focus-visible,
+.cloze-btn-hint:focus-visible,
+.cloze-btn-clear-saved:focus-visible {
+    outline: 2px solid #26a69a;
+    outline-offset: 2px;
+}
+
+/* ========================================
+   Print Styles
+   ======================================== */
+
+@media print {
+    .cloze-quiz-controls {
+        display: none;
+    }
+    
+    .cloze-blank {
+        border: 1px solid #ccc;
+        background-color: transparent;
+    }
+    
+    .cloze-blank.cloze-correct {
+        border-color: #4caf50;
+    }
+    
+    .cloze-blank.cloze-incorrect {
+        border-color: #f44336;
+    }
+}

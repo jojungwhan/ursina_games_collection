@@ -1,0 +1,406 @@
+/**
+ * Map Exercise Styles
+ *
+ * Styling for Leaflet.js map exercises in the course
+ */
+
+/* ========================================================================
+   MAP EXERCISE CONTAINER
+   ======================================================================== */
+
+.map-exercise {
+    margin: 24px 0;
+    border: 1px solid var(--md-default-fg-color--lightest, #e0e0e0);
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--md-default-bg-color, #fff);
+}
+
+.map-exercise-mission {
+    padding: 16px 20px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.map-exercise-mission p {
+    margin: 0;
+}
+
+.map-exercise-mission strong {
+    color: #ffd700;
+}
+
+/* ========================================================================
+   MAP CONTAINER
+   ======================================================================== */
+
+.map-container {
+    width: 100%;
+    min-height: 300px;
+    background: #f5f5f5;
+    position: relative;
+}
+
+.map-container::before {
+    content: '🗺️ 지도 로딩 중...';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #888;
+    font-size: 14px;
+    z-index: 0;
+}
+
+.map-container .leaflet-container {
+    z-index: 1;
+}
+
+/* ========================================================================
+   CODE EDITOR
+   ======================================================================== */
+
+.map-code-editor {
+    border-top: 1px solid var(--md-default-fg-color--lightest, #e0e0e0);
+}
+
+.map-editor-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.map-editor-toolbar {
+    display: flex;
+    gap: 8px;
+    padding: 8px 12px;
+    background: #2d2d2d;
+    border-bottom: 1px solid #444;
+}
+
+.map-run-btn,
+.map-reset-btn {
+    padding: 6px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.map-run-btn {
+    background: #4CAF50;
+    color: white;
+}
+
+.map-run-btn:hover {
+    background: #45a049;
+    transform: translateY(-1px);
+}
+
+.map-run-btn:active {
+    transform: translateY(0);
+}
+
+.map-reset-btn {
+    background: #666;
+    color: white;
+}
+
+.map-reset-btn:hover {
+    background: #555;
+}
+
+.map-code-textarea {
+    width: 100%;
+    min-height: 150px;
+    padding: 16px;
+    border: none;
+    resize: vertical;
+    font-family: 'Fira Code', 'JetBrains Mono', 'Consolas', monospace;
+    font-size: 13px;
+    line-height: 1.6;
+    background: #1e1e1e;
+    color: #d4d4d4;
+    tab-size: 4;
+}
+
+.map-code-textarea:focus {
+    outline: none;
+    box-shadow: inset 0 0 0 2px #667eea;
+}
+
+/* ========================================================================
+   CITY BUTTONS
+   ======================================================================== */
+
+.city-buttons {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin: 16px 0;
+}
+
+.city-btn {
+    padding: 8px 16px;
+    background: var(--md-primary-fg-color, #4051b5);
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.2s ease;
+}
+
+.city-btn:hover {
+    background: var(--md-primary-fg-color--dark, #303f9f);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.city-btn:active {
+    transform: translateY(0);
+}
+
+/* ========================================================================
+   COORDINATE DISPLAY
+   ======================================================================== */
+
+.coord-display {
+    background: #f5f5f5;
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-family: monospace;
+    font-size: 14px;
+    margin: 16px 0;
+}
+
+.click-log {
+    background: #1a1a2e;
+    color: #0f0;
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-family: monospace;
+    font-size: 12px;
+    max-height: 120px;
+    overflow-y: auto;
+}
+
+.click-log div {
+    margin: 4px 0;
+}
+
+/* ========================================================================
+   COLOR SCALE DEMO
+   ======================================================================== */
+
+.color-scale-demo {
+    display: flex;
+    margin: 16px 0;
+    border-radius: 8px;
+    overflow: hidden;
+    font-size: 12px;
+}
+
+.color-scale-demo > div {
+    flex: 1;
+    padding: 12px 8px;
+    text-align: center;
+    font-weight: 500;
+}
+
+/* ========================================================================
+   EMOJI MARKERS
+   ======================================================================== */
+
+.emoji-marker {
+    background: transparent;
+    border: none;
+    text-align: center;
+}
+
+/* ========================================================================
+   LEAFLET OVERRIDES
+   ======================================================================== */
+
+/* Info panel styling */
+.leaflet-control.info-panel {
+    padding: 15px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 3px 14px rgba(0, 0, 0, 0.25);
+    min-width: 180px;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+/* Legend styling */
+.leaflet-control.legend {
+    background: white;
+    padding: 12px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    font-size: 12px;
+    line-height: 1.8;
+}
+
+.leaflet-control.legend h4 {
+    margin: 0 0 8px 0;
+    font-size: 13px;
+}
+
+.leaflet-control.legend i {
+    width: 18px;
+    height: 12px;
+    display: inline-block;
+    margin-right: 5px;
+    vertical-align: middle;
+}
+
+/* Custom control buttons */
+.leaflet-bar a {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ========================================================================
+   FEEDBACK
+   ======================================================================== */
+
+.map-exercise-feedback {
+    padding: 16px 20px;
+    border-top: 1px solid var(--md-default-fg-color--lightest, #e0e0e0);
+}
+
+.map-exercise-feedback.success {
+    background: #e8f5e9;
+    color: #2e7d32;
+}
+
+.map-exercise-feedback.error {
+    background: #ffebee;
+    color: #c62828;
+}
+
+/* ========================================================================
+   RESPONSIVE
+   ======================================================================== */
+
+@media (max-width: 768px) {
+    .map-container {
+        min-height: 250px;
+    }
+
+    .map-code-textarea {
+        font-size: 12px;
+        padding: 12px;
+    }
+
+    .city-btn {
+        padding: 6px 12px;
+        font-size: 13px;
+    }
+
+    .leaflet-control.info-panel {
+        max-width: 160px;
+        padding: 10px;
+        font-size: 12px;
+    }
+
+    .leaflet-control.legend {
+        font-size: 11px;
+    }
+}
+
+/* ========================================================================
+   DARK MODE
+   ======================================================================== */
+
+[data-md-color-scheme="slate"] .map-exercise {
+    border-color: #404040;
+}
+
+[data-md-color-scheme="slate"] .map-code-editor {
+    border-color: #404040;
+}
+
+[data-md-color-scheme="slate"] .coord-display {
+    background: #2d2d2d;
+    color: #e0e0e0;
+}
+
+[data-md-color-scheme="slate"] .color-scale-demo > div {
+    color: #333;
+}
+
+[data-md-color-scheme="slate"] .leaflet-control.info-panel,
+[data-md-color-scheme="slate"] .leaflet-control.legend {
+    background: #2d2d2d;
+    color: #e0e0e0;
+}
+
+[data-md-color-scheme="slate"] .leaflet-control.info-panel h3,
+[data-md-color-scheme="slate"] .leaflet-control.info-panel h4,
+[data-md-color-scheme="slate"] .leaflet-control.legend h4 {
+    color: #e0e0e0;
+}
+
+/* ========================================================================
+   LESSON NAVIGATION (shared with other lessons)
+   ======================================================================== */
+
+.lesson-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    margin: 20px 0;
+    border-top: 1px solid var(--md-default-fg-color--lightest, #e0e0e0);
+    border-bottom: 1px solid var(--md-default-fg-color--lightest, #e0e0e0);
+}
+
+.nav-btn {
+    padding: 8px 16px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 14px;
+    transition: all 0.2s ease;
+}
+
+.nav-btn.nav-prev {
+    background: #f0f0f0;
+    color: #333;
+}
+
+.nav-btn.nav-next {
+    background: var(--md-primary-fg-color, #4051b5);
+    color: white;
+}
+
+.nav-btn:hover:not(.disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.nav-btn.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.nav-time {
+    color: #888;
+    font-size: 13px;
+}
+
+/* ========================================================================
+   PROGRESS BAR
+   ======================================================================== */
+
+.lesson-progress-bar {
+    font-family: monospace;
+    font-size: 13px;
+    color: #888;
+    margin: 8px 0 16px;
+}

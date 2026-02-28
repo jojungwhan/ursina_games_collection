@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>학부모를 위한 커리큘럼 가이드 | CIT Intelligence Architect</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      margin: 0;
+      overflow-x: hidden;
+      background-color: #f8fafc; /* Slate 50 */
+      color: #334155; /* Slate 700 */
+    }
+    #canvas-container {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: -1;
+      background: linear-gradient(to bottom, #f8fafc, #e2e8f0);
+    }
+    .glass-card {
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+    }
+    .gradient-text {
+      background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .synergy-gradient {
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(147, 51, 234, 0.05) 100%);
+      border: 1px solid rgba(0,0,0,0.05);
+    }
+    .glow-hover:hover {
+      box-shadow: 0 0 20px rgba(96, 165, 250, 0.3);
+      border-color: rgba(96, 165, 250, 0.5);
+    }
+    /* Custom scrollbar */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #f1f5f9; }
+    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+    .step-arrow { position: relative; }
+    .step-arrow::after {
+      content: '';
+      position: absolute;
+      right: -20px; top: 50%;
+      transform: translateY(-50%);
+      width: 0; height: 0;
+      border-top: 6px solid transparent;
+      border-bottom: 6px solid transparent;
+      border-left: 8px solid #cbd5e1; /* Slate 300 */
+    }
+    @media (max-width: 768px) {
+      .step-arrow::after {
+        right: 50%;
+        top: auto;
+        bottom: -20px;
+        transform: translateX(50%) rotate(90deg);
+      }
+    }
+
+    /* Tabs */
+    .tab-btn {
+      background: rgba(255,255,255,0.8);
+      border: 1px solid rgba(226,232,240,0.9);
+      color: #334155;
+    }
+    .tab-btn[aria-selected="true"]{
+      background: #0f172a; /* slate-900 */
+      color: #ffffff;
+      border-color: rgba(15,23,42,0.9);
+      box-shadow: 0 10px 30px rgba(15,23,42,0.12);
+    }
+    .tab-panel { display: none; }
+    .tab-panel.is-active { display: block; }
+
+    /* Mobile summary toggle */
+    details.summary-toggle > summary {
+      list-style: none;
+      cursor: pointer;
+      user-select: none;
+    }
+    details.summary-toggle > summary::-webkit-details-marker { display: none; }
+  </style>
+</head>
+
+<body>
+  <!-- Brand/Logo Section -->
+  <nav class="fixed top-0 w-full z-50 glass-card border-b border-slate-200 px-6 py-3">
+    <div class="w-full h-full flex justify-between items-center">
+      <div class="flex items-center gap-2">
+        <div class="w-7 h-7 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center shadow-md">
+          <span class="text-white font-bold text-base">C</span>
+        </div>
+        <span class="text-slate-800 font-bold text-base tracking-tight">
+          CIT <span class="text-slate-500 font-normal">Intelligence Architect</span>
+        </span>
+      </div>
+      <a href="#" class="hidden md:block text-xs text-slate-500 hover:text-blue-600 transition-colors">학부모 가이드 v1.0</a>
+    </div>
+  </nav>
+
+  <!-- Canvas Background -->
+  <div id="canvas-container">
+    <canvas id="networkCanvas"></canvas>
+  </div>
+
+  <!-- Main Content -->
+  <main class="relative pt-20 pb-16">
+    <!-- Hero Section -->
+    <header class="container mx-auto px-6 mb-10 text-center">
+      <span class="inline-block py-0.5 px-2 rounded-full bg-blue-50 text-blue-600 text-[10px] font-bold tracking-widest mb-4 border border-blue-100">
+        FUTURE EDUCATION
+      </span>
+      <h1 class="text-3xl md:text-5xl font-extrabold mb-4 tracking-tight text-slate-900 leading-tight">
+        미래를 준비하는 학부모를 위한 <br class="hidden md:block" />
+        <span class="gradient-text">커리큘럼 인사이트</span>
+      </h1>
+      <p class="text-sm md:text-base text-slate-500 max-w-2xl mx-auto leading-relaxed">
+        AI·프로그래밍은 ‘코딩 기술’이 아니라, 아이가 세상을 이해하고 문제를 풀어가는
+        <span class="text-slate-800 font-semibold">사고 프레임</span>을 만듭니다.
+      </p>
+    </header>
+
+    <!-- Tabs (clearly visible) -->
+    <section class="container mx-auto px-6 mb-10">
+      <div class="max-w-5xl mx-auto">
+        <div class="glass-card rounded-2xl p-2 flex gap-2 justify-center">
+          <button id="tabbtn-why"
+                  class="tab-btn px-4 py-2 rounded-xl text-sm font-extrabold w-1/2 md:w-auto md:min-w-[240px] transition"
+                  data-tab="tab-why" aria-selected="true" role="tab">
+            왜 배우는가
+          </button>
+          <button id="tabbtn-what"
+                  class="tab-btn px-4 py-2 rounded-xl text-sm font-extrabold w-1/2 md:w-auto md:min-w-[240px] transition"
+                  data-tab="tab-what" aria-selected="false" role="tab">
+            무엇을 어떻게 배우는가
+          </button>
+        </div>
+        <p class="text-center text-[11px] text-slate-500 mt-3">
+          탭을 전환하여 “교육 철학”과 “학습 설계”를 빠르게 확인할 수 있습니다.
+        </p>
+      </div>
+    </section>
+
+    <!-- Intro Cards -->
+    <section class="container mx-auto px-6 mb-14">
+      <div class="grid md:grid-cols-3 gap-4 max-w-6xl mx-auto">
+        <div class="glass-card p-5 rounded-xl text-center hover:-translate-y-1 transition-transform duration-300 group">
+          <div class="bg-white border border-slate-100 w-10 h-10 mx-auto rounded-xl flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors shadow-sm">
+            <i data-lucide="target" class="text-slate-400 group-hover:text-blue-500 w-5 h-5 transition-colors"></i>
+          </div>
+          <h3 class="text-base font-bold text-slate-800 mb-1">교육 목표</h3>
+          <p class="text-xs text-slate-500 leading-relaxed">스스로 문제를 정의하고<br>해결하는 자립심을 기릅니다.</p>
+        </div>
+
+        <div class="glass-card p-5 rounded-xl text-center hover:-translate-y-1 transition-transform duration-300 group">
+          <div class="bg-white border border-slate-100 w-10 h-10 mx-auto rounded-xl flex items-center justify-center mb-3 group-hover:bg-purple-50 transition-colors shadow-sm">
+            <i data-lucide="brain-circuit" class="text-slate-400 group-hover:text-purple-500 w-5 h-5 transition-colors"></i>
+          </div>
+          <h3 class="text-base font-bold text-slate-800 mb-1">사고력 확장</h3>
+          <p class="text-xs text-slate-500 leading-relaxed">복잡한 현상을 구조화하고<br>논리적으로 분석합니다.</p>
+        </div>
+
+        <div class="glass-card p-5 rounded-xl text-center hover:-translate-y-1 transition-transform duration-300 group">
+          <div class="bg-white border border-slate-100 w-10 h-10 mx-auto rounded-xl flex items-center justify-center mb-3 group-hover:bg-green-50 transition-colors shadow-sm">
+            <i data-lucide="globe" class="text-slate-400 group-hover:text-green-500 w-5 h-5 transition-colors"></i>
+          </div>
+          <h3 class="text-base font-bold text-slate-800 mb-1">실생활 연결</h3>
+          <p class="text-xs text-slate-500 leading-relaxed">디지털 세상의 원리를<br>실제 삶에 적용합니다.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 1: WHY (default) -->
+    <div id="tab-why" class="tab-panel is-active" role="tabpanel" aria-labelledby="tabbtn-why">
+      <div class="space-y-20 container mx-auto px-6">
+
+        <!-- Insight 01 -->
+        <section id="section1" class="max-w-5xl mx-auto scroll-mt-20">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="h-8 w-1 bg-blue-600 rounded-full shadow-[0_0_10px_rgba(37,99,235,0.3)]"></div>
+            <div>
+              <span class="text-blue-600 font-bold text-xs tracking-wider uppercase">Insight 01</span>
+              <h2 class="text-2xl md:text-3xl font-bold text-slate-900 leading-none mt-0.5">논리적 사고력</h2>
+            </div>
+          </div>
+
+          <!-- Mobile summary toggle -->
+          <details class="summary-toggle glass-card rounded-2xl p-4 mb-4 md:hidden">
+            <summary class="flex items-center justify-between text-sm font-extrabold text-slate-800">
+              <span class="flex items-center gap-2">
+                <i data-lucide="sparkles" class="w-4 h-4 text-blue-600"></i>
+                요약 보기 (접기/펼치기)
+              </span>
+              <i data-lucide="chevron-down" class="w-4 h-4 text-slate-500"></i>
+            </summary>
+            <ul class="mt-3 space-y-2 text-xs text-slate-600 leading-relaxed">
+              <li class="flex gap-2"><span class="mt-0.5 w-1.5 h-1.5 rounded-full bg-blue-600"></span>복잡한 문제를 “작게 나누는” 습관을 만듭니다.</li>
+              <li class="flex gap-2"><span class="mt-0.5 w-1.5 h-1.5 rounded-full bg-blue-600"></span>순서·조건·반복의 구조로 해결 과정을 설계합니다.</li>
+              <li class="flex gap-2"><span class="mt-0.5 w-1.5 h-1.5 rounded-full bg-blue-600"></span>결과보다 “과정의 논리”를 설명하는 능력이 핵심입니다.</li>
+            </ul>
+          </details>
+
+          <div class="glass-card rounded-2xl p-6 md:p-8 relative overflow-hidden">
+            <div class="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-5"></div>
+
+            <p class="text-base text-slate-600 mb-8 text-center max-w-2xl mx-auto relative">
+              "어려운 문제를 만났을 때, 당황하지 않고
+              <span class="text-slate-900 font-bold underline decoration-blue-500 underline-offset-4">작게 나누어 해결</span>하는 힘입니다."
+            </p>
+
+            <div class="flex flex-col md:flex-row items-stretch justify-between gap-4 relative">
+              <div class="flex-1 relative group step-arrow md:pr-8 md:pb-0 pb-6">
+                <div class="bg-white p-4 rounded-lg border border-slate-200 h-full hover:border-blue-400 transition-all shadow-sm">
+                  <div class="flex items-center justify-between mb-2">
+                    <i data-lucide="package-search" class="w-6 h-6 text-slate-400"></i>
+                    <span class="text-[10px] font-bold bg-slate-100 text-slate-600 px-1.5 py-0.5 rounded">Problem</span>
+                  </div>
+                  <h4 class="font-bold text-slate-800 text-base mb-1">어려운 문제</h4>
+                  <p class="text-xs text-slate-500">해결하기 어렵고 모호해 보이는 복잡한 과제</p>
+                </div>
+              </div>
+
+              <div class="flex-1 relative group step-arrow md:pr-8 md:pb-0 pb-6">
+                <div class="bg-white p-4 rounded-lg border border-slate-200 h-full hover:border-blue-400 transition-all shadow-sm">
+                  <div class="flex items-center justify-between mb-2">
+                    <i data-lucide="layers" class="w-6 h-6 text-blue-500"></i>
+                    <span class="text-[10px] font-bold bg-blue-50 text-blue-600 px-1.5 py-0.5 rounded">Decomposition</span>
+                  </div>
+                  <h4 class="font-bold text-slate-800 text-base mb-1">분해 (쪼개기)</h4>
+                  <p class="text-xs text-slate-500">해결 가능한 작은 단위로 문제를 나눕니다.</p>
+                </div>
+              </div>
+
+              <div class="flex-1">
+                <div class="bg-blue-50 p-4 rounded-lg border border-blue-200 h-full shadow-inner">
+                  <div class="flex items-center justify-between mb-2">
+                    <i data-lucide="check-circle-2" class="w-6 h-6 text-blue-600"></i>
+                    <span class="text-[10px] font-bold bg-blue-600 text-white px-1.5 py-0.5 rounded">Solution</span>
+                  </div>
+                  <h4 class="font-bold text-blue-900 text-base mb-1">순차적 해결</h4>
+                  <p class="text-xs text-blue-800/80">알고리즘을 통해 논리적으로 정답을 도출합니다.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Insight 02 -->
+        <section id="section2" class="max-w-5xl mx-auto scroll-mt-20">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="h-8 w-1 bg-purple-600 rounded-full shadow-[0_0_10px_rgba(147,51,234,0.3)]"></div>
+            <div>
+              <span class="text-purple-600 font-bold text-xs tracking-wider uppercase">Insight 02</span>
+              <h2 class="text-2xl md:text-3xl font-bold text-slate-900 leading-none mt-0.5">데이터 리터러시</h2>
+            </div>
+          </div>
+
+          <details class="summary-toggle glass-card rounded-2xl p-4 mb-4 md:hidden">
+            <summary class="flex items-center justify-between text-sm font-extrabold text-slate-800">
+              <span class="flex items-center gap-2">
+                <i data-lucide="database" class="w-4 h-4 text-purple-700"></i>
+                요약 보기 (접기/펼치기)
+              </span>
+              <i data-lucide="chevron-down" class="w-4 h-4 text-slate-500"></i>
+            </summary>
+            <ul class="mt-3 space-y-2 text-xs text-slate-600 leading-relaxed">
+              <li class="flex gap-2"><span class="mt-0.5 w-1.5 h-1.5 rounded-full bg-purple-600"></span>세상의 정보는 모두 데이터이며, AI 품질은 데이터에 좌우됩니다.</li>
+              <li class="flex gap-2"><span class="mt-0.5 w-1.5 h-1.5 rounded-full bg-purple-600"></span>편향/오류 데이터를 구분하고 검증하는 습관이 필요합니다.</li>
+              <li class="flex gap-2"><span class="mt-0.5 w-1.5 h-1.5 rounded-full bg-purple-600"></span>“AI 답변 비판 + 개선”은 데이터 이해에서 시작합니다.</li>
+            </ul>
+          </details>
+
+          <div class="grid md:grid-cols-2 gap-5">
+            <div class="glass-card rounded-2xl p-6">
+              <h3 class="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">
+                <i data-lucide="database" class="w-4 h-4 text-purple-500"></i>
+                세상의 모든 정보 = 데이터
+              </h3>
+              <div class="grid grid-cols-2 gap-3">
+                <div class="bg-white p-3 rounded-lg text-center border border-slate-100 hover:bg-purple-50 transition-colors shadow-sm">
+                  <i data-lucide="binary" class="w-6 h-6 text-purple-500 mx-auto mb-2"></i>
+                  <span class="text-xs font-medium text-slate-600">숫자 & 텍스트</span>
+                </div>
+                <div class="bg-white p-3 rounded-lg text-center border border-slate-100 hover:bg-purple-50 transition-colors shadow-sm">
+                  <i data-lucide="image" class="w-6 h-6 text-purple-500 mx-auto mb-2"></i>
+                  <span class="text-xs font-medium text-slate-600">이미지 & 영상</span>
+                </div>
+                <div class="bg-white p-3 rounded-lg text-center border border-slate-100 hover:bg-purple-50 transition-colors shadow-sm">
+                  <i data-lucide="mic" class="w-6 h-6 text-purple-500 mx-auto mb-2"></i>
+                  <span class="text-xs font-medium text-slate-600">음성 & 소리</span>
+                </div>
+                <div class="bg-white p-3 rounded-lg text-center border border-slate-100 hover:bg-purple-50 transition-colors shadow-sm">
+                  <i data-lucide="table-2" class="w-6 h-6 text-purple-500 mx-auto mb-2"></i>
+                  <span class="text-xs font-medium text-slate-600">구조화된 표</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="glass-card rounded-2xl p-6 border-t-4 border-t-purple-500">
+              <h3 class="text-lg font-bold text-slate-800 mb-2 flex items-center gap-2">
+                <i data-lucide="scale" class="w-4 h-4 text-purple-500"></i>
+                데이터 = AI의 품질
+              </h3>
+              <p class="text-xs text-slate-500 mb-6 leading-relaxed">
+                AI는 데이터가 가르친 대로 배웁니다.<br>
+                <span class="text-purple-600 font-semibold">AI, 데이터, 컴퓨터를 깊이 이해해야</span><br>
+                AI의 답을 비판하고 더 낫게 개선할 수 있습니다.
+              </p>
+
+              <div class="space-y-4">
+                <div class="relative pl-3 border-l-2 border-red-400">
+                  <div class="flex items-center justify-between mb-1">
+                    <span class="text-xs font-bold text-red-500 flex items-center gap-1">
+                      <i data-lucide="alert-triangle" class="w-3 h-3"></i> 편향된 데이터
+                    </span>
+                    <span class="text-[10px] text-red-500/70">Risk</span>
+                  </div>
+                  <div class="h-1.5 w-full bg-slate-200 rounded-full overflow-hidden">
+                    <div class="h-full w-2/3 bg-red-400 rounded-full"></div>
+                  </div>
+                  <p class="text-[10px] text-slate-500 mt-1">왜곡된 AI 결과물 도출</p>
+                </div>
+
+                <div class="relative pl-3 border-l-2 border-green-500">
+                  <div class="flex items-center justify-between mb-1">
+                    <span class="text-xs font-bold text-green-600 flex items-center gap-1">
+                      <i data-lucide="shield-check" class="w-3 h-3"></i> 균형 잡힌 데이터
+                    </span>
+                    <span class="text-[10px] text-green-600/70">Goal</span>
+                  </div>
+                  <div class="h-1.5 w-full bg-slate-200 rounded-full overflow-hidden relative">
+                    <div class="h-full w-full bg-gradient-to-r from-green-500 to-green-400 rounded-full"></div>
+                  </div>
+                  <p class="text-[10px] mt-1 font-medium text-green-700">신뢰할 수 있는 AI 탄생</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Insight 03 -->
+        <section id="section3" class="max-w-5xl mx-auto scroll-mt-20">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="h-8 w-1 bg-green-600 rounded-full shadow-[0_0_10px_rgba(34,197,94,0.3)]"></div>
+            <div>
+              <span class="text-green-600 font-bold text-xs tracking-wider uppercase">Insight 03</span>
+              <h2 class="text-2xl md:text-3xl font-bold text-slate-900 leading-none mt-0.5">인간과 AI의 역할</h2>
+            </div>
+          </div>
+
+          <details class="summary-toggle glass-card rounded-2xl p-4 mb-4 md:hidden">
+            <summary class="flex items-center justify-between text-sm font-extrabold text-slate-800">
+              <span class="flex items-center gap-2">
+                <i data-lucide="cpu" class="w-4 h-4 text-green-700"></i>
+                요약 보기 (접기/펼치기)
+              </span>
+              <i data-lucide="chevron-down" class="w-4 h-4 text-slate-500"></i>
+            </summary>
+            <ul class="mt-3 space-y-2 text-xs text-slate-600 leading-relaxed">
+              <li class="flex gap-2"><span class="mt-0.5 w-1.5 h-1.5 rounded-full bg-green-600"></span>AI는 “HOW(구현)”에 강합니다: 속도, 반복, 최적화.</li>
+              <li class="flex gap-2"><span class="mt-0.5 w-1.5 h-1.5 rounded-full bg-green-600"></span>아이의 핵심은 “WHAT/WHY”: 목표, 의미, 책임, 윤리.</li>
+              <li class="flex gap-2"><span class="mt-0.5 w-1.5 h-1.5 rounded-full bg-green-600"></span>AI가 강해질수록 인간은 방향과 기준을 더 잘 세워야 합니다.</li>
+            </ul>
+          </details>
+
+          <div class="glass-card rounded-2xl p-1 overflow-hidden shadow-lg">
+            <div class="grid md:grid-cols-2">
+              <div class="p-6 md:p-8 bg-slate-50">
+                <div class="flex items-center justify-between mb-6">
+                  <h3 class="text-xl font-bold text-slate-700">AI의 영역</h3>
+                  <i data-lucide="cpu" class="w-8 h-8 text-slate-400"></i>
+                </div>
+                <div class="mb-6">
+                  <span class="text-[10px] font-bold text-slate-500 tracking-wider uppercase border border-slate-300 px-1.5 py-0.5 rounded bg-white">Capability</span>
+                  <p class="text-3xl font-extrabold text-slate-800 mt-2">HOW</p>
+                  <p class="text-xs text-slate-500 mt-1">"어떻게 구현할 것인가?"</p>
+                </div>
+                <ul class="space-y-3">
+                  <li class="flex items-center text-slate-600 gap-2">
+                    <div class="w-6 h-6 rounded-full bg-white border border-slate-200 flex items-center justify-center">
+                      <i data-lucide="zap" class="w-3 h-3 text-slate-500"></i>
+                    </div>
+                    <span class="text-sm">압도적인 연산 속도</span>
+                  </li>
+                  <li class="flex items-center text-slate-600 gap-2">
+                    <div class="w-6 h-6 rounded-full bg-white border border-slate-200 flex items-center justify-center">
+                      <i data-lucide="repeat" class="w-3 h-3 text-slate-500"></i>
+                    </div>
+                    <span class="text-sm">무한 반복과 최적화</span>
+                  </li>
+                  <li class="flex items-center text-slate-600 gap-2">
+                    <div class="w-6 h-6 rounded-full bg-white border border-slate-200 flex items-center justify-center">
+                      <i data-lucide="sparkles" class="w-3 h-3 text-slate-500"></i>
+                    </div>
+                    <span class="text-sm">패턴 인식과 추천</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="p-6 md:p-8 bg-gradient-to-br from-green-50 to-emerald-50 relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-48 h-48 bg-green-200/25 rounded-full blur-3xl -mr-16 -mt-16"></div>
+
+                <div class="flex items-center justify-between mb-6 relative z-10">
+                  <h3 class="text-xl font-bold text-green-800">우리 아이의 영역</h3>
+                  <i data-lucide="user-check" class="w-8 h-8 text-green-600"></i>
+                </div>
+
+                <div class="mb-6 relative z-10">
+                  <span class="text-[10px] font-bold text-green-700 tracking-wider uppercase border border-green-300 px-1.5 py-0.5 rounded bg-white">Core Value</span>
+                  <div class="flex gap-4 mt-2">
+                    <div>
+                      <p class="text-3xl font-extrabold text-slate-900">WHAT</p>
+                      <p class="text-xs text-green-700/80 mt-1">"무엇을 할 것인가?"</p>
+                    </div>
+                    <div class="w-px bg-green-300/70 h-10 mt-2"></div>
+                    <div>
+                      <p class="text-3xl font-extrabold text-slate-900">WHY</p>
+                      <p class="text-xs text-green-700/80 mt-1">"왜 중요한가?"</p>
+                    </div>
+                  </div>
+                </div>
+
+                <ul class="space-y-3 relative z-10">
+                  <li class="flex items-center text-slate-700 gap-2">
+                    <div class="w-6 h-6 rounded-full bg-white border border-green-200 flex items-center justify-center">
+                      <i data-lucide="heart-handshake" class="w-3 h-3 text-green-600"></i>
+                    </div>
+                    <span class="text-sm">가치 판단과 윤리</span>
+                  </li>
+                  <li class="flex items-center text-slate-700 gap-2">
+                    <div class="w-6 h-6 rounded-full bg-white border border-green-200 flex items-center justify-center">
+                      <i data-lucide="lightbulb" class="w-3 h-3 text-green-600"></i>
+                    </div>
+                    <span class="text-sm">새로운 문제의 정의</span>
+                  </li>
+                  <li class="flex items-center text-slate-700 gap-2">
+                    <div class="w-6 h-6 rounded-full bg-white border border-green-200 flex items-center justify-center">
+                      <i data-lucide="flag" class="w-3 h-3 text-green-600"></i>
+                    </div>
+                    <span class="text-sm">목표 설정과 우선순위</span>
+                  </li>
+                  <li class="flex items-center text-slate-700 gap-2">
+                    <div class="w-6 h-6 rounded-full bg-white border border-green-200 flex items-center justify-center">
+                      <i data-lucide="shield" class="w-3 h-3 text-green-600"></i>
+                    </div>
+                    <span class="text-sm">책임과 품질 기준</span>
+                  </li>
+                </ul>
+
+                <div class="mt-6 pt-4 border-t border-green-200/70 relative z-10">
+                  <p class="text-xs text-slate-600 leading-relaxed">
+                    결론: AI가 ‘실행’을 잘할수록, 인간은 <span class="font-semibold text-slate-800">목표·의미·책임</span>을 더 잘해야 합니다.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Insight 04 -->
+        <section id="section4" class="max-w-5xl mx-auto scroll-mt-20">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="h-8 w-1 bg-orange-500 rounded-full shadow-[0_0_10px_rgba(249,115,22,0.25)]"></div>
+            <div>
+              <span class="text-orange-600 font-bold text-xs tracking-wider uppercase">Insight 04</span>
+              <h2 class="text-2xl md:text-3xl font-bold text-slate-900 leading-none mt-0.5">인내심과 디버깅</h2>
+            </div>
+          </div>
+
+          <details class="summary-toggle glass-card rounded-2xl p-4 mb-4 md:hidden">
+            <summary class="flex items-center justify-between text-sm font-extrabold text-slate-800">
+              <span class="flex items-center gap-2">
+                <i data-lucide="bug" class="w-4 h-4 text-orange-600"></i>
+                요약 보기 (접기/펼치기)
+              </span>
+              <i data-lucide="chevron-down" class="w-4 h-4 text-slate-500"></i>
+            </summary>
+            <ul class="mt-3 space-y-2 text-xs text-slate-600 leading-relaxed">
+              <li class="flex gap-2"><span class="mt-0.5 w-1.5 h-1.5 rounded-full bg-orange-500"></span>오류는 실패가 아니라 “정상적인 학습 과정”입니다.</li>
+              <li class="flex gap-2"><span class="mt-0.5 w-1.5 h-1.5 rounded-full bg-orange-500"></span>원인 분석 → 수정 → 재검증의 루프가 실력을 만듭니다.</li>
+              <li class="flex gap-2"><span class="mt-0.5 w-1.5 h-1.5 rounded-full bg-orange-500"></span>끈기(Grit)·성장마인드셋이 실제 과제로 강화됩니다.</li>
+            </ul>
+          </details>
+
+          <div class="grid md:grid-cols-2 gap-5 items-stretch">
+            <div class="glass-card p-6 rounded-2xl text-center relative overflow-hidden">
+              <div class="absolute inset-0 bg-orange-500/5"></div>
+              <h3 class="text-lg font-bold text-slate-800 mb-6 relative">디버깅 사이클 (The Debugging Cycle)</h3>
+              <div class="flex justify-center items-center gap-3 text-xs md:text-sm relative">
+                <div class="flex flex-col items-center">
+                  <div class="w-12 h-12 bg-red-50 rounded-2xl flex items-center justify-center mb-2 border border-red-200 shadow-sm">
+                    <i data-lucide="bug" class="w-6 h-6 text-red-500"></i>
+                  </div>
+                  <span class="text-slate-600">오류 발견</span>
+                </div>
+                <i data-lucide="arrow-right" class="text-slate-400"></i>
+                <div class="flex flex-col items-center">
+                  <div class="w-12 h-12 bg-blue-50 rounded-2xl flex items-center justify-center mb-2 border border-blue-200 shadow-sm">
+                    <i data-lucide="search" class="w-6 h-6 text-blue-600"></i>
+                  </div>
+                  <span class="text-slate-600">원인 분석</span>
+                </div>
+                <i data-lucide="arrow-right" class="text-slate-400"></i>
+                <div class="flex flex-col items-center">
+                  <div class="w-12 h-12 bg-green-50 rounded-2xl flex items-center justify-center mb-2 border border-green-200 shadow-sm">
+                    <i data-lucide="check" class="w-6 h-6 text-green-600"></i>
+                  </div>
+                  <span class="text-slate-600">수정 & 성장</span>
+                </div>
+              </div>
+              <p class="mt-6 text-xs text-slate-500 relative">"오류는 실패가 아니라, 학습의 정상적인 과정입니다."</p>
+            </div>
+
+            <div class="space-y-4">
+              <div class="glass-card p-6 rounded-2xl border-l-4 border-orange-500">
+                <div class="flex items-center gap-2 mb-2">
+                  <i data-lucide="mountain-snow" class="text-orange-500 w-5 h-5"></i>
+                  <h4 class="font-bold text-slate-800">Grit (끈기)</h4>
+                </div>
+                <p class="text-sm text-slate-600 leading-relaxed">
+                  반복적 문제 해결 경험이 ‘포기하지 않는 학습 습관’을 만듭니다.
+                  <span class="block text-xs text-slate-500 mt-1">- Angela Duckworth, UPenn</span>
+                </p>
+              </div>
+
+              <div class="glass-card p-6 rounded-2xl border-l-4 border-emerald-500">
+                <div class="flex items-center gap-2 mb-2">
+                  <i data-lucide="sprout" class="text-emerald-600 w-5 h-5"></i>
+                  <h4 class="font-bold text-slate-800">Growth Mindset (성장 마인드셋)</h4>
+                </div>
+                <p class="text-sm text-slate-600 leading-relaxed">
+                  ‘아직 못함’을 ‘아직 학습 중’으로 바꾸는 관점이 성취를 키웁니다.
+                  <span class="block text-xs text-slate-500 mt-1">- Carol Dweck, Stanford</span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Insight 05 -->
+        <section id="section5" class="max-w-5xl mx-auto scroll-mt-20">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="h-8 w-1 bg-indigo-600 rounded-full shadow-[0_0_10px_rgba(79,70,229,0.25)]"></div>
+            <div>
+              <span class="text-indigo-600 font-bold text-xs tracking-wider uppercase">Insight 05</span>
+              <h2 class="text-2xl md:text-3xl font-bold text-slate-900 leading-none mt-0.5">확률적 사고</h2>
+            </div>
+          </div>
+
+          <details class="summary-toggle glass-card rounded-2xl p-4 mb-4 md:hidden">
+            <summary class="flex items-center justify-between text-sm font-extrabold text-slate-800">
+              <span class="flex items-center gap-2">
+                <i data-lucide="bar-chart-2" class="w-4 h-4 text-indigo-600"></i>
+                요약 보기 (접기/펼치기)
+              </span>
+              <i data-lucide="chevron-down" class="w-4 h-4 text-slate-500"></i>
+            </summary>
+            <ul class="mt-3 space-y-2 text-xs text-slate-600 leading-relaxed">
+              <li class="flex gap-2"><span class="mt-0.5 w-1.5 h-1.5 rounded-full bg-indigo-600"></span>정답 하나가 아니라 “가능성(확률)”로 판단하는 힘을 기릅니다.</li>
+              <li class="flex gap-2"><span class="mt-0.5 w-1.5 h-1.5 rounded-full bg-indigo-600"></span>데이터(객관) + 가치(인간 판단)를 함께 훈련합니다.</li>
+              <li class="flex gap-2"><span class="mt-0.5 w-1.5 h-1.5 rounded-full bg-indigo-600"></span>불확실성 시대의 의사결정 기본기입니다.</li>
+            </ul>
+          </details>
+
+          <div class="glass-card rounded-2xl p-6">
+            <div class="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-10">
+              <div class="text-center w-full md:w-1/3 p-4 bg-white rounded-xl border border-slate-200 shadow-sm">
+                <i data-lucide="bar-chart-2" class="w-7 h-7 text-indigo-600 mx-auto mb-3"></i>
+                <h4 class="font-bold text-slate-800 mb-1">데이터 (Data)</h4>
+                <p class="text-xs text-slate-500">"성공 확률 70%, 실패 30%"</p>
+                <div class="mt-2 text-[10px] bg-slate-100 rounded px-2 py-1 inline-block text-slate-600">객관적 지표</div>
+              </div>
+
+              <div class="text-slate-400 text-2xl font-bold">+</div>
+
+              <div class="text-center w-full md:w-1/3 p-4 bg-white rounded-xl border border-slate-200 shadow-sm">
+                <i data-lucide="heart" class="w-7 h-7 text-pink-500 mx-auto mb-3"></i>
+                <h4 class="font-bold text-slate-800 mb-1">가치 (Value)</h4>
+                <p class="text-xs text-slate-500">"무엇이 더 바람직한가?"</p>
+                <div class="mt-2 text-[10px] bg-slate-100 rounded px-2 py-1 inline-block text-slate-600">인간적 판단</div>
+              </div>
+
+              <div class="text-slate-400 text-2xl font-bold">=</div>
+
+              <div class="text-center w-full md:w-1/3 p-4 bg-gradient-to-br from-indigo-50 to-pink-50 border border-slate-200 rounded-xl shadow-sm">
+                <i data-lucide="gavel" class="w-7 h-7 text-slate-800 mx-auto mb-3"></i>
+                <h4 class="font-bold text-slate-900 mb-1">현명한 결정</h4>
+                <p class="text-xs text-slate-600">데이터와 가치의 조화</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Synergy -->
+        <section id="synergy" class="max-w-5xl mx-auto">
+          <div class="synergy-gradient rounded-3xl p-7 md:p-10 relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl -mr-20 -mt-20"></div>
+            <div class="absolute bottom-0 left-0 w-64 h-64 bg-purple-500/10 rounded-full blur-3xl -ml-20 -mb-20"></div>
+
+            <div class="relative z-10 text-center mb-10">
+              <span class="inline-block py-1 px-3 rounded-full bg-white/70 text-slate-700 text-[10px] font-bold tracking-widest mb-3 border border-slate-200">THE FUTURE FORMULA</span>
+              <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4">AI × Human Synergy</h2>
+              <div class="text-base md:text-xl font-light text-slate-700 bg-white/70 inline-block px-5 py-3 rounded-2xl backdrop-blur border border-slate-200">
+                ( <span class="font-extrabold text-blue-600">인간지능</span> × <span class="font-extrabold text-pink-600">창의성</span> )
+                <span class="text-slate-400 mx-2">×</span>
+                <span class="font-extrabold text-purple-600">AI</span>
+                <span class="text-slate-400 mx-2">=</span>
+                <span class="font-extrabold text-slate-900">대체 불가능한 경쟁력</span>
+              </div>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-4 relative z-10">
+              <div class="glass-card p-6 rounded-2xl border border-slate-200 glow-hover transition-all">
+                <div class="bg-blue-50 w-10 h-10 rounded-xl flex items-center justify-center mb-4 border border-blue-100">
+                  <span class="text-blue-600 font-extrabold text-base">1</span>
+                </div>
+                <h3 class="text-base font-extrabold text-slate-900 mb-2 flex items-center gap-2">
+                  증폭 (Leverage) <i data-lucide="maximize-2" class="w-4 h-4 text-blue-600"></i>
+                </h3>
+                <p class="text-sm text-slate-600">반복 업무는 AI에게.<br>정보 수집·초안 작성 속도를 끌어올립니다.</p>
+              </div>
+
+              <div class="glass-card p-6 rounded-2xl border border-slate-200 glow-hover transition-all">
+                <div class="bg-pink-50 w-10 h-10 rounded-xl flex items-center justify-center mb-4 border border-pink-100">
+                  <span class="text-pink-600 font-extrabold text-base">2</span>
+                </div>
+                <h3 class="text-base font-extrabold text-slate-900 mb-2 flex items-center gap-2">
+                  차별화 (Differentiate) <i data-lucide="palette" class="w-4 h-4 text-pink-600"></i>
+                </h3>
+                <p class="text-sm text-slate-600">AI의 평균적 답 위에<br>관점·맥락·창의성을 더해 고유하게 만듭니다.</p>
+              </div>
+
+              <div class="glass-card p-6 rounded-2xl border border-slate-200 glow-hover transition-all">
+                <div class="bg-purple-50 w-10 h-10 rounded-xl flex items-center justify-center mb-4 border border-purple-100">
+                  <span class="text-purple-700 font-extrabold text-base">3</span>
+                </div>
+                <h3 class="text-base font-extrabold text-slate-900 mb-2 flex items-center gap-2">
+                  결정 (Direct) <i data-lucide="compass" class="w-4 h-4 text-purple-700"></i>
+                </h3>
+                <p class="text-sm text-slate-600">무엇이 옳은지, 무엇이 중요한지는<br>인간이 기술을 지휘하며 결정합니다.</p>
+              </div>
+            </div>
+
+            <div class="mt-8 text-center relative z-10">
+              <p class="text-slate-700 font-medium">
+                "미래는 AI를 거부하는 자가 아닌,
+                <span class="text-slate-900 font-extrabold underline decoration-blue-500 underline-offset-4">AI를 도구로 지휘하는 자</span>의 것입니다."
+              </p>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </div>
+
+    <!-- TAB 2: WHAT/HOW -->
+    <div id="tab-what" class="tab-panel" role="tabpanel" aria-labelledby="tabbtn-what">
+      <div class="space-y-20 container mx-auto px-6">
+
+        <section class="max-w-5xl mx-auto">
+          <div class="glass-card rounded-3xl p-7 md:p-10">
+            <div class="flex items-start justify-between gap-4 mb-6">
+              <div>
+                <span class="inline-flex items-center gap-2 text-[10px] font-extrabold tracking-widest uppercase text-slate-600">
+                  <span class="w-1.5 h-1.5 rounded-full bg-blue-600"></span>
+                  LEARNING DESIGN
+                </span>
+                <h2 class="text-2xl md:text-3xl font-extrabold text-slate-900 mt-2">무엇을 어떻게 배우는가</h2>
+                <p class="text-sm text-slate-600 mt-3">
+                  핵심은 ‘툴’이 아니라, <span class="font-semibold text-slate-800">사고의 순서</span>입니다.
+                </p>
+              </div>
+              <div class="hidden md:flex w-10 h-10 rounded-2xl bg-white/80 border border-slate-200 items-center justify-center">
+                <i data-lucide="workflow" class="w-5 h-5 text-slate-700"></i>
+              </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-4">
+              <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+                <p class="text-xs font-extrabold text-blue-600">1) 개념</p>
+                <p class="text-sm font-extrabold text-slate-900 mt-1">규칙을 이해합니다</p>
+                <p class="text-xs text-slate-600 mt-2">변수·조건·반복·함수처럼 ‘세상을 설명하는 규칙’을 학습합니다.</p>
+              </div>
+
+              <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+                <p class="text-xs font-extrabold text-purple-700">2) 실습</p>
+                <p class="text-sm font-extrabold text-slate-900 mt-1">작게 만들어봅니다</p>
+                <p class="text-xs text-slate-600 mt-2">짧은 과제로 즉시 적용하고, 피드백으로 수정합니다.</p>
+              </div>
+
+              <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+                <p class="text-xs font-extrabold text-green-700">3) 프로젝트</p>
+                <p class="text-sm font-extrabold text-slate-900 mt-1">문제를 정의합니다</p>
+                <p class="text-xs text-slate-600 mt-2">“무엇을 만들 것인가”를 스스로 정하고 요구사항을 정리합니다.</p>
+              </div>
+
+              <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+                <p class="text-xs font-extrabold text-slate-700">4) 산출물</p>
+                <p class="text-sm font-extrabold text-slate-900 mt-1">설명하고 개선합니다</p>
+                <p class="text-xs text-slate-600 mt-2">결과물을 문장으로 설명하고, 다음 버전을 설계합니다.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="max-w-5xl mx-auto">
+          <div class="glass-card rounded-3xl p-7 md:p-10">
+            <div class="flex items-center justify-between gap-3 mb-6">
+              <div>
+                <h3 class="text-xl md:text-2xl font-extrabold text-slate-900">학생이 실제로 하는 일</h3>
+                <p class="text-sm text-slate-600 mt-2">
+                  매 회차 <span class="font-semibold text-slate-800">코드·데이터·설명</span>이 남도록 설계합니다.
+                </p>
+              </div>
+              <div class="hidden md:flex w-10 h-10 rounded-2xl bg-slate-100 border border-slate-200 items-center justify-center">
+                <i data-lucide="clipboard-check" class="w-5 h-5 text-slate-700"></i>
+              </div>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-4">
+              <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+                <div class="w-10 h-10 rounded-2xl bg-blue-50 border border-blue-100 flex items-center justify-center mb-4">
+                  <i data-lucide="code" class="w-5 h-5 text-blue-600"></i>
+                </div>
+                <p class="text-sm font-extrabold text-slate-900">짧은 코드 작성</p>
+                <p class="text-xs text-slate-600 mt-2">핵심 문법을 ‘문제 해결’ 문장으로 바꿔서 씁니다.</p>
+              </div>
+
+              <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+                <div class="w-10 h-10 rounded-2xl bg-purple-50 border border-purple-100 flex items-center justify-center mb-4">
+                  <i data-lucide="database" class="w-5 h-5 text-purple-700"></i>
+                </div>
+                <p class="text-sm font-extrabold text-slate-900">데이터 다루기</p>
+                <p class="text-xs text-slate-600 mt-2">데이터를 읽고, 정리하고, 간단히 시각화합니다.</p>
+              </div>
+
+              <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+                <div class="w-10 h-10 rounded-2xl bg-green-50 border border-green-100 flex items-center justify-center mb-4">
+                  <i data-lucide="message-square-text" class="w-5 h-5 text-green-700"></i>
+                </div>
+                <p class="text-sm font-extrabold text-slate-900">설명 & 정리</p>
+                <p class="text-xs text-slate-600 mt-2">“왜 이렇게 했는가”를 문장으로 설명합니다.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="max-w-5xl mx-auto">
+          <div class="grid md:grid-cols-3 gap-4">
+            <div class="glass-card rounded-2xl p-6 border border-slate-200">
+              <div class="flex items-center gap-2 mb-2">
+                <i data-lucide="file-text" class="w-4 h-4 text-blue-600"></i>
+                <p class="text-sm font-extrabold text-slate-900">수업 리포트</p>
+              </div>
+              <p class="text-xs text-slate-600">무엇을 배웠고, 어디서 막혔고, 어떻게 해결했는지 기록합니다.</p>
+            </div>
+
+            <div class="glass-card rounded-2xl p-6 border border-slate-200">
+              <div class="flex items-center gap-2 mb-2">
+                <i data-lucide="folder-git-2" class="w-4 h-4 text-purple-700"></i>
+                <p class="text-sm font-extrabold text-slate-900">포트폴리오</p>
+              </div>
+              <p class="text-xs text-slate-600">작은 프로젝트 결과물이 누적되어 성장을 눈으로 확인합니다.</p>
+            </div>
+
+            <div class="glass-card rounded-2xl p-6 border border-slate-200">
+              <div class="flex items-center gap-2 mb-2">
+                <i data-lucide="handshake" class="w-4 h-4 text-green-700"></i>
+                <p class="text-sm font-extrabold text-slate-900">학부모 상담</p>
+              </div>
+              <p class="text-xs text-slate-600">아이의 강점·약점을 정리하여 다음 학습 방향을 제안합니다.</p>
+            </div>
+          </div>
+
+          <div class="mt-8 text-center">
+            <p class="text-xs text-slate-500">
+              이 탭은 커리큘럼의 ‘구조’를 설명하는 개요입니다. 실제 과정은 학년·경험·목표에 따라 세부 설계가 달라질 수 있습니다.
+            </p>
+          </div>
+        </section>
+
+      </div>
+    </div>
+
+    <footer class="text-center py-10 text-slate-500 text-xs border-t border-slate-200 mt-16">
+      <p>&copy; 2024 CIT Intelligence Architect. All rights reserved.</p>
+    </footer>
+  </main>
+
+  <script>
+    // Initialize Icons
+    lucide.createIcons();
+
+    // Tabs
+    (function () {
+      const btns = Array.from(document.querySelectorAll('button[data-tab]'));
+      const panels = {
+        'tab-why': document.getElementById('tab-why'),
+        'tab-what': document.getElementById('tab-what'),
+      };
+
+      function setTab(id) {
+        for (const b of btns) {
+          const active = b.dataset.tab === id;
+          b.setAttribute('aria-selected', active ? 'true' : 'false');
+        }
+        for (const key of Object.keys(panels)) {
+          const isActive = key === id;
+          panels[key].classList.toggle('is-active', isActive);
+        }
+        // Re-render icons (details/summary chevrons etc.)
+        lucide.createIcons();
+        // Optional: jump to top of content area on mobile
+        if (window.innerWidth < 768) {
+          // Check if we are actually switching to a new tab to avoid jumpiness
+          // but here we just scroll slightly to ensure visibility
+        }
+      }
+
+      btns.forEach((b) => b.addEventListener('click', () => setTab(b.dataset.tab)));
+    })();
+
+    // Canvas Animation (HiDPI + Reduced Motion + Throttled Mouse)
+    const canvas = document.getElementById('networkCanvas');
+    const ctx = canvas.getContext('2d');
+
+    let width = 0, height = 0, dpr = 1;
+    let particles = [];
+    let rafId = null;
+
+    const config = {
+      particleCount: 80,
+      connectionDistance: 150,
+      mouseDistance: 200,
+      speed: 0.55,
+      repelStrength: 2.0,
+      lineOpacity: 0.22,
+    };
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    let mouse = { x: null, y: null };
+    let mousePending = null;
+
+    window.addEventListener('mousemove', (e) => {
+      mousePending = { x: e.clientX, y: e.clientY };
+    }, { passive: true });
+
+    window.addEventListener('mouseleave', () => {
+      mouse.x = null;
+      mouse.y = null;
+    });
+
+    function applyMouse() {
+      if (mousePending) {
+        mouse.x = mousePending.x;
+        mouse.y = mousePending.y;
+        mousePending = null;
+      }
+    }
+
+    function resize() {
+      const cssW = window.innerWidth;
+      const cssH = window.innerHeight;
+
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      width = cssW;
+      height = cssH;
+
+      canvas.style.width = cssW + 'px';
+      canvas.style.height = cssH + 'px';
+      canvas.width = Math.floor(cssW * dpr);
+      canvas.height = Math.floor(cssH * dpr);
+
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+      initParticles();
+    }
+
+    class Particle {
+      constructor() {
+        this.x = Math.random() * width;
+        this.y = Math.random() * height;
+        this.vx = (Math.random() - 0.5) * config.speed;
+        this.vy = (Math.random() - 0.5) * config.speed;
+        this.size = Math.random() * 2 + 1;
+      }
+
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+
+        if (this.x < 0 || this.x > width) this.vx *= -1;
+        if (this.y < 0 || this.y > height) this.vy *= -1;
+
+        if (mouse.x != null) {
+          const dx = mouse.x - this.x;
+          const dy = mouse.y - this.y;
+          const dist2 = dx * dx + dy * dy;
+          const r = config.mouseDistance;
+
+          if (dist2 < r * r) {
+            const dist = Math.sqrt(dist2) || 0.0001;
+            const force = (r - dist) / r;
+            const fx = (dx / dist) * force * config.repelStrength;
+            const fy = (dy / dist) * force * config.repelStrength;
+            this.x -= fx;
+            this.y -= fy;
+          }
+        }
+      }
+
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(100, 116, 139, 0.35)';
+        ctx.fill();
+      }
+    }
+
+    function initParticles() {
+      particles = [];
+      const count = width < 768 ? 40 : config.particleCount;
+      for (let i = 0; i < count; i++) particles.push(new Particle());
+    }
+
+    function drawConnections() {
+      const maxD = config.connectionDistance;
+      const maxD2 = maxD * maxD;
+
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const d2 = dx * dx + dy * dy;
+
+          if (d2 < maxD2) {
+            const d = Math.sqrt(d2);
+            const opacity = (1 - d / maxD) * config.lineOpacity;
+            ctx.strokeStyle = `rgba(37, 99, 235, ${opacity})`;
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.stroke();
+          }
+        }
+      }
+    }
+
+    function animate() {
+      applyMouse();
+      ctx.clearRect(0, 0, width, height);
+
+      for (const p of particles) {
+        if (!prefersReducedMotion) p.update();
+        p.draw();
+      }
+      drawConnections();
+
+      rafId = requestAnimationFrame(animate);
+    }
+
+    window.addEventListener('resize', resize, { passive: true });
+
+    resize();
+    animate();
+  </script>
+</body>
+</html>

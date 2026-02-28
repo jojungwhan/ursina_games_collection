@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>함수의 원리: 변환의 규칙</title>
+    <link rel="stylesheet" href="demo_common.css">
+    <style>
+        /* Design width and theme colors (dual theme: math=green, code=purple) */
+        :root {
+            --design-width: 980px;
+            --math-color: #34C759;
+            --math-bg: rgba(52, 199, 89, 0.4);
+            --code-color: #AF52DE;
+            --code-bg-theme: rgba(175, 82, 222, 0.4);
+        }
+
+        /* Theme switching via body class */
+        body.theme-math { --accent: var(--math-color); --accent-glow: var(--math-bg); --accent-soft: rgba(52, 199, 89, 0.12); }
+        body.theme-code { --accent: var(--code-color); --accent-glow: var(--code-bg-theme); --accent-soft: rgba(175, 82, 222, 0.12); }
+
+        /* Demo-specific: header */
+        header { text-align: center; margin-bottom: 40px; max-width: 600px; }
+        h1 { margin: 0 0 10px 0; font-size: 32px; font-weight: 700; letter-spacing: -0.5px; }
+        p.desc { font-size: 17px; color: var(--text-2); line-height: 1.5; margin: 0; }
+
+        /* Demo-specific: mode switcher */
+        .mode-switch { background: rgba(118, 118, 128, 0.12); padding: 4px; border-radius: 16px; display: flex; margin-bottom: 30px; }
+        .mode-btn { padding: 10px 30px; border-radius: 12px; border: none; background: transparent; color: var(--text-2); font-weight: 600; font-size: 15px; cursor: pointer; transition: all 0.3s ease; width: 140px; }
+        .mode-btn.active { background: var(--surface); color: var(--text); box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+
+        /* Demo-specific: three-column machine container */
+        .machine-container {
+            background: var(--surface);
+            width: 100%; max-width: 900px; height: 400px;
+            border-radius: var(--r-card);
+            box-shadow: var(--shadow-card);
+            display: grid;
+            grid-template-columns: 1fr 1.2fr 1fr;
+            padding: 30px;
+            gap: 20px;
+            position: relative;
+            border: 1px solid var(--divider);
+            overflow: hidden;
+        }
+
+        /* Demo-specific: zones */
+        .zone { display: flex; flex-direction: column; align-items: center; position: relative; }
+        .zone-label { font-size: 13px; font-weight: 600; color: var(--text-2); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 20px; }
+
+        /* Demo-specific: input chips with pulse animation */
+        .input-list { display: flex; flex-direction: column; gap: 16px; width: 100%; align-items: center; }
+        @keyframes idle-pulse {
+            0% { transform: scale(1); box-shadow: 0 4px 10px rgba(0,0,0,0.05), 0 0 0 0 var(--accent-glow); }
+            50% { transform: scale(1.05); box-shadow: 0 10px 25px rgba(0,0,0,0.1), 0 0 0 10px rgba(0,0,0,0); }
+            100% { transform: scale(1); box-shadow: 0 4px 10px rgba(0,0,0,0.05), 0 0 0 0 rgba(0,0,0,0); }
+        }
+        .input-chip { background: var(--surface); border: 2px solid var(--divider); padding: 14px 0; border-radius: 16px; font-weight: 700; font-size: 20px; color: var(--accent); cursor: pointer; transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1); width: 120px; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.05); position: relative; animation: idle-pulse 2s infinite ease-in-out; }
+        .input-chip:hover { animation: none; transform: scale(1.15); border-color: var(--accent); box-shadow: 0 12px 30px rgba(0,0,0,0.15); z-index: 10; }
+        .input-chip:active { transform: scale(0.95); }
+        .input-chip.disabled { opacity: 0.3; pointer-events: none; filter: grayscale(1); animation: none; }
+
+        /* Demo-specific: machine/process zone */
+        .machine-box { width: 100%; height: 100%; background: var(--surface-2); border-radius: 20px; display: flex; flex-direction: column; justify-content: center; align-items: center; position: relative; border: 2px dashed var(--divider); transition: all 0.3s; }
+        .machine-title { font-size: 14px; color: var(--text-2); margin-bottom: 8px; }
+        .rule-display { font-size: 28px; font-weight: 700; padding: 16px 30px; background: var(--surface); border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); transition: all 0.3s; }
+
+        /* Demo-specific: output slot */
+        .output-slot { width: 140px; height: 140px; border-radius: 50%; background: var(--surface); border: 4px solid var(--surface-2); display: flex; align-items: center; justify-content: center; font-size: 32px; font-weight: 700; color: var(--accent); margin-top: auto; margin-bottom: auto; box-shadow: inset 0 4px 10px rgba(0,0,0,0.05); transition: all 0.3s; }
+
+        /* Demo-specific: flying package animation */
+        .package { position: absolute; padding: 10px 20px; background: var(--accent); color: white; border-radius: 12px; font-weight: 600; font-size: 16px; pointer-events: none; box-shadow: 0 8px 20px rgba(0,0,0,0.15); display: none; z-index: 100; transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1); white-space: nowrap; }
+
+        /* Demo-specific: processing state */
+        .processing .machine-box { border-color: var(--accent); background: var(--accent-glow); animation: pulse 0.8s infinite; }
+        .processing .rule-display { transform: scale(1.1); color: var(--accent); }
+        @keyframes pulse { 0% { box-shadow: 0 0 0 0 var(--accent-glow); } 70% { box-shadow: 0 0 0 20px rgba(0, 122, 255, 0); } 100% { box-shadow: 0 0 0 0 rgba(0, 122, 255, 0); } }
+
+        /* Demo-specific: explanation boxes */
+        .explanation { margin-top: 30px; background: var(--surface); padding: 24px; border-radius: 20px; max-width: 900px; width: 100%; box-shadow: var(--shadow-card); border: 1px solid var(--divider); }
+        .exp-title { font-weight: 700; font-size: 18px; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+        .exp-text { font-size: 15px; color: var(--text-2); line-height: 1.6; }
+        .highlight { color: var(--text); font-weight: 600; background: rgba(0,0,0,0.05); padding: 2px 6px; border-radius: 4px; }
+        .exp-text code { background: rgba(0,0,0,0.06); padding: 2px 6px; border-radius: 4px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 14px; color: var(--text); }
+    </style>
+</head>
+<body class="theme-math">
+    <div id="app">
+
+    <header>
+        <h1>함수(Function) 변환기</h1>
+        <p class="desc">입력을 넣으면 규칙에 따라 출력이 나오는 '마법 상자'를 체험해보세요.</p>
+    </header>
+
+    <div class="mode-switch">
+        <button class="mode-btn active" onclick="setMode('math')">수학 (Math)</button>
+        <button class="mode-btn" onclick="setMode('code')">코딩 (Code)</button>
+    </div>
+
+    <div class="machine-container" id="stage">
+        
+        <!-- ZONE 1: INPUT -->
+        <div class="zone">
+            <div class="zone-label">INPUT (입력)</div>
+            <div class="input-list" id="inputList">
+                <!-- Javascript will populate this -->
+            </div>
+        </div>
+
+        <!-- ZONE 2: FUNCTION / RULE -->
+        <div class="zone processing-zone">
+            <div class="zone-label">FUNCTION (규칙)</div>
+            <div class="machine-box" id="machineBox">
+                <div class="machine-title">변환 규칙 (Rule)</div>
+                <div class="rule-display" id="ruleText">f(x) = x + 3</div>
+            </div>
+        </div>
+
+        <!-- ZONE 3: OUTPUT -->
+        <div class="zone">
+            <div class="zone-label">OUTPUT (출력)</div>
+            <div class="output-slot" id="outputSlot">
+                -
+            </div>
+        </div>
+
+        <!-- Floating Agent for Animation -->
+        <div id="package" class="package">Data</div>
+    </div>
+
+    <div class="explanation">
+        <div class="exp-title">
+            <span id="expIcon">📐</span>
+            <span id="expTitle">수학에서의 함수</span>
+        </div>
+        <p class="exp-text" id="expDetail">
+            <strong>규칙:</strong> 들어온 숫자에 무조건 <span class="highlight">3을 더하는</span> 규칙입니다.<br>
+            2를 넣으면 5가 나오고, 10을 넣으면 13이 나옵니다. 이 규칙은 절대 변하지 않습니다.
+        </p>
+    </div>
+
+    <div class="explanation" style="margin-top: 20px;">
+        <div class="exp-title">
+            <span>💻</span>
+            <span>코딩에서의 함수: shape() 예시</span>
+        </div>
+        <p class="exp-text">
+            <strong>함수 호출:</strong> <code>t.shape('turtle')</code><br>
+            - <span class="highlight">입력</span>: 문자열 <code>'turtle'</code><br>
+            - <span class="highlight">규칙</span>: shape() 함수가 모양을 변경<br>
+            - <span class="highlight">출력</span>: 화면에 거북이 모양이 나타남<br><br>
+            <strong>중요:</strong> 문자열은 반드시 따옴표로 감싸야 합니다!<br>
+            ✅ <code>t.shape('turtle')</code> | ❌ <code>t.shape(turtle)</code><br><br>
+            <strong>사용 가능한 모양:</strong> <code>'turtle'</code>, <code>'arrow'</code>, <code>'circle'</code>, <code>'square'</code>, <code>'triangle'</code>
+        </p>
+    </div>
+
+    <script src="demo_common.js"></script>
+    <script>
+        // --- DATA ---
+        const data = {
+            math: {
+                theme: 'theme-math',
+                rule: 'f(x) = x + 3',
+                items: [
+                    { in: 2, out: 5 },
+                    { in: 5, out: 8 },
+                    { in: 10, out: 13 }
+                ],
+                expTitle: '수학에서의 함수',
+                expIcon: '📐',
+                expDetail: `<strong>규칙:</strong> 들어온 숫자에 무조건 <span class="highlight">3을 더하는</span> 규칙($f(x)=x+3$)입니다.<br>누가 계산해도 항상 같은 결과가 나옵니다.`
+            },
+            code: {
+                theme: 'theme-code',
+                rule: 'len(text)',
+                items: [
+                    { in: '"Banana"', out: 6 },
+                    { in: '"Apple"', out: 5 },
+                    { in: '"Hi"', out: 2 }
+                ],
+                expTitle: '코딩에서의 함수',
+                expIcon: '💻',
+                expDetail: `<strong>규칙:</strong> 들어온 글자의 <span class="highlight">길이(개수)를 세는</span> 규칙입니다.<br>"Banana"는 6글자이므로 6이 출력됩니다. 데이터를 변환하는 원리는 수학과 같습니다.`
+            }
+        };
+
+        let currentMode = 'math';
+        let isAnimating = false;
+
+        // --- DOM ELEMENTS ---
+        const body = document.body;
+        const inputList = document.getElementById('inputList');
+        const ruleText = document.getElementById('ruleText');
+        const outputSlot = document.getElementById('outputSlot');
+        const machineBox = document.getElementById('machineBox');
+        const packageEl = document.getElementById('package');
+        
+        const expTitle = document.getElementById('expTitle');
+        const expIcon = document.getElementById('expIcon');
+        const expDetail = document.getElementById('expDetail');
+
+        // --- FUNCTIONS ---
+
+        function setMode(mode) {
+            if(isAnimating) return;
+            currentMode = mode;
+            const config = data[mode];
+
+            // Update UI Styling
+            body.className = config.theme;
+            document.querySelectorAll('.mode-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.textContent.toLowerCase().includes(mode === 'math' ? 'math' : 'code'));
+            });
+
+            // Update Content
+            ruleText.textContent = config.rule;
+            outputSlot.textContent = '-';
+            outputSlot.style.borderColor = 'var(--surface-2)';
+            outputSlot.style.color = 'var(--accent)';
+
+            // Update Explanation
+            expTitle.textContent = config.expTitle;
+            expIcon.textContent = config.expIcon;
+            expDetail.innerHTML = config.expDetail;
+
+            // Render Inputs
+            renderInputs();
+        }
+
+        function renderInputs() {
+            inputList.innerHTML = '';
+            data[currentMode].items.forEach((item, index) => {
+                const btn = document.createElement('div');
+                btn.className = 'input-chip';
+                btn.textContent = item.in;
+                // Staggered animation delay for wave effect
+                btn.style.animationDelay = `${index * 0.4}s`;
+                btn.onclick = () => runMachine(btn, item);
+                inputList.appendChild(btn);
+            });
+        }
+
+        function getPosition(el) {
+            const rect = el.getBoundingClientRect();
+            const containerRect = document.querySelector('.machine-container').getBoundingClientRect();
+            return {
+                x: rect.left - containerRect.left,
+                y: rect.top - containerRect.top,
+                w: rect.width,
+                h: rect.height
+            };
+        }
+
+        function runMachine(clickedBtn, itemData) {
+            // Check if mobile (screen width < 768px) to skip complex animation logic
+            const isMobile = window.innerWidth <= 768;
+
+            if (isAnimating) return;
+            isAnimating = true;
+
+            // 1. Disable inputs
+            document.querySelectorAll('.input-chip').forEach(el => el.classList.add('disabled'));
+            outputSlot.textContent = '';
+            
+            if (isMobile) {
+                // Simplified Logic for Mobile
+                document.querySelector('.machine-container').classList.add('processing');
+                setTimeout(() => {
+                    document.querySelector('.machine-container').classList.remove('processing');
+                    outputSlot.textContent = itemData.out;
+                    outputSlot.style.borderColor = 'var(--accent)';
+                    document.querySelectorAll('.input-chip').forEach(el => el.classList.remove('disabled'));
+                    isAnimating = false;
+                }, 1000);
+                return;
+            }
+
+            // 2. Spawn Package at Input location (Desktop)
+            const startPos = getPosition(clickedBtn);
+            packageEl.style.left = startPos.x + 'px';
+            packageEl.style.top = startPos.y + 'px';
+            packageEl.style.width = startPos.w + 'px'; // Match width
+            packageEl.textContent = itemData.in;
+            packageEl.style.display = 'block';
+            packageEl.style.transform = 'none';
+            packageEl.style.backgroundColor = 'var(--text-secondary)'; // Neutral at start
+
+            // 3. Move to Center (Processing)
+            setTimeout(() => {
+                const centerPos = getPosition(machineBox);
+                const targetX = centerPos.x + (centerPos.w / 2) - (startPos.w / 2);
+                const targetY = centerPos.y + (centerPos.h / 2) - 20; // Slight offset
+
+                packageEl.style.transform = `translate(${targetX - startPos.x}px, ${targetY - startPos.y}px)`;
+                
+                // 4. Processing Animation
+                setTimeout(() => {
+                    document.querySelector('.machine-container').classList.add('processing');
+                    packageEl.style.backgroundColor = 'var(--accent)'; // Change color
+                    
+                    // 5. Move to Output
+                    setTimeout(() => {
+                        document.querySelector('.machine-container').classList.remove('processing');
+                        
+                        // Transform Text content midway
+                        packageEl.textContent = itemData.out;
+
+                        const endPos = getPosition(outputSlot);
+                        const finalX = endPos.x + (endPos.w/2) - (startPos.w/2);
+                        const finalY = endPos.y + (endPos.h/2) - 20;
+
+                        packageEl.style.transform = `translate(${finalX - startPos.x}px, ${finalY - startPos.y}px)`;
+
+                        // 6. Finish
+                        setTimeout(() => {
+                            packageEl.style.display = 'none';
+                            outputSlot.textContent = itemData.out;
+                            outputSlot.style.borderColor = 'var(--accent)';
+                            
+                            // Re-enable
+                            document.querySelectorAll('.input-chip').forEach(el => el.classList.remove('disabled'));
+                            isAnimating = false;
+                        }, 500);
+
+                    }, 800); // Processing time
+
+                }, 500); // Travel to center time
+
+            }, 50);
+        }
+
+        // Initialize
+        setMode('math');
+        // Handle Resize to reset positions if needed
+        window.addEventListener('resize', () => {
+            if(isAnimating) {
+                // Reset if resized during animation to prevent glitches
+                packageEl.style.display = 'none';
+                isAnimating = false;
+                document.querySelectorAll('.input-chip').forEach(el => el.classList.remove('disabled'));
+                document.querySelector('.machine-container').classList.remove('processing');
+            }
+        });
+
+        // Initialize common scaling/height system
+        DemoCommon.init({ appId: 'app', designWidth: 980 });
+
+    </script>
+    </div>
+</body>
+</html>

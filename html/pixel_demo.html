@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>픽셀(Pixel)이 뭐예요?</title>
+  <link rel="stylesheet" href="demo_common.css">
+  <link rel="stylesheet" href="pixel_demo_styles.css">
+</head>
+
+<body>
+  <div id="app">
+  <header>
+    <h1>픽셀(Pixel)이 뭐예요?</h1>
+    <p class="subtitle">
+      픽셀은 화면 그림을 만드는 <span class="key">아주 작은 네모 한 칸</span>입니다.
+      <span class="mini">확대할수록 네모 칸이 드러나서 "픽셀"이 보입니다.</span>
+    </p>
+  </header>
+
+  <div class="stage">
+    <!-- Monitor / Screen -->
+    <div class="monitor" id="monitor">
+      <div class="screen">
+        <div class="hud">
+          <div class="pill" id="hudMode">모드: <b>확대</b></div>
+          <div class="pill" id="hudZoom">확대: <b>1×</b></div>
+          <div class="pill" id="hudHint">팁: <b>Zoom In</b>으로 화면 안으로 들어가 보세요</div>
+        </div>
+
+        <div class="content">
+          <canvas id="c" width="520" height="520"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- Controls -->
+    <div class="controls">
+      <div class="card">
+        <p class="title">🔎 확대 애니메이션</p>
+        <p class="desc" id="text">
+          지금은 <b>그림처럼</b> 보입니다. 확대하면 네모 칸이 보이기 시작합니다.
+        </p>
+
+        <div class="row">
+          <button class="btn" id="outBtn">Zoom Out</button>
+          <button class="btn primary" id="inBtn">Zoom In</button>
+          <button class="btn" id="resetBtn">Reset</button>
+        </div>
+
+        <div class="steps" id="steps"></div>
+
+        <div class="row row--with-top-margin">
+          <label class="toggle">
+            <input type="checkbox" id="grid" checked />
+            픽셀 격자 보이기
+          </label>
+        </div>
+      </div>
+
+      <div class="card">
+        <p class="title">✅ 한 줄 요약</p>
+        <p class="desc desc--no-bottom-margin">
+          픽셀은 화면을 구성하는 <b>네모 1칸</b>이며, 확대하면 그 칸이 눈에 보입니다.
+        </p>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <script src="demo_common.js"></script>
+  <script>
+    // ========================================
+    // Configuration Constants
+    // ========================================
+    const CONFIG = {
+      // Canvas dimensions
+      CANVAS_WIDTH: 520,
+      CANVAS_HEIGHT: 520,
+
+      // Source image (tiny heart bitmap)
+      SRC_SIZE: 64,
+
+      // Zoom behavior
+      PIXEL_SCALE_MULTIPLIER: 4, // One source pixel -> this many px at zoom=1
+      ANIMATION_DURATION_MS: 520,
+
+      // Grid appearance
+      GRID_MIN_CELL_SIZE: 10, // Minimum cell size before grid becomes visible
+      GRID_BOLD_INTERVAL: 8,  // Draw bold lines every N cells
+      GRID_OPACITY_DIVISOR: 14, // Controls how fast grid fades in
+
+      // Heart rendering
+      HEART_COLOR: "#FF3B30",
+      BACKGROUND_COLOR: "#0B0F1A"
+    };
+
+    // ========================================
+    // DOM Elements
+    // ========================================
+    const canvas = document.getElementById("c");
+    const ctx = canvas.getContext("2d");
+    const monitor = document.getElementById("monitor");
+
+    const hudZoom = document.getElementById("hudZoom");
+    const text = document.getElementById("text");
+    const gridToggle = document.getElementById("grid");
+
+    const inBtn = document.getElementById("inBtn");
+    const outBtn = document.getElementById("outBtn");
+    const resetBtn = document.getElementById("resetBtn");
+    const stepsWrap = document.getElementById("steps");
+
+    // ========================================
+    // Zoom Steps (4 steps, kid-friendly)
+    // ========================================
+    const steps = [
+      { z: 1,  label: "그림", msg: "지금은 <b>그림처럼</b> 보입니다." },
+      { z: 4,  label: "블록", msg: "조금 확대했습니다. 가장자리가 <b>계단</b>처럼 보일 수 있습니다." },
+      { z: 10, label: "픽셀", msg: "이제 <b>네모 칸(픽셀)</b>이 확실히 보입니다." },
+      { z: 22, label: "1칸", msg: "한 칸이 크게 보입니다. 이것이 <b>픽셀 1개</b>입니다." }
+    ];
+
+    // ========================================
+    // State
+    // ========================================
+    let stepIndex = 0;
+    let currentZoom = steps[0].z;
+    let targetZoom = currentZoom;
+    let animating = false;
+
+    // ========================================
+    // Offscreen "tiny image" (low-res heart)
+    // ========================================
+    const src = document.createElement("canvas");
+    src.width = src.height = CONFIG.SRC_SIZE;
+    const sctx = src.getContext("2d");
+
+    function drawTinyHeart() {
+      const size = CONFIG.SRC_SIZE;
+
+      // Clear and fill background
+      sctx.clearRect(0, 0, size, size);
+      sctx.fillStyle = CONFIG.BACKGROUND_COLOR;
+      sctx.fillRect(0, 0, size, size);
+
+      // Draw heart using parametric formula
+      sctx.fillStyle = CONFIG.HEART_COLOR;
+      for (let y = 0; y < size; y++) {
+        for (let x = 0; x < size; x++) {
+          const u = (x / size) * 3 - 1.5;
+          const v = -((y / size) * 3 - 1.5) - 0.15;
+          const a = u * u + v * v - 1;
+          const inside = (a * a * a - u * u * v * v * v) <= 0;
+          if (inside) sctx.fillRect(x, y, 1, 1);
+        }
+      }
+    }
+    drawTinyHeart();
+
+    // ========================================
+    // Grid Drawing
+    // ========================================
+    function drawGrid(cellPx) {
+      // Only show grid when pixels are big enough
+      if (!gridToggle.checked) return;
+      if (cellPx < CONFIG.GRID_MIN_CELL_SIZE) return;
+
+      const w = canvas.width;
+      const h = canvas.height;
+      const size = CONFIG.SRC_SIZE;
+
+      // Thin lines
+      ctx.save();
+      ctx.globalAlpha = Math.min((cellPx - CONFIG.GRID_MIN_CELL_SIZE) / CONFIG.GRID_OPACITY_DIVISOR, 0.9);
+      ctx.strokeStyle = "rgba(255,255,255,0.10)";
+      ctx.lineWidth = 1;
+
+      const start = (w - (size * cellPx)) / 2;
+      const end = start + size * cellPx;
+
+      ctx.beginPath();
+      for (let i = 0; i <= size; i++) {
+        const x = start + i * cellPx;
+        const y = start + i * cellPx;
+        if (x >= 0 && x <= w) { ctx.moveTo(x, start); ctx.lineTo(x, end); }
+        if (y >= 0 && y <= h) { ctx.moveTo(start, y); ctx.lineTo(end, y); }
+      }
+      ctx.stroke();
+
+      // Bold lines every GRID_BOLD_INTERVAL cells for counting chunks
+      ctx.globalAlpha *= 0.9;
+      ctx.strokeStyle = "rgba(255,255,255,0.18)";
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      for (let i = 0; i <= size; i += CONFIG.GRID_BOLD_INTERVAL) {
+        const x = start + i * cellPx;
+        const y = start + i * cellPx;
+        if (x >= 0 && x <= w) { ctx.moveTo(x, start); ctx.lineTo(x, end); }
+        if (y >= 0 && y <= h) { ctx.moveTo(start, y); ctx.lineTo(end, y); }
+      }
+      ctx.stroke();
+
+      ctx.restore();
+    }
+
+    // ========================================
+    // Rendering
+    // ========================================
+    function render() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Fit the scaled src inside the canvas area
+      const cellPx = currentZoom * CONFIG.PIXEL_SCALE_MULTIPLIER;
+      const drawW = CONFIG.SRC_SIZE * cellPx;
+      const drawH = CONFIG.SRC_SIZE * cellPx;
+      const x = (canvas.width - drawW) / 2;
+      const y = (canvas.height - drawH) / 2;
+
+      ctx.imageSmoothingEnabled = false; // Critical: pixel look
+      ctx.drawImage(src, x, y, drawW, drawH);
+
+      drawGrid(cellPx);
+
+      // Update HUD
+      hudZoom.innerHTML = `확대: <b>${currentZoom.toFixed(0)}×</b>`;
+    }
+
+    // ========================================
+    // UI - Step chips (step buttons)
+    // ========================================
+    function rebuildChips() {
+      stepsWrap.innerHTML = "";
+      steps.forEach((s, i) => {
+        const b = document.createElement("button");
+        b.className = "chip" + (i === stepIndex ? " active" : "");
+        b.textContent = s.label;
+        b.onclick = () => goToStep(i);
+        stepsWrap.appendChild(b);
+      });
+    }
+
+    function setStep(i) {
+      stepIndex = Math.max(0, Math.min(steps.length - 1, i));
+      targetZoom = steps[stepIndex].z;
+      text.innerHTML = steps[stepIndex].msg;
+      rebuildChips();
+      animateZoom();
+    }
+
+    function goToStep(i) { setStep(i); }
+    function zoomIn() { setStep(stepIndex + 1); }
+    function zoomOut() { setStep(stepIndex - 1); }
+    function reset() { setStep(0); }
+
+    // ========================================
+    // Zoom Animation (simple easing)
+    // ========================================
+    function animateZoom() {
+      if (animating) return;
+      animating = true;
+
+      monitor.classList.add("zooming");
+      const start = currentZoom;
+      const end = targetZoom;
+      const dur = CONFIG.ANIMATION_DURATION_MS;
+      const t0 = performance.now();
+
+      function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
+
+      function tick(now) {
+        const t = Math.min((now - t0) / dur, 1);
+        currentZoom = start + (end - start) * easeOutCubic(t);
+        render();
+
+        if (t < 1) {
+          requestAnimationFrame(tick);
+        } else {
+          currentZoom = end;
+          render();
+          animating = false;
+          monitor.classList.remove("zooming");
+        }
+      }
+      requestAnimationFrame(tick);
+    }
+
+    // ========================================
+    // Event Handlers
+    // ========================================
+    inBtn.onclick = zoomIn;
+    outBtn.onclick = zoomOut;
+    resetBtn.onclick = reset;
+    gridToggle.onchange = render;
+
+    // Keyboard convenience (optional)
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "+" || e.key === "=") zoomIn();
+      if (e.key === "-" || e.key === "_") zoomOut();
+      if (e.key.toLowerCase() === "r") reset();
+    });
+
+    // ========================================
+    // Initialization
+    // ========================================
+    rebuildChips();
+    render();
+
+    // Initialize common scaling/height system
+    DemoCommon.init({ appId: 'app', designWidth: CONFIG.CANVAS_WIDTH + 460 });
+  </script>
+</body>
+</html>

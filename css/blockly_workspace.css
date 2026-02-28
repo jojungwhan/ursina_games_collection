@@ -1,0 +1,169 @@
+/**
+ * @file blockly_workspace.css
+ * @description Blockly library overrides for workspace, toolbox, and flyout.
+ *
+ * !IMPORTANT USAGE:
+ * All !important declarations marked [BLOCKLY-OVERRIDE] are required because
+ * Blockly sets inline styles via JavaScript. Do not remove without testing.
+ *
+ * OVERRIDE INDEX (line numbers for quick reference):
+ *   .injectionDiv         - lines 25-31
+ *   .blocklyToolboxDiv    - lines 40-51
+ *   .blocklyTreeRoot      - lines 54-58
+ *   .blocklyTreeRow       - lines 61-67
+ *   .blocklyFlyout        - lines 70-73
+ *   .blocklyFlyoutBackground - lines 79-82
+ *   .blocklyFlyoutScrollbar  - lines 85-87
+ *   .blocklySvg           - lines 90-92
+ *   .blocklyBlockCanvas   - lines 95-98
+ *   scrollbar handles     - lines 112-115
+ *   workspace scrollbars  - lines 118-122
+ *
+ * Z-INDEX HIERARCHY (see _design_tokens.css):
+ *   1  - Workspace SVG (--z-blockly-workspace)
+ *   20 - Toolbox panel (--z-blockly-toolbox)
+ *   30 - Flyout panel (--z-blockly-flyout)
+ *   31 - Flyout scrollbar (--z-blockly-flyout-scrollbar)
+ */
+
+/* ========================================
+   Workspace Container
+   ======================================== */
+
+#blocklyDiv {
+    touch-action: none;
+    width: 100%;
+    min-height: 400px;
+    position: relative;
+    z-index: var(--z-blockly-workspace, 1);
+    overflow: visible;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+/* [BLOCKLY-OVERRIDE] Injection div width fix for instant navigation */
+#blocklyDiv .injectionDiv {
+    max-width: 100% !important;
+    width: 100% !important;
+    overflow: visible !important;
+    box-sizing: border-box !important;
+    position: relative !important;
+}
+
+/* ========================================
+   Toolbox
+   ======================================== */
+
+/* [BLOCKLY-OVERRIDE] Toolbox positioning and z-index */
+#blocklyDiv .blocklyToolboxDiv {
+    position: absolute !important;
+    left: 0 !important;
+    top: 0 !important;
+    z-index: var(--z-blockly-toolbox, 20) !important;
+    background-color: #f9f9f9;
+    max-width: 320px !important;
+    width: auto !important;
+    overflow-x: visible !important;
+    overflow-y: auto !important;
+    box-sizing: border-box !important;
+}
+
+/* [BLOCKLY-OVERRIDE] Toolbox categories */
+#blocklyDiv .blocklyTreeRoot {
+    max-width: 100% !important;
+    overflow-x: visible !important;
+    box-sizing: border-box !important;
+}
+
+/* [BLOCKLY-OVERRIDE] Category labels */
+#blocklyDiv .blocklyTreeRow {
+    max-width: 100% !important;
+    overflow: visible !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+    box-sizing: border-box !important;
+}
+
+/* ========================================
+   Flyout
+   ======================================== */
+
+/* [BLOCKLY-OVERRIDE] Flyout z-index and position */
+#blocklyDiv .blocklyFlyout {
+    z-index: var(--z-blockly-flyout, 30) !important;
+    top: 0 !important;
+}
+
+/* [BLOCKLY-OVERRIDE] Flyout SVG */
+#blocklyDiv svg.blocklyFlyout {
+    overflow: visible !important;
+}
+
+/* [BLOCKLY-OVERRIDE] Flyout background */
+#blocklyDiv .blocklyFlyoutBackground {
+    fill: #f9f9f9 !important;
+    fill-opacity: 1 !important;
+}
+
+/* [BLOCKLY-OVERRIDE] Flyout scrollbar */
+#blocklyDiv .blocklyFlyoutScrollbar {
+    z-index: var(--z-blockly-flyout-scrollbar, 31) !important;
+}
+
+/* [BLOCKLY-OVERRIDE] Main SVG overflow for flyout */
+#blocklyDiv .blocklySvg {
+    overflow: visible !important;
+}
+
+/* [BLOCKLY-OVERRIDE] Flyout block canvas visibility */
+#blocklyDiv .blocklyFlyout .blocklyBlockCanvas {
+    display: block !important;
+    visibility: visible !important;
+}
+
+/* ========================================
+   Workspace Elements
+   ======================================== */
+
+#blocklyDiv .blocklySvg {
+    position: relative;
+    z-index: 1;
+}
+
+#blocklyDiv .blocklyWorkspace {
+    position: relative;
+    z-index: 1;
+    margin-left: 0;
+}
+
+#blocklyDiv .blocklyMainBackground {
+    position: relative;
+    z-index: 1;
+}
+
+#blocklyDiv .blocklyWorkspaceSvg {
+    position: relative;
+    z-index: 1;
+}
+
+/* [BLOCKLY-OVERRIDE] Flyout scrollbar interaction */
+#blocklyDiv .blocklyFlyoutScrollbar .blocklyScrollbarHandle,
+#blocklyDiv .blocklyFlyoutScrollbar .blocklyScrollbarBackground {
+    pointer-events: auto !important;
+}
+
+/* [BLOCKLY-OVERRIDE] Hide main workspace scrollbars (render incorrectly) */
+#blocklyDiv svg.blocklyScrollbarVertical.blocklyMainWorkspaceScrollbar,
+#blocklyDiv svg.blocklyScrollbarHorizontal.blocklyMainWorkspaceScrollbar {
+    display: none !important;
+}
+
+/* ========================================
+   Responsive
+   ======================================== */
+
+@media (max-width: 768px) {
+    #blocklyDiv {
+        height: 400px;
+    }
+}

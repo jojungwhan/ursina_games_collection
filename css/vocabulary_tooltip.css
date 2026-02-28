@@ -1,0 +1,324 @@
+/**
+ * Vocabulary Tooltip Styles
+ * Provides styling for Python vocabulary tooltips
+ */
+
+/* ============================================================================
+   TRIGGER STYLES
+   ============================================================================ */
+
+.vocab-trigger {
+    cursor: help;
+    border-bottom: 0.5px dotted rgba(var(--md-primary-fg-color--rgb, 64, 81, 181), 0.3);
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+    border-radius: 2px;
+}
+
+.vocab-trigger:hover,
+.vocab-trigger:focus,
+.vocab-trigger-active {
+    background-color: rgba(var(--md-primary-fg-color--rgb, 64, 81, 181), 0.1);
+    border-bottom-color: rgba(var(--md-primary-fg-color--rgb, 64, 81, 181), 0.5);
+    border-bottom-style: solid;
+    border-bottom-width: 0.5px;
+    outline: none;
+}
+
+/* Ensure triggers in code blocks maintain monospace */
+pre .vocab-trigger,
+code .vocab-trigger,
+.highlight .vocab-trigger,
+.python-code-view .vocab-trigger {
+    font-family: inherit;
+}
+
+/* Triggers in regular text - subtle styling */
+p .vocab-trigger,
+li .vocab-trigger,
+td .vocab-trigger,
+blockquote .vocab-trigger {
+    font-weight: inherit;
+}
+
+/* Triggers inside inline code */
+code > .vocab-trigger {
+    font-family: var(--md-code-font-family, monospace);
+    background: inherit;
+    padding: inherit;
+}
+
+/* Python keyword tooltip triggers - match vocab-trigger styling */
+.python-keyword-tooltip-trigger {
+    cursor: help;
+    border-bottom: 0.5px dotted rgba(var(--md-primary-fg-color--rgb, 64, 81, 181), 0.3);
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+    border-radius: 2px;
+}
+
+.python-keyword-tooltip-trigger:hover,
+.python-keyword-tooltip-trigger:focus {
+    background-color: rgba(var(--md-primary-fg-color--rgb, 64, 81, 181), 0.1);
+    border-bottom-color: rgba(var(--md-primary-fg-color--rgb, 64, 81, 181), 0.5);
+    border-bottom-style: solid;
+    border-bottom-width: 0.5px;
+    outline: none;
+}
+
+/* Dark mode for python keyword tooltip triggers */
+[data-md-color-scheme="slate"] .python-keyword-tooltip-trigger {
+    border-bottom-color: rgba(var(--md-accent-fg-color--rgb, 0, 191, 165), 0.3);
+}
+
+[data-md-color-scheme="slate"] .python-keyword-tooltip-trigger:hover,
+[data-md-color-scheme="slate"] .python-keyword-tooltip-trigger:focus {
+    background-color: rgba(var(--md-accent-fg-color--rgb, 0, 191, 165), 0.15);
+    border-bottom-color: rgba(var(--md-accent-fg-color--rgb, 0, 191, 165), 0.5);
+    border-bottom-width: 0.5px;
+}
+
+/* ============================================================================
+   TOOLTIP CONTAINER
+   ============================================================================ */
+
+.vocab-tooltip {
+    position: absolute;
+    z-index: 9999;
+    max-width: 320px;
+    min-width: 200px;
+    padding: 0;
+    background: var(--md-default-bg-color, #fff);
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.05);
+    font-family: var(--md-text-font-family, system-ui, -apple-system, sans-serif);
+    font-size: 0.85rem;
+    line-height: 1.5;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(5px);
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+    pointer-events: none;
+}
+
+.vocab-tooltip-active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+/* Arrow positioning */
+.vocab-tooltip::before {
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: var(--md-default-bg-color, #fff);
+    transform: rotate(45deg);
+    box-shadow: -1px -1px 0 0 rgba(0, 0, 0, 0.05);
+}
+
+.vocab-tooltip-above::before {
+    bottom: -6px;
+    left: 50%;
+    margin-left: -6px;
+    box-shadow: 1px 1px 0 0 rgba(0, 0, 0, 0.05);
+}
+
+.vocab-tooltip-below::before {
+    top: -6px;
+    left: 50%;
+    margin-left: -6px;
+}
+
+/* ============================================================================
+   TOOLTIP HEADER
+   ============================================================================ */
+
+.vocab-tooltip-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 12px;
+    background: var(--md-primary-fg-color, #4051b5);
+    border-radius: 8px 8px 0 0;
+    color: white;
+}
+
+.vocab-tooltip-term {
+    font-weight: 600;
+    font-size: 1rem;
+    font-family: var(--md-code-font-family, monospace);
+}
+
+.vocab-tooltip-category {
+    font-size: 0.7rem;
+    padding: 2px 8px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.2);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Category-specific colors */
+.vocab-category-keywords {
+    background: rgba(255, 193, 7, 0.3);
+}
+
+.vocab-category-builtins {
+    background: rgba(76, 175, 80, 0.3);
+}
+
+.vocab-category-ursina {
+    background: rgba(156, 39, 176, 0.3);
+}
+
+/* ============================================================================
+   TOOLTIP CONTENT
+   ============================================================================ */
+
+.vocab-tooltip-labels {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--md-default-fg-color--lightest, #eee);
+}
+
+.vocab-tooltip-ko {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--md-default-fg-color, #333);
+}
+
+.vocab-tooltip-ko::before {
+    content: '🇰🇷 ';
+    font-size: 0.85rem;
+}
+
+.vocab-tooltip-en {
+    font-size: 0.85rem;
+    color: var(--md-default-fg-color--light, #666);
+}
+
+.vocab-tooltip-en::before {
+    content: 'Eng ';
+    font-size: 0.8rem;
+}
+
+.vocab-tooltip-description {
+    padding: 10px 12px;
+    color: var(--md-default-fg-color--light, #555);
+    font-size: 0.85rem;
+}
+
+/* ============================================================================
+   SYNTAX SECTION
+   ============================================================================ */
+
+.vocab-tooltip-syntax {
+    padding: 8px 12px;
+    background: var(--md-code-bg-color, #f5f5f5);
+    border-radius: 0 0 8px 8px;
+    border-top: 1px solid var(--md-default-fg-color--lightest, #eee);
+}
+
+.vocab-tooltip-syntax::before {
+    content: '📝 ';
+    font-size: 0.8rem;
+}
+
+.vocab-tooltip-syntax code {
+    font-family: var(--md-code-font-family, monospace);
+    font-size: 0.8rem;
+    color: var(--md-code-fg-color, #333);
+    background: transparent;
+    padding: 0;
+}
+
+/* ============================================================================
+   DARK MODE SUPPORT
+   ============================================================================ */
+
+[data-md-color-scheme="slate"] .vocab-tooltip {
+    background: var(--md-default-bg-color, #2e303e);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+[data-md-color-scheme="slate"] .vocab-tooltip::before {
+    background: var(--md-default-bg-color, #2e303e);
+}
+
+[data-md-color-scheme="slate"] .vocab-tooltip-syntax {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+[data-md-color-scheme="slate"] .vocab-trigger {
+    border-bottom-color: rgba(var(--md-accent-fg-color--rgb, 0, 191, 165), 0.3);
+}
+
+[data-md-color-scheme="slate"] .vocab-trigger:hover,
+[data-md-color-scheme="slate"] .vocab-trigger:focus,
+[data-md-color-scheme="slate"] .vocab-trigger-active {
+    background-color: rgba(var(--md-accent-fg-color--rgb, 0, 191, 165), 0.15);
+    border-bottom-color: rgba(var(--md-accent-fg-color--rgb, 0, 191, 165), 0.5);
+    border-bottom-width: 0.5px;
+}
+
+/* ============================================================================
+   RESPONSIVE ADJUSTMENTS
+   ============================================================================ */
+
+@media (max-width: 600px) {
+    .vocab-tooltip {
+        max-width: 280px;
+        min-width: 180px;
+        font-size: 0.8rem;
+    }
+
+    .vocab-tooltip-header {
+        padding: 8px 10px;
+    }
+
+    .vocab-tooltip-term {
+        font-size: 0.9rem;
+    }
+
+    .vocab-tooltip-labels,
+    .vocab-tooltip-description {
+        padding: 8px 10px;
+    }
+}
+
+/* ============================================================================
+   ANIMATION
+   ============================================================================ */
+
+@keyframes vocab-tooltip-fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(5px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.vocab-tooltip-active {
+    animation: vocab-tooltip-fade-in 0.2s ease forwards;
+}
+
+/* ============================================================================
+   PRINT STYLES
+   ============================================================================ */
+
+@media print {
+    .vocab-tooltip {
+        display: none !important;
+    }
+
+    .vocab-trigger {
+        border-bottom: none;
+        cursor: default;
+    }
+}

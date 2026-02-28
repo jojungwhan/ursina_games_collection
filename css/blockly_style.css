@@ -1,0 +1,21 @@
+/**
+ * @file blockly_style.css
+ * @description Blockly integration styles - index file.
+ *
+ * This file imports all Blockly-related CSS modules.
+ * For focused changes, edit the specific module file directly:
+ *
+ *   blockly_workspace.css  - Blockly library overrides (toolbox, flyout, etc.)
+ *   python_preview.css     - Code display panel and output terminal
+ *   turtle_canvas.css      - Turtle graphics canvas (Skulpt)
+ *   mermaid_flowchart.css  - Mermaid.js diagram styles
+ *   blockly_layout.css     - Layout containers and alignment fixes
+ *
+ * SSOT: Uses design tokens from _design_tokens.css
+ */
+
+@import url('blockly_workspace.css');
+@import url('python_preview.css');
+@import url('turtle_canvas.css');
+@import url('mermaid_flowchart.css');
+@import url('blockly_layout.css');

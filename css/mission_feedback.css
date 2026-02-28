@@ -1,0 +1,406 @@
+/**
+ * Mission Feedback Styles
+ * Visual feedback for lesson completion and progress
+ *
+ * SSOT: Uses design tokens from _design_tokens.css
+ */
+
+/* ============================================================================
+   MISSION CHECKLIST
+   ============================================================================ */
+
+/* Hide empty mission checklists (no content inside) */
+.mission-checklist:empty,
+.editor-mission-checklist:empty {
+    display: none !important;
+}
+
+/* Also hide mission checklists that only have whitespace (handled via JS or :has) */
+.editor-mission-checklist:not(:has(*)) {
+    display: none !important;
+}
+
+.mission-checklist {
+    background: var(--color-mission-bg);
+    border: 1px solid var(--color-mission-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-4) var(--space-5);
+    margin-bottom: var(--space-6);
+    box-shadow: var(--shadow-sm);
+    transition: all var(--transition-slow);
+}
+
+.mission-checklist.mission-complete {
+    background: linear-gradient(135deg, var(--color-success-light) 0%, #dcfce7 100%);
+    border-color: var(--color-success-border);
+}
+
+/* Header */
+.mission-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    margin-bottom: var(--space-2);
+}
+
+.mission-icon {
+    font-size: var(--text-xl);
+}
+
+.mission-title {
+    font-weight: var(--font-semibold);
+    font-size: var(--text-sm);
+    color: var(--color-mission-title);
+}
+
+.mission-checklist.mission-complete .mission-title {
+    color: var(--color-success-text);
+}
+
+.mission-progress {
+    margin-left: auto;
+    font-size: var(--text-xs);
+    font-weight: var(--font-semibold);
+    color: var(--color-text-muted);
+    background-color: var(--color-bg-surface);
+    padding: var(--space-1) var(--space-2);
+    border-radius: var(--radius-full);
+}
+
+.mission-progress.complete {
+    background-color: var(--color-success);
+    color: var(--color-text-inverse);
+}
+
+/* Mission text */
+.mission-text {
+    font-size: var(--text-sm);
+    color: var(--color-mission-text);
+    margin-bottom: var(--space-3);
+    padding-left: var(--space-6);
+}
+
+/* Steps */
+.mission-steps {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+}
+
+.mission-step {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-2) var(--space-3);
+    background-color: rgba(255, 255, 255, 0.6);
+    border-radius: var(--radius-md);
+    transition: all var(--transition-base);
+}
+
+.mission-step.active {
+    background-color: var(--color-bg-surface);
+    box-shadow: var(--shadow-sm);
+}
+
+.mission-step.completed {
+    background-color: rgba(34, 197, 94, 0.1);
+}
+
+/* Step indicator */
+.step-indicator {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-full);
+    background-color: var(--color-bg-subtle);
+    font-size: var(--text-xs);
+    font-weight: var(--font-semibold);
+    color: var(--color-text-muted);
+    transition: all var(--transition-base);
+    position: relative;
+}
+
+.step-number {
+    transition: opacity var(--transition-base);
+}
+
+.step-check {
+    position: absolute;
+    opacity: 0;
+    color: var(--color-text-inverse);
+    font-size: var(--text-sm);
+    transition: opacity var(--transition-base);
+}
+
+.mission-step.active .step-indicator {
+    background-color: var(--color-info);
+    color: var(--color-text-inverse);
+}
+
+.mission-step.completed .step-indicator {
+    background-color: var(--color-success);
+}
+
+.mission-step.completed .step-number {
+    opacity: 0;
+}
+
+.mission-step.completed .step-check {
+    opacity: 1;
+}
+
+/* Step text */
+.step-text {
+    font-size: var(--text-sm);
+    color: var(--color-mission-text);
+    transition: color var(--transition-base);
+}
+
+.mission-step.active .step-text {
+    color: var(--color-info-text);
+    font-weight: var(--font-medium);
+}
+
+.mission-step.completed .step-text {
+    color: var(--color-success-text);
+}
+
+/* ============================================================================
+   SUCCESS BANNER
+   ============================================================================ */
+
+.success-banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: linear-gradient(135deg, var(--color-success) 0%, var(--color-success-hover) 100%);
+    color: var(--color-text-inverse);
+    padding: var(--space-4) var(--space-5);
+    border-radius: var(--radius-lg);
+    margin: var(--space-4) 0;
+    box-shadow: var(--shadow-success);
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all var(--transition-slow);
+}
+
+.success-banner.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.success-banner.dismissed {
+    opacity: 0;
+    transform: translateY(-20px);
+    pointer-events: none;
+    height: 0;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+}
+
+.success-content {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+}
+
+.success-icon {
+    font-size: var(--text-2xl);
+    animation: bounce 0.5s ease infinite alternate;
+}
+
+@keyframes bounce {
+    from { transform: translateY(0); }
+    to { transform: translateY(-4px); }
+}
+
+.success-text {
+    font-size: var(--text-lg);
+    font-weight: var(--font-bold);
+}
+
+.success-subtext {
+    font-size: var(--text-sm);
+    opacity: 0.9;
+    margin-left: var(--space-2);
+}
+
+.success-dismiss {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: var(--color-text-inverse);
+    width: 28px;
+    height: 28px;
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    font-size: var(--text-xl);
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color var(--transition-base);
+}
+
+.success-dismiss:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* ============================================================================
+   RUN BUTTON STATES
+   ============================================================================ */
+
+button[onclick="runit()"] {
+    transition: all var(--transition-base);
+}
+
+button[onclick="runit()"]:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+}
+
+/* Success state - applied via JS after successful run */
+button[onclick="runit()"].run-success {
+    background-color: var(--color-success) !important;
+}
+
+button[onclick="runit()"].run-success::before {
+    content: '✓ ';
+}
+
+/* ============================================================================
+   DARK MODE SUPPORT - Uses design token overrides
+   ============================================================================ */
+
+[data-md-color-scheme="slate"] .mission-checklist {
+    background: var(--color-mission-bg);
+    border-color: var(--color-mission-border);
+}
+
+[data-md-color-scheme="slate"] .mission-checklist.mission-complete {
+    background: linear-gradient(135deg, var(--color-success-light) 0%, #166534 100%);
+    border-color: var(--color-success);
+}
+
+[data-md-color-scheme="slate"] .mission-title {
+    color: var(--color-mission-title);
+}
+
+[data-md-color-scheme="slate"] .mission-checklist.mission-complete .mission-title {
+    color: var(--color-success-text);
+}
+
+[data-md-color-scheme="slate"] .mission-text {
+    color: var(--color-mission-text);
+}
+
+[data-md-color-scheme="slate"] .mission-step {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+[data-md-color-scheme="slate"] .mission-step.active {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-md-color-scheme="slate"] .mission-step.completed {
+    background-color: rgba(34, 197, 94, 0.2);
+}
+
+[data-md-color-scheme="slate"] .step-indicator {
+    background-color: var(--color-bg-muted);
+    color: var(--color-text-muted);
+}
+
+[data-md-color-scheme="slate"] .step-text {
+    color: var(--color-text-secondary);
+}
+
+[data-md-color-scheme="slate"] .mission-step.active .step-text {
+    color: var(--color-info-text);
+}
+
+[data-md-color-scheme="slate"] .mission-step.completed .step-text {
+    color: var(--color-success-text);
+}
+
+[data-md-color-scheme="slate"] .mission-progress {
+    background-color: var(--color-bg-muted);
+    color: var(--color-text-muted);
+}
+
+/* ============================================================================
+   RESPONSIVE
+   ============================================================================ */
+
+@media screen and (max-width: 768px) {
+    .mission-checklist {
+        padding: var(--space-3) var(--space-4);
+        margin-bottom: var(--space-4);
+    }
+
+    .mission-header {
+        flex-wrap: wrap;
+    }
+
+    .mission-text {
+        padding-left: 0;
+        font-size: var(--text-xs);
+    }
+
+    .success-banner {
+        flex-direction: column;
+        gap: var(--space-3);
+        text-align: center;
+    }
+
+    .success-content {
+        flex-direction: column;
+        gap: var(--space-1);
+    }
+
+    .success-subtext {
+        margin-left: 0;
+        display: block;
+    }
+
+    .success-dismiss {
+        position: absolute;
+        top: var(--space-2);
+        right: var(--space-2);
+    }
+
+    .success-banner {
+        position: relative;
+    }
+}
+
+/* ============================================================================
+   ANIMATIONS
+   ============================================================================ */
+
+@keyframes stepComplete {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+.mission-step.completed .step-indicator {
+    animation: stepComplete 0.3s ease;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.mission-checklist {
+    animation: slideIn 0.3s ease;
+}

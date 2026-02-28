@@ -1,0 +1,143 @@
+/**
+ * Python Error Explainer Styles - PROTOTYPE
+ * DO NOT USE YET - This is a prototype for review
+ */
+
+.python-error-explained {
+    background: linear-gradient(135deg, #fff5f5 0%, #fff 100%);
+    border: 1px solid #ffcccc;
+    border-left: 4px solid #e53935;
+    border-radius: 8px;
+    padding: 16px;
+    margin: 10px 0;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.error-title {
+    font-size: 16px;
+    font-weight: bold;
+    color: #c62828;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px dashed #ffcccc;
+}
+
+.error-line-info {
+    color: #666;
+    font-size: 13px;
+    margin-bottom: 8px;
+}
+
+.error-problem-line {
+    background: #2d2d2d;
+    color: #f8f8f2;
+    padding: 8px 12px;
+    border-radius: 4px;
+    margin: 8px 0;
+    overflow-x: auto;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 13px;
+}
+
+.error-explanation {
+    background: #fff8e1;
+    border-radius: 6px;
+    padding: 12px;
+    margin: 10px 0;
+    color: #5d4037;
+}
+
+.error-specific-cause {
+    background: #e3f2fd;
+    border-left: 3px solid #2196f3;
+    padding: 10px 12px;
+    margin: 10px 0;
+    border-radius: 0 6px 6px 0;
+    color: #1565c0;
+    font-weight: 500;
+}
+
+.error-fix {
+    background: #e8f5e9;
+    border-radius: 6px;
+    padding: 12px;
+    margin: 10px 0;
+    color: #2e7d32;
+}
+
+.error-example {
+    margin: 10px 0;
+}
+
+.error-example pre {
+    background: #263238;
+    color: #aabbc3;
+    padding: 12px;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.error-example code {
+    font-family: 'Roboto Mono', monospace;
+}
+
+.error-original {
+    margin-top: 12px;
+    font-size: 12px;
+}
+
+.error-original summary {
+    cursor: pointer;
+    color: #757575;
+    padding: 4px 0;
+}
+
+.error-original summary:hover {
+    color: #424242;
+}
+
+.error-original pre {
+    background: #f5f5f5;
+    color: #d32f2f;
+    padding: 10px;
+    border-radius: 4px;
+    margin-top: 8px;
+    overflow-x: auto;
+    font-size: 11px;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+/* Dark mode support */
+[data-md-color-scheme="slate"] .python-error-explained {
+    background: linear-gradient(135deg, #2d2d2d 0%, #1e1e1e 100%);
+    border-color: #5c3d3d;
+}
+
+[data-md-color-scheme="slate"] .error-title {
+    color: #ef5350;
+}
+
+[data-md-color-scheme="slate"] .error-explanation {
+    background: #3d3a2d;
+    color: #ffe082;
+}
+
+[data-md-color-scheme="slate"] .error-specific-cause {
+    background: #1e3a5f;
+    border-color: #64b5f6;
+    color: #90caf9;
+}
+
+[data-md-color-scheme="slate"] .error-fix {
+    background: #2d3d2d;
+    color: #81c784;
+}
+
+[data-md-color-scheme="slate"] .error-original pre {
+    background: #1a1a1a;
+    color: #ef9a9a;
+}

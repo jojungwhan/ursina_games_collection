@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>학부모를 위한 커리큘럼 가이드</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        .card-hover {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.15);
+        }
+        .btn-hover {
+            transition: all 0.2s ease;
+        }
+        .btn-hover:hover {
+            transform: translateX(4px);
+        }
+    </style>
+</head>
+<body class="font-sans bg-white text-gray-800 antialiased">
+
+    <!-- Hero Header -->
+    <header class="bg-gradient-to-b from-gray-50 to-white py-16 md:py-24">
+        <div class="max-w-5xl mx-auto px-6 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+                학부모를 위한 커리큘럼 가이드
+            </h1>
+            <p class="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
+                자녀가 배우는 프로그래밍 커리큘럼의 <strong class="text-gray-800">교육적 가치</strong>를 이해하고,
+                각 수업이 <strong class="text-gray-800">왜 중요한지</strong> 확인하세요.
+            </p>
+        </div>
+    </header>
+
+    <!-- Section 1: The "Why" Section (Zig-Zag Layout) -->
+    <section class="py-20 md:py-28">
+        <div class="max-w-6xl mx-auto px-6">
+
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                    AI와 프로그래밍 교육이 왜 중요한가요?
+                </h2>
+                <p class="text-gray-500 text-lg">미래를 준비하는 핵심 역량</p>
+            </div>
+
+            <!-- Zig-Zag Item 1: Logical Thinking -->
+            <div class="flex flex-col md:flex-row items-center gap-12 md:gap-20 mb-24">
+                <div class="flex-1 order-2 md:order-1">
+                    <div class="inline-block px-3 py-1 bg-emerald-100 text-emerald-700 text-sm font-medium rounded-full mb-4">
+                        논리적 사고력
+                    </div>
+                    <h3 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+                        복잡한 문제를 작은 단계로 분해하는 능력
+                    </h3>
+                    <p class="text-gray-600 leading-relaxed text-lg">
+                        프로그래밍은 수학, 과학, 심지어 일상생활의 문제 해결에도 적용됩니다.
+                        컴퓨터에게 명령을 내리려면 모호함 없이 정확하게 단계를 나열해야 하므로,
+                        학생들은 자연스럽게 <strong>체계적인 사고 방식</strong>을 배우게 됩니다.
+                    </p>
+                </div>
+                <div class="flex-1 order-1 md:order-2 flex justify-center">
+                    <div class="w-48 h-48 md:w-64 md:h-64 bg-gradient-to-br from-emerald-100 to-emerald-50 rounded-3xl flex items-center justify-center shadow-lg">
+                        <span class="text-7xl md:text-8xl">🧩</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Zig-Zag Item 2: Data Understanding -->
+            <div class="flex flex-col md:flex-row items-center gap-12 md:gap-20 mb-24">
+                <div class="flex-1 flex justify-center">
+                    <div class="w-48 h-48 md:w-64 md:h-64 bg-gradient-to-br from-blue-100 to-blue-50 rounded-3xl flex items-center justify-center shadow-lg">
+                        <span class="text-7xl md:text-8xl">📊</span>
+                    </div>
+                </div>
+                <div class="flex-1">
+                    <div class="inline-block px-3 py-1 bg-blue-100 text-blue-700 text-sm font-medium rounded-full mb-4">
+                        데이터 이해력
+                    </div>
+                    <h3 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+                        AI의 연료를 이해하는 핵심 역량
+                    </h3>
+                    <p class="text-gray-600 leading-relaxed text-lg mb-4">
+                        현대 사회는 <strong>데이터 기반</strong>입니다. AI의 성능과 판단력은 학습 데이터의 품질에 의해 결정됩니다.
+                    </p>
+                    <div class="bg-blue-50 border-l-4 border-blue-400 p-4 rounded-r-lg">
+                        <p class="text-blue-800 text-sm">
+                            "이 AI가 왜 이런 결론에 도달했는가?" — 이러한 질문을 던질 수 있는
+                            <strong>데이터 리터러시</strong>가 AI 시대의 필수 역량입니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Zig-Zag Item 3: Grit & Growth Mindset -->
+            <div class="flex flex-col md:flex-row items-center gap-12 md:gap-20">
+                <div class="flex-1 order-2 md:order-1">
+                    <div class="inline-block px-3 py-1 bg-amber-100 text-amber-700 text-sm font-medium rounded-full mb-4">
+                        Grit & Growth Mindset
+                    </div>
+                    <h3 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+                        좌절을 극복하는 끈기와 성장 마인드셋
+                    </h3>
+                    <p class="text-gray-600 leading-relaxed text-lg mb-4">
+                        프로그래밍에서 오류(버그)는 자연스러운 과정입니다. 학생들은 코드가 예상대로 작동하지 않을 때
+                        원인을 분석하고 수정하는 방법을 배웁니다.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <div class="flex-1 bg-gray-50 p-4 rounded-xl">
+                            <p class="font-semibold text-gray-800 mb-1">Grit (끈기)</p>
+                            <p class="text-sm text-gray-500">Angela Duckworth, Penn</p>
+                        </div>
+                        <div class="flex-1 bg-gray-50 p-4 rounded-xl">
+                            <p class="font-semibold text-gray-800 mb-1">Growth Mindset</p>
+                            <p class="text-sm text-gray-500">Carol Dweck, Stanford</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex-1 order-1 md:order-2 flex justify-center">
+                    <div class="w-48 h-48 md:w-64 md:h-64 bg-gradient-to-br from-amber-100 to-amber-50 rounded-3xl flex items-center justify-center shadow-lg">
+                        <span class="text-7xl md:text-8xl">💪</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Section 2: The "Future Formula" Section -->
+    <section class="py-20 md:py-28 bg-gradient-to-br from-emerald-50 via-white to-white">
+        <div class="max-w-5xl mx-auto px-6">
+
+            <!-- Section Header -->
+            <div class="text-center mb-6">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900">
+                    AI × Human Synergy
+                </h2>
+                <p class="text-gray-600 text-lg mt-3">
+                    미래는 AI를 거부하는 자가 아닌, AI를 <strong class="text-gray-800">도구로 지휘하는 자</strong>의 것입니다.
+                </p>
+            </div>
+
+            <!-- The Visual Equation Card -->
+            <div class="bg-white/80 backdrop-blur border border-emerald-100 rounded-2xl p-8 md:p-12 shadow-xl shadow-emerald-100/50 mb-16">
+
+                <p class="text-center text-xs tracking-[0.2em] text-gray-400 font-medium mb-6">
+                    THE FUTURE FORMULA
+                </p>
+
+                <div class="flex flex-col md:flex-row items-center justify-center gap-3 md:gap-4 text-xl md:text-2xl mb-6">
+                    <span class="text-gray-500 font-light">
+                        (인간의 지능 × <span class="text-violet-600 font-bold">창의성</span>)
+                    </span>
+                    <span class="text-4xl md:text-5xl text-amber-500 font-bold">×</span>
+                    <span class="text-emerald-600 font-bold text-2xl md:text-3xl">AI</span>
+                </div>
+
+                <div class="text-center">
+                    <span class="text-gray-400">=</span>
+                    <span class="text-2xl md:text-3xl font-bold text-gray-900 ml-2">대체 불가능한 경쟁력</span>
+                </div>
+            </div>
+
+            <!-- The 3 Steps (Horizontal Flow) -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+
+                <!-- Step 1: Leverage -->
+                <div class="bg-white rounded-2xl p-6 shadow-lg shadow-gray-100 border border-gray-100">
+                    <div class="w-14 h-14 bg-amber-100 rounded-xl flex items-center justify-center mb-4">
+                        <span class="text-2xl">⚡</span>
+                    </div>
+                    <div class="flex items-center gap-2 mb-2">
+                        <span class="text-xl font-bold text-gray-900">증폭</span>
+                        <span class="text-sm text-gray-400 font-medium">Leverage</span>
+                    </div>
+                    <p class="text-sm text-gray-500 mb-3">AI로 지능 확장</p>
+                    <p class="text-gray-600 text-sm leading-relaxed">
+                        단순 반복과 데이터 처리는 AI에게 맡기세요. 정보 수집과 초안 작성의 속도가 <strong>10배</strong> 빨라집니다.
+                    </p>
+                </div>
+
+                <!-- Step 2: Differentiate -->
+                <div class="bg-white rounded-2xl p-6 shadow-lg shadow-gray-100 border border-gray-100">
+                    <div class="w-14 h-14 bg-violet-100 rounded-xl flex items-center justify-center mb-4">
+                        <span class="text-2xl">🎨</span>
+                    </div>
+                    <div class="flex items-center gap-2 mb-2">
+                        <span class="text-xl font-bold text-gray-900">차별화</span>
+                        <span class="text-sm text-gray-400 font-medium">Differentiate</span>
+                    </div>
+                    <p class="text-sm text-gray-500 mb-3">창의성의 마법</p>
+                    <p class="text-gray-600 text-sm leading-relaxed">
+                        AI가 내놓은 평범한 답 위에 <strong>인간만의 통찰, 감성, 엉뚱함</strong>을 더해 고유한 결과물로 만듭니다.
+                    </p>
+                </div>
+
+                <!-- Step 3: Direct -->
+                <div class="bg-white rounded-2xl p-6 shadow-lg shadow-gray-100 border border-gray-100">
+                    <div class="w-14 h-14 bg-emerald-100 rounded-xl flex items-center justify-center mb-4">
+                        <span class="text-2xl">⚖️</span>
+                    </div>
+                    <div class="flex items-center gap-2 mb-2">
+                        <span class="text-xl font-bold text-gray-900">결정</span>
+                        <span class="text-sm text-gray-400 font-medium">Direct</span>
+                    </div>
+                    <p class="text-sm text-gray-500 mb-3">윤리와 가치 판단</p>
+                    <p class="text-gray-600 text-sm leading-relaxed">
+                        결국 '어떤 선택이 옳은가'는 인간의 몫입니다. 기술을 올바른 방향으로 이끄는 <strong>리더십</strong>을 배웁니다.
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- Footer Quote -->
+            <div class="mt-12 bg-gray-50 border-l-4 border-emerald-500 rounded-r-xl p-6">
+                <p class="text-gray-700 leading-relaxed">
+                    코딩 교육은 단순히 기술을 배우는 것이 아닙니다.
+                    <strong>AI라는 강력한 도구를 통제하며, 당신의 상상력을 현실로 만드는 훈련</strong>입니다.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Section 3: The Curriculum Grid -->
+    <section class="py-20 md:py-28 bg-gray-50">
+        <div class="max-w-6xl mx-auto px-6">
+
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                    각 코스 상세 가이드
+                </h2>
+                <p class="text-gray-500 text-lg">각 코스의 수업별 상세 설명을 확인하세요</p>
+            </div>
+
+            <!-- 2x2 Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+
+                <!-- Card 1: Python Basics I -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg shadow-gray-200/50 card-hover">
+                    <!-- Header Block -->
+                    <div class="bg-gradient-to-r from-emerald-50 to-emerald-100/50 p-6 border-b border-emerald-100">
+                        <div class="flex items-start justify-between">
+                            <div>
+                                <span class="text-4xl mb-3 block">🧩</span>
+                                <h3 class="text-xl font-bold text-gray-900">Python Basics I</h3>
+                                <p class="text-gray-600 text-sm mt-1">코드의 논리</p>
+                            </div>
+                            <span class="px-3 py-1 bg-emerald-200/60 text-emerald-800 text-xs font-semibold rounded-full">
+                                Algorithmic Thinking
+                            </span>
+                        </div>
+                        <p class="text-gray-500 text-sm mt-3">시각적 피드백으로 컴퓨터처럼 생각하는 법을 배웁니다</p>
+                    </div>
+                    <!-- Body -->
+                    <div class="p-6">
+                        <ul class="space-y-4">
+                            <li class="flex items-start gap-3">
+                                <span class="text-emerald-500 font-bold mt-0.5">✓</span>
+                                <div>
+                                    <span class="font-semibold text-gray-800">자동화</span>
+                                    <span class="text-gray-400 text-sm ml-1">(반복문)</span>
+                                    <p class="text-gray-500 text-sm mt-1">반복 작업을 한 줄로 해결하는 효율성의 힘</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-emerald-500 font-bold mt-0.5">✓</span>
+                                <div>
+                                    <span class="font-semibold text-gray-800">의사결정</span>
+                                    <span class="text-gray-400 text-sm ml-1">(조건문)</span>
+                                    <p class="text-gray-500 text-sm mt-1">상황에 따라 다르게 반응하는 스마트한 프로그램</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-emerald-500 font-bold mt-0.5">✓</span>
+                                <div>
+                                    <span class="font-semibold text-gray-800">기억</span>
+                                    <span class="text-gray-400 text-sm ml-1">(변수)</span>
+                                    <p class="text-gray-500 text-sm mt-1">정보를 저장하고 불러오는 모든 프로그램의 기초</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-emerald-500 font-bold mt-0.5">✓</span>
+                                <div>
+                                    <span class="font-semibold text-gray-800">추상화</span>
+                                    <span class="text-gray-400 text-sm ml-1">(함수)</span>
+                                    <p class="text-gray-500 text-sm mt-1">복잡한 문제를 재사용 가능한 블록으로 분해</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- Footer -->
+                    <div class="px-6 pb-6">
+                        <div class="flex items-center justify-between text-sm text-gray-400 mb-4">
+                            <span>⏱️ 8-16시간</span>
+                            <span>⚡ 입문</span>
+                        </div>
+                        <a href="01_python_basics_1.md" class="block w-full text-center py-3 px-4 bg-emerald-500 hover:bg-emerald-600 text-white font-semibold rounded-xl transition-colors btn-hover">
+                            상세 내용 →
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Card 2: Python Basics II -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg shadow-gray-200/50 card-hover">
+                    <!-- Header Block -->
+                    <div class="bg-gradient-to-r from-blue-50 to-blue-100/50 p-6 border-b border-blue-100">
+                        <div class="flex items-start justify-between">
+                            <div>
+                                <span class="text-4xl mb-3 block">🔧</span>
+                                <h3 class="text-xl font-bold text-gray-900">Python Basics II</h3>
+                                <p class="text-gray-600 text-sm mt-1">데이터와 신뢰성</p>
+                            </div>
+                            <span class="px-3 py-1 bg-blue-200/60 text-blue-800 text-xs font-semibold rounded-full">
+                                Data Structures
+                            </span>
+                        </div>
+                        <p class="text-gray-500 text-sm mt-3">텍스트 기반 프로그래밍으로 실제 데이터를 다룹니다</p>
+                    </div>
+                    <!-- Body -->
+                    <div class="p-6">
+                        <ul class="space-y-4">
+                            <li class="flex items-start gap-3">
+                                <span class="text-blue-500 font-bold mt-0.5">✓</span>
+                                <div>
+                                    <span class="font-semibold text-gray-800">디지털 표현</span>
+                                    <span class="text-gray-400 text-sm ml-1">(자료형)</span>
+                                    <p class="text-gray-500 text-sm mt-1">세상을 숫자, 텍스트, 논리값으로 매핑하는 방법</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-blue-500 font-bold mt-0.5">✓</span>
+                                <div>
+                                    <span class="font-semibold text-gray-800">정보 처리</span>
+                                    <span class="text-gray-400 text-sm ml-1">(파싱)</span>
+                                    <p class="text-gray-500 text-sm mt-1">원시 텍스트에서 의미를 추출하는 기술</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-blue-500 font-bold mt-0.5">✓</span>
+                                <div>
+                                    <span class="font-semibold text-gray-800">상호작용</span>
+                                    <span class="text-gray-400 text-sm ml-1">(입출력)</span>
+                                    <p class="text-gray-500 text-sm mt-1">사용자와 프로그램 사이의 다리를 구축</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-blue-500 font-bold mt-0.5">✓</span>
+                                <div>
+                                    <span class="font-semibold text-gray-800">견고함</span>
+                                    <span class="text-gray-400 text-sm ml-1">(예외처리)</span>
+                                    <p class="text-gray-500 text-sm mt-1">예상치 못한 상황에도 멈추지 않는 코드</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- Footer -->
+                    <div class="px-6 pb-6">
+                        <div class="flex items-center justify-between text-sm text-gray-400 mb-4">
+                            <span>⏱️ 12-20시간</span>
+                            <span>⚡ 초급</span>
+                        </div>
+                        <a href="02_python_basics_2.md" class="block w-full text-center py-3 px-4 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-xl transition-colors btn-hover">
+                            상세 내용 →
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Card 3: Data Viz I -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg shadow-gray-200/50 card-hover">
+                    <!-- Header Block -->
+                    <div class="bg-gradient-to-r from-orange-50 to-orange-100/50 p-6 border-b border-orange-100">
+                        <div class="flex items-start justify-between">
+                            <div>
+                                <span class="text-4xl mb-3 block">📊</span>
+                                <h3 class="text-xl font-bold text-gray-900">데이터와 시각화 I</h3>
+                                <p class="text-gray-600 text-sm mt-1">정보의 구조화</p>
+                            </div>
+                            <span class="px-3 py-1 bg-orange-200/60 text-orange-800 text-xs font-semibold rounded-full">
+                                Data Literacy
+                            </span>
+                        </div>
+                        <p class="text-gray-500 text-sm mt-3">숫자를 의미 있는 시각적 정보로 변환합니다</p>
+                    </div>
+                    <!-- Body -->
+                    <div class="p-6">
+                        <ul class="space-y-4">
+                            <li class="flex items-start gap-3">
+                                <span class="text-orange-500 font-bold mt-0.5">✓</span>
+                                <div>
+                                    <span class="font-semibold text-gray-800">데이터 조직화</span>
+                                    <span class="text-gray-400 text-sm ml-1">(리스트)</span>
+                                    <p class="text-gray-500 text-sm mt-1">단일 값에서 대규모 데이터셋 관리로 확장</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-orange-500 font-bold mt-0.5">✓</span>
+                                <div>
+                                    <span class="font-semibold text-gray-800">비교 분석</span>
+                                    <span class="text-gray-400 text-sm ml-1">(막대 그래프)</span>
+                                    <p class="text-gray-500 text-sm mt-1">크기와 규모를 한눈에 비교</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-orange-500 font-bold mt-0.5">✓</span>
+                                <div>
+                                    <span class="font-semibold text-gray-800">추세 분석</span>
+                                    <span class="text-gray-400 text-sm ml-1">(선 그래프)</span>
+                                    <p class="text-gray-500 text-sm mt-1">시간에 따른 변화 패턴을 발견</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-orange-500 font-bold mt-0.5">✓</span>
+                                <div>
+                                    <span class="font-semibold text-gray-800">근거 기반 사고</span>
+                                    <p class="text-gray-500 text-sm mt-1">"직감"을 "데이터"로 대체하는 사고방식</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- Footer -->
+                    <div class="px-6 pb-6">
+                        <div class="flex items-center justify-between text-sm text-gray-400 mb-4">
+                            <span>⏱️ 12-20시간</span>
+                            <span>⚡ 초급</span>
+                        </div>
+                        <a href="03_data_visualization.md" class="block w-full text-center py-3 px-4 bg-orange-500 hover:bg-orange-600 text-white font-semibold rounded-xl transition-colors btn-hover">
+                            상세 내용 →
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Card 4: Data Viz II -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg shadow-gray-200/50 card-hover">
+                    <!-- Header Block -->
+                    <div class="bg-gradient-to-r from-pink-50 to-pink-100/50 p-6 border-b border-pink-100">
+                        <div class="flex items-start justify-between">
+                            <div>
+                                <span class="text-4xl mb-3 block">📈</span>
+                                <h3 class="text-xl font-bold text-gray-900">데이터와 시각화 II</h3>
+                                <p class="text-gray-600 text-sm mt-1">인사이트 도출</p>
+                            </div>
+                            <span class="px-3 py-1 bg-pink-200/60 text-pink-800 text-xs font-semibold rounded-full">
+                                Data Storytelling
+                            </span>
+                        </div>
+                        <p class="text-gray-500 text-sm mt-3">전문 도구로 데이터에서 통찰을 이끌어냅니다</p>
+                    </div>
+                    <!-- Body -->
+                    <div class="p-6">
+                        <ul class="space-y-4">
+                            <li class="flex items-start gap-3">
+                                <span class="text-pink-500 font-bold mt-0.5">✓</span>
+                                <div>
+                                    <span class="font-semibold text-gray-800">탐색적 분석</span>
+                                    <span class="text-gray-400 text-sm ml-1">(인터랙티브)</span>
+                                    <p class="text-gray-500 text-sm mt-1">데이터에 "질문"할 수 있는 시각화</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-pink-500 font-bold mt-0.5">✓</span>
+                                <div>
+                                    <span class="font-semibold text-gray-800">실전 데이터</span>
+                                    <span class="text-gray-400 text-sm ml-1">(Dirty Data)</span>
+                                    <p class="text-gray-500 text-sm mt-1">현실 세계의 지저분한 데이터 다루기</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-pink-500 font-bold mt-0.5">✓</span>
+                                <div>
+                                    <span class="font-semibold text-gray-800">공간 분석</span>
+                                    <span class="text-gray-400 text-sm ml-1">(지도)</span>
+                                    <p class="text-gray-500 text-sm mt-1">위치 정보를 지도 위에 시각화</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-pink-500 font-bold mt-0.5">✓</span>
+                                <div>
+                                    <span class="font-semibold text-gray-800">커뮤니케이션</span>
+                                    <p class="text-gray-500 text-sm mt-1">숫자를 설득력 있는 이야기로 변환</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- Footer -->
+                    <div class="px-6 pb-6">
+                        <div class="flex items-center justify-between text-sm text-gray-400 mb-4">
+                            <span>⏱️ 16-32시간</span>
+                            <span>⚡ 중급</span>
+                        </div>
+                        <a href="03b_data_visualization_2.md" class="block w-full text-center py-3 px-4 bg-pink-500 hover:bg-pink-600 text-white font-semibold rounded-xl transition-colors btn-hover">
+                            상세 내용 →
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: Learning Tips -->
+    <section class="py-20 md:py-28">
+        <div class="max-w-4xl mx-auto px-6">
+
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                    학습 팁
+                </h2>
+                <p class="text-gray-500 text-lg">학부모님께 드리는 조언</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div class="bg-gradient-to-br from-emerald-50 to-white p-6 rounded-2xl border border-emerald-100">
+                    <span class="text-3xl mb-3 block">🎯</span>
+                    <h4 class="font-bold text-gray-900 mb-2">완성보다 과정을 칭찬하세요</h4>
+                    <p class="text-gray-600 text-sm">코드가 완벽하지 않아도 시도한 노력을 인정해주세요.</p>
+                </div>
+                <div class="bg-gradient-to-br from-blue-50 to-white p-6 rounded-2xl border border-blue-100">
+                    <span class="text-3xl mb-3 block">🐛</span>
+                    <h4 class="font-bold text-gray-900 mb-2">오류는 학습 기회입니다</h4>
+                    <p class="text-gray-600 text-sm">버그가 발생하면 함께 원인을 찾아보세요. "왜 이렇게 됐을까?" 질문이 사고력을 키웁니다.</p>
+                </div>
+                <div class="bg-gradient-to-br from-amber-50 to-white p-6 rounded-2xl border border-amber-100">
+                    <span class="text-3xl mb-3 block">🎉</span>
+                    <h4 class="font-bold text-gray-900 mb-2">작은 성공을 축하하세요</h4>
+                    <p class="text-gray-600 text-sm">첫 그림, 첫 게임, 첫 그래프... 작은 성취가 큰 동기부여가 됩니다.</p>
+                </div>
+                <div class="bg-gradient-to-br from-violet-50 to-white p-6 rounded-2xl border border-violet-100">
+                    <span class="text-3xl mb-3 block">🌱</span>
+                    <h4 class="font-bold text-gray-900 mb-2">비교하지 마세요</h4>
+                    <p class="text-gray-600 text-sm">각 학생의 학습 속도는 다릅니다. 자녀만의 페이스를 존중해주세요.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 py-12">
+        <div class="max-w-5xl mx-auto px-6 text-center">
+            <p class="text-sm">
+                프로그래밍 교육은 미래를 위한 투자입니다.
+            </p>
+            <p class="text-xs mt-4 text-gray-500">
+                © 2024 Curriculum Guide for Parents
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,131 @@
+{
+  "$schema": "./tracks.schema.json",
+  "_comment": "Course track configuration - SSOT for course_switcher.js and validation",
+
+  "tracks": {
+    "basics": {
+      "id": "basics",
+      "label": "Python Basics I",
+      "displayName": "🐢 Python Basics I",
+      "icon": "🐢",
+      "description": "Turtle Graphics 기반 파이썬 입문",
+      "navPatterns": ["시작", "1. 🐢", "2. 🎨", "3. 🧙", "4. 🐢", "5. ♾️", "6. 🎆", "7. 🐢", "8. 🌌"],
+      "urlPatterns": [
+        "/pre_basics/intro",
+        "/pre_basics/00_python_basics/chunk_a_comments",
+        "/pre_basics/00_python_basics/chunk_f_if",
+        "/pre_basics/01_turtle/",
+        "/pre_basics/02_colors/",
+        "/pre_basics/03_range/",
+        "/pre_basics/04_loop/",
+        "/pre_basics/05_variable_i/",
+        "/pre_basics/07_functions/",
+        "/pre_basics/06_spiral/"
+      ],
+      "hideHome": true
+    },
+    "visual": {
+      "id": "visual",
+      "label": "Visual Python 3D",
+      "displayName": "🎮 Visual Python 3D",
+      "icon": "🎮",
+      "description": "Ursina 3D 게임 프로젝트",
+      "navPatterns": ["1. 시작하기", "2. 제어문", "3. 데이터", "4. 중첩", "5. 함수", "6. 클래스", "7. 2D 배열", "8. 고급"],
+      "urlPatterns": [
+        "/one_basics/",
+        "/two_flow/",
+        "/three_ursina/",
+        "/four_data/",
+        "/five_functions/",
+        "/six_classes/",
+        "/seven_2d/",
+        "/eight_advanced/"
+      ],
+      "hideHome": false
+    },
+    "basics2": {
+      "id": "basics2",
+      "label": "Python Basics II",
+      "displayName": "🐍 Python Basics II",
+      "icon": "🐍",
+      "description": "텍스트 기반 파이썬 기초",
+      "navPatterns": ["1. 🖨️", "2. 🧱", "3. ➗", "4. ⚖️", "5. 🧠", "6. 🔁", "7. 🧭", "8. 📝", "9. ⌨️", "10. 🛠️", "11. 🐢"],
+      "urlPatterns": [
+        "/pre_basics/00_python_basics/01_print/",
+        "/pre_basics/00_python_basics/02_datatypes/",
+        "/pre_basics/00_python_basics/03_operators/",
+        "/pre_basics/00_python_basics/04_comparison/",
+        "/pre_basics/00_python_basics/05_logical/",
+        "/pre_basics/00_python_basics/06_while/",
+        "/pre_basics/00_python_basics/07_break/",
+        "/pre_basics/00_python_basics/08_strings/",
+        "/pre_basics/00_python_basics/09_input/",
+        "/pre_basics/00_python_basics/10_errors/",
+        "/turtle_grader_test"
+      ],
+      "hideHome": true
+    },
+    "problems": {
+      "id": "problems",
+      "label": "Python 문제풀이",
+      "displayName": "📐 Python 문제풀이",
+      "icon": "📐",
+      "description": "도형 퀴즈와 텍스트 연습",
+      "navPatterns": ["Python 문제풀이"],
+      "urlPatterns": [
+        "/pre_basics/07_shape_quiz/",
+        "/pre_basics/08_text_exercises/"
+      ],
+      "hideHome": true
+    },
+    "dataviz": {
+      "id": "dataviz",
+      "label": "데이터와 시각화 I",
+      "displayName": "📊 데이터와 시각화 I",
+      "icon": "📊",
+      "description": "Turtle 차트, 리스트, Matplotlib",
+      "navPatterns": [
+        "1. 📊 거북이",
+        "2. 📋 리스트",
+        "3. 🎨 Matplotlib",
+        "4. 🎵 음악",
+        "5. 👟 스니커봇"
+      ],
+      "urlPatterns": [
+        "/data_viz/01_",
+        "/data_viz/02_",
+        "/data_viz/04_",
+        "/data_viz/05_",
+        "/data_viz/06_"
+      ],
+      "hideHome": true
+    },
+    "dataviz2": {
+      "id": "dataviz2",
+      "label": "데이터와 시각화 II",
+      "displayName": "📈 데이터와 시각화 II",
+      "icon": "📈",
+      "description": "지도, pandas, UFO, 포켓몬, 영화",
+      "navPatterns": [
+        "0. 🗺️ 지도",
+        "1. 🐼 pandas",
+        "2. 👽 UFO",
+        "3. 🎮 포켓몬",
+        "4. 🎬 할리우드"
+      ],
+      "urlPatterns": [
+        "/pre_basics/09_maps/",
+        "/data_viz/pandas_intro/",
+        "/data_viz/07_",
+        "/data_viz/08_",
+        "/data_viz/09_"
+      ],
+      "hideHome": true
+    }
+  },
+
+  "defaults": {
+    "defaultTrack": "basics",
+    "storageKey": "cit_course_track"
+  }
+}

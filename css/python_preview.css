@@ -1,0 +1,241 @@
+/**
+ * @file python_preview.css
+ * @description Python code preview panel and output terminal styles.
+ *
+ * Components:
+ *   - Output terminal (#outputCanvas)
+ *   - Run button (button[onclick="runit()"])
+ *   - Code preview container (.code-preview-container)
+ *   - Preview tabs (.preview-tabs, .preview-tab)
+ *   - Python code display (#pythonCodeDisplay)
+ */
+
+/* ========================================
+   Output Terminal
+   ======================================== */
+
+#outputCanvas {
+    background-color: var(--color-code-bg);
+    color: var(--color-code-text);
+    padding: var(--space-4);
+    border: 1px solid var(--color-code-border);
+    border-radius: var(--radius-md);
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    line-height: var(--leading-normal);
+    min-height: 100px;
+    max-height: 300px;
+    overflow-y: auto;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    margin-top: var(--space-4);
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#outputCanvas.error {
+    color: var(--color-error);
+}
+
+#outputCanvas.success {
+    color: var(--color-success);
+}
+
+/* ========================================
+   Run Button
+   ======================================== */
+
+button[onclick="runit()"] {
+    background-color: var(--color-accent);
+    color: var(--color-text-inverse);
+    border: none;
+    padding: var(--space-3) var(--space-6);
+    font-size: var(--text-base);
+    font-weight: var(--font-semibold);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    margin-top: var(--space-2);
+    margin-left: 0;
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 0;
+    display: block;
+    transition: all var(--transition-base);
+    box-shadow: var(--shadow-sm);
+}
+
+button[onclick="runit()"]:hover {
+    background-color: var(--color-accent-hover);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+}
+
+button[onclick="runit()"]:active {
+    background-color: var(--color-accent-active);
+    transform: translateY(0);
+    box-shadow: var(--shadow-xs);
+}
+
+/* ========================================
+   Code Preview Container
+   ======================================== */
+
+.code-preview-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--color-code-border);
+    background-color: var(--color-code-bg);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    min-width: 300px;
+}
+
+/* Legacy container */
+.python-preview-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--color-bg-subtle);
+    background-color: var(--color-code-bg);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    min-width: 300px;
+}
+
+/* ========================================
+   Preview Tabs
+   ======================================== */
+
+.preview-tabs {
+    display: flex;
+    background: var(--color-code-header);
+    border-bottom: 1px solid var(--color-code-border);
+}
+
+.preview-tab {
+    flex: 1;
+    padding: var(--space-3) var(--space-4);
+    background: transparent;
+    border: none;
+    color: var(--color-text-muted);
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    font-weight: var(--font-medium);
+    cursor: pointer;
+    transition: all var(--transition-base);
+    border-bottom: 2px solid transparent;
+}
+
+.preview-tab:hover {
+    color: var(--color-code-text);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.preview-tab.active {
+    color: var(--color-accent);
+    border-bottom-color: var(--color-accent);
+    background: var(--color-code-bg);
+}
+
+/* ========================================
+   Tab Content
+   ======================================== */
+
+.preview-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.tab-panel {
+    display: none;
+    flex: 1;
+    overflow: auto;
+}
+
+.tab-panel.active {
+    display: flex;
+    flex-direction: column;
+}
+
+/* ========================================
+   Preview Header
+   ======================================== */
+
+.preview-header {
+    background: var(--color-code-header);
+    padding: var(--space-2) var(--space-3);
+    font-family: var(--font-sans);
+    font-weight: var(--font-bold);
+    font-size: var(--text-xs);
+    color: var(--color-code-text);
+    border-bottom: 1px solid var(--color-code-border);
+}
+
+/* ========================================
+   Python Code Display
+   ======================================== */
+
+.python-code-view,
+pre.python-code-view,
+#pythonCodeDisplay {
+    margin: 0;
+    padding: var(--space-3);
+    flex-grow: 1;
+    overflow: auto;
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    line-height: var(--leading-relaxed);
+    color: var(--color-code-text);
+    background-color: var(--color-code-bg);
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    min-height: 400px;
+}
+
+/* High specificity override for theme styles */
+html body #pythonCodeDisplay,
+html body #pythonCodeDisplay * {
+    color: var(--color-code-text);
+    background-color: transparent;
+}
+
+html body #pythonCodeDisplay {
+    background-color: var(--color-code-bg);
+}
+
+#pythonCodeDisplay {
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 12px;
+    padding-right: 12px;
+}
+
+/* ========================================
+   Responsive
+   ======================================== */
+
+@media (max-width: 768px) {
+    #outputCanvas {
+        font-size: var(--text-xs);
+        padding: var(--space-3);
+    }
+}
+
+@media (max-width: 900px) {
+    .python-preview-container,
+    .code-preview-container {
+        min-width: unset;
+        width: 100%;
+    }
+
+    .python-code-view {
+        min-height: 200px;
+    }
+}

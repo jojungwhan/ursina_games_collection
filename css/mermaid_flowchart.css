@@ -1,0 +1,92 @@
+/**
+ * @file mermaid_flowchart.css
+ * @description Mermaid.js flowchart diagram styles.
+ *
+ * Components:
+ *   - Mermaid container (.mermaid-container)
+ *   - Flowchart placeholder (.flowchart-placeholder)
+ *   - Mermaid SVG (.mermaid, .mermaid-rendered)
+ *   - Node styling overrides
+ *
+ * Note: [BLOCKLY-OVERRIDE] marks !important declarations required
+ * because Mermaid sets inline styles via JavaScript.
+ */
+
+/* ========================================
+   Mermaid Container
+   ======================================== */
+
+.mermaid-container {
+    flex: 1;
+    padding: var(--space-4);
+    background-color: var(--color-bg-surface);
+    overflow: auto;
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+/* ========================================
+   Placeholder
+   ======================================== */
+
+.flowchart-placeholder {
+    color: var(--color-text-muted);
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    text-align: center;
+    padding: var(--space-5);
+}
+
+/* ========================================
+   Mermaid Diagram
+   ======================================== */
+
+.mermaid-container .mermaid {
+    width: 100%;
+    text-align: center;
+}
+
+.mermaid-container svg,
+.mermaid-rendered svg {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+.mermaid-rendered {
+    width: 100%;
+    text-align: center;
+}
+
+/* ========================================
+   Node Styles
+   ======================================== */
+
+.mermaid-container .node rect,
+.mermaid-container .node circle,
+.mermaid-container .node ellipse,
+.mermaid-container .node polygon,
+.mermaid-container .node path {
+    stroke-width: 2px;
+}
+
+/* [BLOCKLY-OVERRIDE] Start/stop node colors - Mermaid sets inline */
+.mermaid-container .node.start rect,
+.mermaid-container .node.stop rect {
+    fill: var(--color-accent) !important;
+    stroke: var(--color-accent-hover) !important;
+}
+
+/* ========================================
+   Responsive
+   ======================================== */
+
+@media (max-width: 900px) {
+    .mermaid-container {
+        min-height: 250px;
+    }
+}

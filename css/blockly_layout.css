@@ -1,0 +1,235 @@
+/**
+ * @file blockly_layout.css
+ * @description Layout containers, alignment, and output section styles.
+ *
+ * Components:
+ *   - Side-by-side layout (.blockly-container)
+ *   - Output section (.output-section)
+ *   - Console area (.console-area)
+ *   - Section headers (.section-header)
+ *   - Alignment fixes for MkDocs theme
+ *   - Python editor container integration
+ */
+
+/* ========================================
+   Side-by-Side Layout
+   ======================================== */
+
+.blockly-container {
+    display: flex;
+    gap: var(--space-3);
+    margin-bottom: var(--space-2);
+    margin-left: 0;
+    margin-right: 0;
+    align-items: stretch;
+    width: 100%;
+    box-sizing: border-box;
+    min-height: 400px;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.blockly-container > #blocklyDiv {
+    flex: 0 0 55%;
+    align-self: stretch;
+    height: auto;
+    min-height: 400px;
+}
+
+.blockly-container-wrapper {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* ========================================
+   Output Section
+   ======================================== */
+
+.output-section {
+    display: flex;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+    margin-top: var(--space-4);
+}
+
+.canvas-container {
+    flex: 1;
+    min-width: 300px;
+}
+
+.console-container {
+    flex: 1;
+    min-width: 250px;
+}
+
+/* ========================================
+   Section Headers
+   ======================================== */
+
+.section-header {
+    padding: var(--space-2) var(--space-3);
+    background: var(--color-code-header);
+    border-radius: var(--radius-md) var(--radius-md) 0 0;
+    font-family: var(--font-sans);
+    font-weight: var(--font-semibold);
+    font-size: var(--text-xs);
+    color: var(--color-text-muted);
+}
+
+[data-md-color-scheme="slate"] .section-header {
+    background: var(--color-code-bg);
+    color: var(--color-text-muted);
+}
+
+/* ========================================
+   Console Area
+   ======================================== */
+
+.console-area {
+    margin: 0;
+    padding: var(--space-3);
+    background: var(--color-code-bg);
+    color: var(--color-code-text);
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    line-height: var(--leading-normal);
+    border: 1px solid var(--color-code-border);
+    border-top: none;
+    border-radius: 0 0 var(--radius-md) var(--radius-md);
+    min-height: 100px;
+    max-height: 200px;
+    overflow-y: auto;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.console-area.success {
+    color: var(--color-success);
+}
+
+.console-area.error {
+    color: var(--color-error);
+}
+
+/* ========================================
+   MkDocs Theme Alignment Fixes
+   ======================================== */
+
+.blockly-container + button[onclick="runit()"],
+button[onclick="runit()"] {
+    clear: both;
+}
+
+.blockly-container ~ #outputCanvas,
+button[onclick="runit()"] ~ #outputCanvas {
+    clear: both;
+}
+
+.md-typeset .blockly-container,
+.md-content .blockly-container {
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.md-typeset button[onclick="runit()"],
+.md-content button[onclick="runit()"] {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.md-typeset #outputCanvas,
+.md-content #outputCanvas {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.blockly-container,
+button[onclick="runit()"],
+#outputCanvas,
+#turtleCanvasContainer {
+    max-width: 100%;
+}
+
+button[onclick="runit()"] {
+    width: 100%;
+    align-self: stretch;
+    margin-left: 0;
+    padding-left: 0.75rem;
+}
+
+#outputCanvas {
+    width: 100%;
+    clear: left;
+    margin-left: 0;
+}
+
+/* High specificity theme overrides */
+html body .md-typeset .blockly-container,
+html body .md-content .blockly-container {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.md-typeset p:has(.blockly-container),
+.md-content p:has(.blockly-container),
+.blockly-container,
+.blockly-container ~ button[onclick="runit()"],
+.blockly-container ~ #outputCanvas,
+.blockly-container ~ #turtleCanvasContainer {
+    position: relative;
+}
+
+/* ========================================
+   Python Editor Container Integration
+   ======================================== */
+
+.python-editor-container .blockly-container {
+    margin-bottom: 0;
+}
+
+.python-editor-container button[onclick="runit()"],
+.python-editor-container .python-editor-run-btn {
+    margin-top: 0;
+}
+
+.python-editor-container .output-section {
+    margin-top: 0;
+}
+
+.python-editor-container #turtleCanvasContainer {
+    margin-top: 0;
+    border: none;
+    display: block;
+}
+
+.python-editor-container #outputCanvas {
+    margin-top: 0;
+}
+
+/* ========================================
+   Responsive
+   ======================================== */
+
+@media (max-width: 900px) {
+    .blockly-container {
+        flex-direction: column;
+    }
+
+    .blockly-container #blocklyDiv {
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .output-section {
+        flex-direction: column;
+    }
+
+    .canvas-container,
+    .console-container {
+        min-width: unset;
+        width: 100%;
+    }
+}
